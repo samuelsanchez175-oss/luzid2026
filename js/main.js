@@ -105,7 +105,7 @@
             { name: 'Buffalo London', logo: 'assets/images/brands/buffalo-london-.webp' }, 
             { name: 'Carters', logo: null }, 
             { name: 'Amazon Prime Video', logo: null },
-            { name: 'CÎROC', logo: null, invert: true },
+            { name: 'CÎROC', logo: 'assets/images/brands/ciroc-logo.png', invert: true },
             { name: 'Icon Swim', logo: 'assets/images/brands/icon-swim-.webp', invert: true }, 
             { name: 'JBW Watches', logo: 'assets/images/brands/jbw-watches.png', invert: true }, 
             { name: 'Kiss Colors', logo: 'assets/images/brands/kiss-colors-cosmetics-.jpg' },
