@@ -1,0 +1,20 @@
+---
+description: Commit and push changes after every task/prompt
+alwaysApply: true
+---
+
+# Auto Commit & Push
+
+After completing any task that modifies files in this project, always run:
+
+```bash
+git add -A && git status
+```
+
+If there are changes to commit:
+
+```bash
+git commit -m "<descriptive message>" && git push
+```
+
+Do not skip this step. The user expects changes to be committed and pushed after every prompt.
