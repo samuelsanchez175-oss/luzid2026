@@ -267,6 +267,15 @@
                 }, 400);
             }
 
+            const lifestyleImg = document.getElementById('lifestyle-img');
+            let currentLifestyleImageIndex = 1;
+            if (lifestyleImg) {
+                setInterval(() => {
+                    currentLifestyleImageIndex = currentLifestyleImageIndex >= 16 ? 1 : currentLifestyleImageIndex + 1;
+                    lifestyleImg.src = `assets/images/lifestyle-commercials/lifestyle-${currentLifestyleImageIndex.toString().padStart(2, '0')}.jpg`;
+                }, 400);
+            }
+
             // Brand section typing animation
             const brandTypedText = document.getElementById('brand-typed-text');
             const brandSection = document.getElementById('brand');
