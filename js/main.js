@@ -248,7 +248,7 @@
             let currentAlbumImageIndex = 1;
             if (albumImg) {
                 setInterval(() => {
-                    currentAlbumImageIndex = currentAlbumImageIndex > 9 ? 1 : currentAlbumImageIndex + 1;
+                    currentAlbumImageIndex = currentAlbumImageIndex >= 9 ? 1 : currentAlbumImageIndex + 1;
                     albumImg.src = `assets/images/album-covers/album-${currentAlbumImageIndex.toString().padStart(2, '0')}.png`;
                 }, 400);
             }
