@@ -203,7 +203,10 @@
                     <div class="work-item-overlay">
                         ${item.categoryLabel ? `<span class="work-item-category">${item.categoryLabel}</span>` : ''}
                         <h3 class="work-item-title">${item.title}</h3>
-                        <p class="work-item-director">${item.director}</p>
+                        ${item.director && item.director.includes(' · ') 
+                            ? `<p class="work-item-director">${item.director.split(' · ')[0]}</p><p class="work-item-director">Brandon Almengo</p>`
+                            : `<p class="work-item-director">${item.director}</p>`
+                        }
                     </div>
                 </a>
             `}).join('');
