@@ -736,9 +736,18 @@
             transition: transform 0.4s ease;
         }
 
-        .work-item-director {
+        .work-item-artist {
             font-family: "Cormorant Garamond", serif;
             font-size: clamp(1rem, 1.2vw, 1.2rem);
+            color: var(--fg);
+            margin-bottom: 0.25rem;
+            transform: translateY(10px);
+            transition: transform 0.4s ease 0.03s;
+        }
+
+        .work-item-director {
+            font-family: "Cormorant Garamond", serif;
+            font-size: clamp(0.9rem, 1.1vw, 1.1rem);
             color: var(--muted);
             font-style: italic;
             transform: translateY(10px);
@@ -746,6 +755,7 @@
         }
 
         .work-item:hover .work-item-title,
+        .work-item:hover .work-item-artist,
         .work-item:hover .work-item-director {
             transform: translateY(0);
         }
