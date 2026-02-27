@@ -103,7 +103,7 @@
         const brandsGrid = document.getElementById('brands-grid');
         const brandItems = [
             { name: 'Buffalo London', logo: 'assets/images/brands/buffalo-london-.webp' }, 
-            { name: 'Carters', logo: 'assets/images/brands/carters-logo.png?v=2' }, 
+            { name: 'Carters', logo: 'assets/images/brands/carters-logo.png?v=2', logoScale: 2.4 }, 
             { name: 'Amazon Prime Video', logo: 'assets/images/brands/amazon-prime-video.png' },
             { name: 'CÎROC', logo: 'assets/images/brands/ciroc-logo.png', invert: true, logoScale: 3 },
             { name: 'Icon Swim', logo: 'assets/images/brands/icon-swim-.webp', invert: true }, 
@@ -121,7 +121,7 @@
                 .map(item => `
                     <article class="brand-card">
                         ${item.logo 
-                            ? `<img src="${item.logo}" alt="${item.name} logo" class="brand-logo ${item.invert ? 'invert-logo' : ''} ${item.logoScale ? 'brand-logo-scale-' + item.logoScale : ''}" loading="lazy">` 
+                            ? `<img src="${item.logo}" alt="${item.name} logo" class="brand-logo ${item.invert ? 'invert-logo' : ''} ${item.logoScale ? 'brand-logo-scale-' + String(item.logoScale).replace('.', '-') : ''}" loading="lazy">` 
                             : ''
                         }
                         ${(!item.logo || item.showText)
