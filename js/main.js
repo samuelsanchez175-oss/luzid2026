@@ -138,10 +138,10 @@
         const filterBtns = document.querySelectorAll('.filter-btn');
         const workItems = [
             { id: 1, title: 'Back and Forth', director: 'Halle', category: 'music-videos', categoryLabel: 'Music Video', image: 'assets/images/music-videos-halle-back-and-forth.jpg', video: 'assets/videos/welcome-hero-video.mov', link: 'https://www.youtube.com/watch?v=XGEs3GE3-VY' },
-            { id: 2, title: 'Hello Bitch', director: 'Tyga', category: 'music-videos', categoryLabel: 'Music Video', image: 'assets/images/music-videos-tyga-hello-bitch.jpg', video: 'assets/videos/tyga-hello-bitch.mov', link: 'https://www.youtube.com/watch?v=SFPHHni7rWs' },
+            { id: 2, title: 'Hello Bitch', director: 'Tyga', category: 'music-videos', categoryLabel: 'Music Video', image: 'assets/images/tyga-hello-bitch-preview.jpg', video: null, link: 'https://www.youtube.com/watch?v=SFPHHni7rWs' },
             { id: 3, title: 'Icon Swim featuring Latto', director: 'Brandon Almengo', category: 'commercials', categoryLabel: 'Commercial Campaign', image: null, video: 'assets/videos/work-commercials-screenrecording.mp4', link: 'https://example.com/icon-swim' },
-            { id: 4, title: 'Kiss Colors', director: 'Brandon Almengo', category: 'commercials', categoryLabel: 'Commercial Campaign', image: null, video: 'assets/videos/work-commercials-screenrecording.mp4', link: 'kiss-color-1.html' },
-            { id: 5, title: 'Kiss Colors', director: 'Brandon Almengo', category: 'commercials', categoryLabel: 'Commercial Campaign', image: null, video: 'assets/videos/work-commercials-screenrecording.mp4', link: 'kiss-color-2.html' },
+            { id: 4, title: 'Kiss Colors', director: 'Brandon Almengo', category: 'commercials', categoryLabel: 'Commercial Campaign', image: 'assets/images/kiss-color-campaign.jpg', video: null, link: 'kiss-color-1.html' },
+            { id: 5, title: 'Kiss Colors', director: 'Brandon Almengo', category: 'commercials', categoryLabel: 'Commercial Campaign', image: 'assets/images/kiss-color-campaign.jpg', video: null, link: 'kiss-color-2.html' },
             { id: 6, title: "YG Gentlemen's Club", director: 'Brandon Almengo', category: 'commercials', categoryLabel: 'Commercial Campaign', image: null, video: 'assets/videos/work-commercials-screenrecording.mp4', link: 'yg-gentlemens-club.html' },
         ];
 
