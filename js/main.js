@@ -103,7 +103,7 @@
         const brandsGrid = document.getElementById('brands-grid');
         const brandItems = [
             { name: 'Buffalo London', logo: 'assets/images/brands/buffalo-london-.webp' }, 
-            { name: 'Carters', logo: 'assets/images/brands/carters-logo.png' }, 
+            { name: 'Carters', logo: 'assets/images/brands/carters-logo.png?v=2' }, 
             { name: 'Amazon Prime Video', logo: 'assets/images/brands/amazon-prime-video.png' },
             { name: 'CÎROC', logo: 'assets/images/brands/ciroc-logo.png', invert: true, logoScale: 3 },
             { name: 'Icon Swim', logo: 'assets/images/brands/icon-swim-.webp', invert: true }, 
