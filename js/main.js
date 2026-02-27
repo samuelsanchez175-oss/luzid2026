@@ -138,8 +138,8 @@
         const filterBtns = document.querySelectorAll('.filter-btn');
         const workItems = [
             { id: 1, title: 'Back and Forth', director: 'Halle', category: 'music-videos', categoryLabel: 'Music Video', image: 'assets/images/music-videos-halle-back-and-forth.jpg', video: 'assets/videos/welcome-hero-video.mov', link: 'https://www.youtube.com/watch?v=placeholder' },
-            { id: 2, title: 'Hello Bitch', director: 'Tyga', category: 'music-videos', categoryLabel: 'Music Video', image: 'assets/images/music-videos-tyga-hello-bitch.jpg', link: 'https://www.youtube.com/watch?v=placeholder' },
-            { id: 3, title: 'Amazon Music Commercial', director: 'Brandon Almengo', category: 'commercials', categoryLabel: 'Commercial Campaign', image: null, video: 'assets/videos/work-commercials-screenrecording.mp4', link: 'https://example.com/amazon-music' },
+            { id: 2, title: 'Hello Bitch', director: 'Tyga', category: 'music-videos', categoryLabel: 'Music Video', image: 'assets/images/music-videos-tyga-hello-bitch.jpg', video: 'assets/videos/luzid-hero-video.mov', link: 'https://www.youtube.com/watch?v=placeholder' },
+            { id: 3, title: 'Icon Swim', director: 'Brandon Almengo', category: 'commercials', categoryLabel: 'Commercial Campaign', image: null, video: 'assets/videos/work-commercials-screenrecording.mp4', link: 'https://example.com/icon-swim' },
             { id: 4, title: 'Therabody Campaign', director: 'Brandon Almengo', category: 'commercials', categoryLabel: 'Commercial Campaign', image: null, link: 'https://example.com/therabody' },
             { id: 5, title: 'Puma Commercial', director: 'Brandon Almengo', category: 'commercials', categoryLabel: 'Commercial Campaign', image: null, link: 'https://example.com/puma' },
             { id: 6, title: 'Saweetie & Kiss Commercial', director: 'Brandon Almengo', category: 'commercials', categoryLabel: 'Commercial Campaign', image: null, link: 'https://example.com/saweetie-kiss' },
