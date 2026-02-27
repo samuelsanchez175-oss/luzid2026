@@ -271,7 +271,7 @@
             // Brand section typing animation
             const brandTypedText = document.getElementById('brand-typed-text');
             const brandSection = document.getElementById('brand');
-            const brandPhrase = 'We collaborate with international brands to develop and execute high-level storytelling campaigns, commercial productions, editorial films, music videos, and photography across culture and commerce.';
+            const brandPhrase = 'We collaborate with brands to develop and execute high-level storytelling campaigns, commercial productions, editorial films, music videos, and photography across culture and commerce.';
             let brandTypingStarted = false;
 
             if (brandTypedText && brandSection) {
