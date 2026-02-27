@@ -178,7 +178,7 @@
                 ? workItems 
                 : workItems.filter(item => item.category === filter);
 
-            workGrid.classList.toggle('work-grid-album-covers', filter === 'album-covers');
+            workGrid.classList.toggle('work-grid-album-covers', filter === 'album-covers' || filter === 'magazine-covers');
             workGrid.classList.toggle('work-grid-single-covers', filter === 'single-covers');
 
             workGrid.innerHTML = filteredItems.map(item => {
@@ -188,7 +188,7 @@
                 const target = (isYouTube || isExternal) ? '_blank' : '_self';
                 const rel = (isYouTube || isExternal) ? 'noopener noreferrer' : '';
                 const squareClass = item.square ? ' work-item-square' : '';
-                const expandable = (item.category === 'album-covers' || item.category === 'single-covers') && item.image;
+                const expandable = (item.category === 'album-covers' || item.category === 'single-covers' || item.category === 'magazine-covers') && item.image;
                 const dataExpand = expandable ? ` data-expand-image="${item.image}"` : '';
                 return `
                 <a href="${href}" class="work-item${squareClass}" data-category="${item.category}"${dataExpand} target="${target}" rel="${rel}">
