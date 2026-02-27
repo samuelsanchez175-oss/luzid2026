@@ -111,7 +111,7 @@
             { name: 'Kiss Colors', logo: 'assets/images/brands/kiss-colors-cosmetics-.jpg' },
             { name: 'Pretty Little Thing', logo: 'assets/images/brands/pretty-little-thing-.png' }, 
             { name: 'Puma', logo: 'assets/images/brands/puma.svg', invert: true }, 
-            { name: 'Therabody', logo: 'assets/images/brands/therabody-logo.png', invert: true },
+            { name: 'Therabody', logo: 'assets/images/brands/therabody-logo.png?v=2' },
             { name: 'YG 4hunnid', logo: 'assets/images/brands/4hunnid_records_logo.png', invert: true }
         ];
 
