@@ -189,8 +189,10 @@
                 const target = (isYouTube || isExternal) ? '_blank' : '_self';
                 const rel = (isYouTube || isExternal) ? 'noopener noreferrer' : '';
                 const squareClass = item.square ? ' work-item-square' : '';
+                const expandable = (item.category === 'album-covers' || item.category === 'single-covers') && item.image;
+                const dataExpand = expandable ? ` data-expand-image="${item.image}"` : '';
                 return `
-                <a href="${href}" class="work-item${squareClass}" data-category="${item.category}" target="${target}" rel="${rel}">
+                <a href="${href}" class="work-item${squareClass}" data-category="${item.category}"${dataExpand} target="${target}" rel="${rel}">
                     ${item.video 
                         ? `<video src="${item.video}" ${item.image ? `poster="${item.image}"` : ''} autoplay muted loop playsinline webkit-playsinline></video>`
                         : (item.image 
@@ -296,6 +298,45 @@
             // Render Grids
             renderBrands();
             renderWork('all');
+
+            // Image lightbox for album/single covers
+            const lightbox = document.getElementById('image-lightbox');
+            const lightboxImg = lightbox?.querySelector('.lightbox-image');
+            const lightboxClose = lightbox?.querySelector('.lightbox-close');
+            const lightboxBackdrop = lightbox?.querySelector('.lightbox-backdrop');
+
+            function openLightbox(src) {
+                if (lightbox && lightboxImg) {
+                    lightboxImg.src = src;
+                    lightbox.classList.add('is-open');
+                    lightbox.setAttribute('aria-hidden', 'false');
+                    document.body.style.overflow = 'hidden';
+                }
+            }
+
+            function closeLightbox() {
+                if (lightbox) {
+                    lightbox.classList.remove('is-open');
+                    lightbox.setAttribute('aria-hidden', 'true');
+                    document.body.style.overflow = '';
+                }
+            }
+
+            if (workGrid) {
+                workGrid.addEventListener('click', (e) => {
+                    const item = e.target.closest('.work-item[data-expand-image]');
+                    if (item) {
+                        e.preventDefault();
+                        openLightbox(item.getAttribute('data-expand-image'));
+                    }
+                });
+            }
+
+            if (lightboxClose) lightboxClose.addEventListener('click', closeLightbox);
+            if (lightboxBackdrop) lightboxBackdrop.addEventListener('click', closeLightbox);
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && lightbox?.classList.contains('is-open')) closeLightbox();
+            });
 
             // Setup Filter Buttons for Work
             filterBtns.forEach(btn => {
