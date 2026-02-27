@@ -143,6 +143,15 @@
             { id: 4, title: 'Kiss Colors', director: 'Brandon Almengo', category: 'commercials', categoryLabel: 'Commercial Campaign', image: 'assets/images/kiss-color-campaign.gif', video: null, link: 'kiss-color-1.html' },
             { id: 5, title: 'Kiss Color Edge Fixer', director: 'Brandon Almengo', category: 'commercials', categoryLabel: 'Commercial Campaign', image: 'assets/images/kiss-color-edge-fixer.gif', video: null, link: 'kiss-color-2.html' },
             { id: 6, title: "YG Gentlemen's Club", director: 'Brandon Almengo', category: 'commercials', categoryLabel: 'Commercial Campaign', image: null, video: 'assets/videos/work-commercials-screenrecording.mp4', link: 'yg-gentlemens-club.html' },
+            { id: 7, title: "love? ...or something like it", director: 'Brandon Almengo', category: 'album-covers', categoryLabel: 'Album Cover', image: 'assets/images/album-covers/album-01.png', video: null, link: '#', square: true },
+            { id: 8, title: 'Keep It Lit Record', director: 'Brandon Almengo', category: 'album-covers', categoryLabel: 'Album Cover', image: 'assets/images/album-covers/album-02.png', video: null, link: '#', square: true },
+            { id: 9, title: 'On Cod... Koryn Hawthorne', director: 'Brandon Almengo', category: 'album-covers', categoryLabel: 'Album Cover', image: 'assets/images/album-covers/album-03.png', video: null, link: '#', square: true },
+            { id: 10, title: 'Fine Ho Stay', director: 'Brandon Almengo', category: 'album-covers', categoryLabel: 'Album Cover', image: 'assets/images/album-covers/album-04.png', video: null, link: '#', square: true },
+            { id: 11, title: "First Lady of the Mob", director: 'Kamaiyah & DJ Idea', category: 'album-covers', categoryLabel: 'Album Cover', image: 'assets/images/album-covers/album-05.png', video: null, link: '#', square: true },
+            { id: 12, title: 'Album Cover', director: 'Brandon Almengo', category: 'album-covers', categoryLabel: 'Album Cover', image: 'assets/images/album-covers/album-06.png', video: null, link: '#', square: true },
+            { id: 13, title: 'Album Cover', director: 'Brandon Almengo', category: 'album-covers', categoryLabel: 'Album Cover', image: 'assets/images/album-covers/album-07.png', video: null, link: '#', square: true },
+            { id: 14, title: 'Drunken Words Sober Thoughts', director: 'Seven', category: 'album-covers', categoryLabel: 'Album Cover', image: 'assets/images/album-covers/album-08.png', video: null, link: '#', square: true },
+            { id: 15, title: 'Album Cover', director: 'Brandon Almengo', category: 'album-covers', categoryLabel: 'Album Cover', image: 'assets/images/album-covers/album-09.png', video: null, link: '#', square: true },
         ];
 
         function renderWork(filter = 'all') {
@@ -151,13 +160,16 @@
                 ? workItems 
                 : workItems.filter(item => item.category === filter);
 
+            workGrid.classList.toggle('work-grid-album-covers', filter === 'album-covers');
+
             workGrid.innerHTML = filteredItems.map(item => {
                 const href = item.link || '#';
                 const isExternal = item.link && item.link.startsWith('http');
                 const target = isExternal ? '_blank' : '_self';
                 const rel = isExternal ? 'noopener noreferrer' : '';
+                const squareClass = item.square ? ' work-item-square' : '';
                 return `
-                <a href="${href}" class="work-item" data-category="${item.category}" target="${target}" rel="${rel}">
+                <a href="${href}" class="work-item${squareClass}" data-category="${item.category}" target="${target}" rel="${rel}">
                     ${item.video 
                         ? `<video src="${item.video}" ${item.image ? `poster="${item.image}"` : ''} autoplay muted loop playsinline webkit-playsinline></video>`
                         : (item.image 
