@@ -104,7 +104,7 @@
         const brandItems = [
             { name: 'Buffalo London', logo: 'assets/images/brands/buffalo-london-.webp' }, 
             { name: 'Carters', logo: 'assets/images/brands/carters-logo.png?v=2', logoScale: 2.4 }, 
-            { name: 'Amazon Prime Video', logo: 'assets/images/brands/amazon-prime-video.png' },
+            { name: 'Amazon Music', logo: 'assets/images/brands/amazon-music.png' },
             { name: 'CÎROC', logo: 'assets/images/brands/ciroc-logo.png', invert: true, logoScale: 3 },
             { name: 'Icon Swim', logo: 'assets/images/brands/icon-swim-.webp', invert: true }, 
             { name: 'JBW Watches', logo: 'assets/images/brands/jbw-watches.png', invert: true }, 
