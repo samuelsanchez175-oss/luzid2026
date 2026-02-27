@@ -572,6 +572,10 @@
             max-height: 150px;
         }
 
+        .brand-logo.brand-logo-scale-2 {
+            max-height: 100px;
+        }
+
         .brand-logo.brand-logo-scale-2-4 {
             max-height: 120px;
         }
