@@ -451,8 +451,8 @@
 
         .founder-section {
             border-top: 1px solid var(--line);
-            padding-top: 5rem;
-            margin-top: 4rem;
+            padding: 5rem 1.25rem 4rem;
+            background: transparent;
         }
 
         .founder-grid {
