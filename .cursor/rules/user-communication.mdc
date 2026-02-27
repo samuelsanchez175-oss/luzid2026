@@ -1,0 +1,35 @@
+---
+description: Use hazard/stop signs for action items and green checkmarks for completed tasks
+alwaysApply: true
+---
+
+# User Communication Markers
+
+When communicating with the user, use these markers consistently:
+
+## Action Required / Failures
+
+When something requires the user's action, or when explaining why a build or prompt failed:
+
+- Use **⚠️** (hazard/warning) or **🛑** (stop sign) at the start of the line
+- Place it next to any instruction the user must perform
+- Include a brief reason when relevant
+
+**Example:**
+> ⚠️ **Action required:** Compress the video to under 100MB before pushing, or GitHub will reject the deployment.
+
+**Example:**
+> 🛑 **Build failed:** File exceeds GitHub's 100MB limit. Compress `tyga-hello-bitch.mov` and try again.
+
+## Completed Tasks
+
+When a task or instruction has been completed successfully:
+
+- Use **✅** (green checkmark) at the start of the line
+- Use for: finished edits, successful pushes, completed deployments, resolved issues
+
+**Example:**
+> ✅ Changes committed and pushed to GitHub. Vercel will deploy within 1–2 minutes.
+
+**Example:**
+> ✅ Updated the Hello Bitch card to use the Tyga video.

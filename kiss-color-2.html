@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kiss Colors | Luzid Productions</title>
+    <meta name="description" content="Kiss Colors - Commercial campaign directed by Brandon Almengo. Luzid Productions.">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .project-page { padding: 6rem 1.25rem 4rem; max-width: 1200px; margin: 0 auto; }
+        .project-page .site-header { opacity: 1; transform: none; }
+        .project-video { width: 100%; aspect-ratio: 16/9; background: #111; margin-bottom: 2rem; }
+        .project-video video { width: 100%; height: 100%; object-fit: contain; }
+        .project-meta { text-align: center; margin-bottom: 3rem; }
+        .project-title { font-size: clamp(2.5rem, 6vw, 4rem); letter-spacing: 0.08em; margin-bottom: 0.5rem; }
+        .project-year { font-size: clamp(1rem, 2vw, 1.25rem); color: var(--accent); letter-spacing: 0.1em; margin-bottom: 0.5rem; }
+        .project-director { font-family: "Cormorant Garamond", serif; font-size: clamp(1.1rem, 1.5vw, 1.3rem); color: var(--muted); font-style: italic; }
+        .project-back { display: inline-block; margin-top: 2rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.15em; font-size: 0.9rem; }
+        .project-back:hover { opacity: 0.8; }
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <div class="header-inner">
+            <a href="index.html" class="brand-mark">Luzid Productions</a>
+            <button class="menu-toggle" id="menu-toggle" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+            <nav class="nav-list" id="nav-list" aria-label="Primary">
+                <a href="index.html#home">Home</a>
+                <a href="index.html#about">About</a>
+                <a href="index.html#brand">Brand</a>
+                <a href="index.html#work">Work</a>
+                <a href="index.html#contact">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="project-page">
+        <div class="project-video">
+            <video controls playsinline webkit-playsinline>
+                <source src="https://www.dropbox.com/scl/fi/ylvg9tb4kp4dmyt4xgfdq/Video-Feb-04-2026-10-06-34-PM.mov?rlkey=cqdpdrhzaunn6vyo5zyol3md5&st=w4srtjrd&dl=1" type="video/quicktime">
+            </video>
+        </div>
+        <div class="project-meta">
+            <h1 class="project-title">Kiss Colors</h1>
+            <p class="project-year">2026</p>
+            <p class="project-director">Director: Brandon Almengo</p>
+        </div>
+        <a href="index.html#work" class="project-back">← Back to Work</a>
+        <a href="https://www.dropbox.com/scl/fi/ylvg9tb4kp4dmyt4xgfdq/Video-Feb-04-2026-10-06-34-PM.mov?rlkey=cqdpdrhzaunn6vyo5zyol3md5&st=w4srtjrd&dl=0" target="_blank" rel="noopener noreferrer" class="project-back" style="margin-left: 1.5rem;">Watch on Dropbox</a>
+    </main>
+
+    <footer class="site-footer">
+        Contact: <a href="mailto:hello@luzidproductions.com">hello@luzidproductions.com</a> | <a href="mailto:Luzidprductions@gmail.com">Luzidprductions@gmail.com</a> | © 2026 Luzid Productions
+    </footer>
+
+    <script>
+        const menuToggle = document.getElementById('menu-toggle');
+        const navList = document.getElementById('nav-list');
+        if (menuToggle && navList) {
+            menuToggle.addEventListener('click', () => { menuToggle.classList.toggle('is-active'); navList.classList.toggle('is-open'); });
+            navList.querySelectorAll('a').forEach(link => { link.addEventListener('click', () => { menuToggle.classList.remove('is-active'); navList.classList.remove('is-open'); }); });
+        }
+    </script>
+</body>
+</html>

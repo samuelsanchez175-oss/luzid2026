@@ -2,3 +2,6 @@
 .vscode/
 *.log
 .vercel
+
+# 161MB - exceeds GitHub 100MB limit; compress to <100MB before adding
+assets/videos/tyga-hello-bitch.mov
