@@ -1,0 +1,263 @@
+// --- HERO SEQUENCE LOGIC ---
+        const siteHeader = document.getElementById('site-header');
+        const layerCover = document.getElementById('layer-cover');
+        const layerVideo = document.getElementById('layer-video');
+        const heroVideo = document.getElementById('hero-video');
+        const heroCenterTitle = document.getElementById('hero-center-title');
+        const heroStatement = document.getElementById('hero-statement');
+        const typedText = document.getElementById('typed-text');
+
+        const typedPhrase = 'is a full service creative agency and production company that makes high end visual storytelling';
+
+        function runHeroSequence() {
+            const T_STATEMENT_SHOW = 3400;
+            const T_TYPING_START = 4000;
+            const T_VIDEO_FADE_AND_PLAY = 1700;
+            const T_NAV_REVEAL = 9000;
+
+            setTimeout(() => {
+                if (heroCenterTitle) heroCenterTitle.classList.add('is-visible');
+                heroStatement.classList.add('is-visible');
+            }, T_STATEMENT_SHOW);
+
+            setTimeout(() => {
+                let index = 0;
+                const typeSpeed = 35;
+                const tick = () => {
+                    typedText.textContent = typedPhrase.slice(0, index);
+                    index++;
+                    if (index <= typedPhrase.length) {
+                        setTimeout(tick, typeSpeed);
+                    }
+                };
+                tick();
+            }, T_TYPING_START);
+
+            setTimeout(() => {
+                layerVideo.classList.add('is-active');
+                if (heroVideo) {
+                    heroVideo.muted = true;
+                    heroVideo.defaultMuted = true;
+                    const attempt = heroVideo.play();
+                    if (attempt && typeof attempt.catch === 'function') {
+                        attempt.catch(() => {});
+                    }
+                }
+            }, T_VIDEO_FADE_AND_PLAY);
+
+            setTimeout(() => {
+                siteHeader.classList.add('is-visible');
+                const navArrows = document.getElementById('hero-nav-arrows');
+                if (navArrows) navArrows.classList.add('is-visible');
+            }, T_NAV_REVEAL);
+        }
+
+        // --- SMOOTH SCROLL LOGIC ---
+        function bindSmoothScroll() {
+            document.addEventListener('click', event => {
+                const link = event.target.closest('a[href^="#"]');
+                if (!link) return;
+                const target = document.querySelector(link.getAttribute('href'));
+                if (!target) return;
+                event.preventDefault();
+                const headerOffset = siteHeader ? siteHeader.offsetHeight : 0;
+                const targetTop = target.getBoundingClientRect().top + window.scrollY - headerOffset;
+                window.scrollTo({ top: targetTop, behavior: 'smooth' });
+            });
+
+            const arrowUp = document.querySelector('.hero-nav-arrows .up');
+            const arrowDown = document.querySelector('.hero-nav-arrows .down');
+            const allSections = Array.from(document.querySelectorAll('section[id]'));
+
+            function getCurrentSectionIndex() {
+                const headerOffset = siteHeader ? siteHeader.offsetHeight : 0;
+                let currentIndex = 0;
+                
+                allSections.forEach((section, index) => {
+                    const rectTop = section.getBoundingClientRect().top;
+                    // If the top of the section is at or above the header + buffer
+                    if (rectTop <= headerOffset + 50) {
+                        currentIndex = index;
+                    }
+                });
+                return currentIndex;
+            }
+
+            if (arrowUp) {
+                arrowUp.addEventListener('click', () => {
+                    const currentIndex = getCurrentSectionIndex();
+                    const targetIndex = currentIndex > 0 ? currentIndex - 1 : allSections.length - 1;
+                    const headerOffset = siteHeader ? siteHeader.offsetHeight : 0;
+                    const targetTop = allSections[targetIndex].getBoundingClientRect().top + window.scrollY - headerOffset;
+                    window.scrollTo({ top: targetTop, behavior: 'smooth' });
+                });
+            }
+
+            if (arrowDown) {
+                arrowDown.addEventListener('click', () => {
+                    const currentIndex = getCurrentSectionIndex();
+                    const targetIndex = currentIndex < allSections.length - 1 ? currentIndex + 1 : 0;
+                    const headerOffset = siteHeader ? siteHeader.offsetHeight : 0;
+                    const targetTop = allSections[targetIndex].getBoundingClientRect().top + window.scrollY - headerOffset;
+                    window.scrollTo({ top: targetTop, behavior: 'smooth' });
+                });
+            }
+        }
+
+        // --- RENDER BRANDS LOGIC ---
+        const brandsGrid = document.getElementById('brands-grid');
+        const brandItems = [
+            { name: 'Buffalo London', logo: 'assets/images/brands/buffalo-london-.webp' }, 
+            { name: 'Carters', logo: null }, 
+            { name: 'Gen Mex', logo: 'assets/images/brands/gen-mex.png' },
+            { name: 'Icon Swim', logo: 'assets/images/brands/icon-swim-.webp', invert: true }, 
+            { name: 'JBW Watches', logo: 'assets/images/brands/jbw-watches.png', invert: true }, 
+            { name: 'Kiss Colors', logo: 'assets/images/brands/kiss-colors-cosmetics-.jpg' },
+            { name: 'Pretty Little Thing', logo: 'assets/images/brands/pretty-little-thing-.png' }, 
+            { name: 'Puma', logo: 'assets/images/brands/puma.svg', invert: true }, 
+            { name: 'James Harden', logo: 'assets/images/brands/james-harden.png', showText: true },
+            { name: 'YG 4hunnid', logo: 'assets/images/brands/4hunnid_records_logo.png', invert: true }
+        ];
+
+        function renderBrands() {
+            if (!brandsGrid) return;
+            brandsGrid.innerHTML = brandItems
+                .map(item => `
+                    <article class="brand-card">
+                        ${item.logo 
+                            ? `<img src="${item.logo}" alt="${item.name} logo" class="brand-logo ${item.invert ? 'invert-logo' : ''}" loading="lazy">` 
+                            : ''
+                        }
+                        ${(!item.logo || item.showText)
+                            ? `<p class="brand-text">${item.name}</p>`
+                            : ''
+                        }
+                    </article>
+                `)
+                .join('');
+        }
+
+        // --- RENDER WORK LOGIC ---
+        const workGrid = document.getElementById('work-grid');
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const workItems = [
+            { id: 1, title: 'Back and Forth', director: 'Halle', category: 'music-videos', image: 'assets/images/music-videos-halle-back-and-forth.jpg', video: 'assets/videos/welcome-hero-video.mov' },
+            { id: 2, title: 'Hello Bitch', director: 'Tyga', category: 'music-videos', image: 'assets/images/music-videos-tyga-hello-bitch.jpg' },
+            { id: 3, title: 'Project Title 3', director: 'Director Name', category: 'music-videos', image: null },
+            { id: 4, title: 'Project Title 4', director: 'Director Name', category: 'narrative', image: null },
+            { id: 5, title: 'Commercial Feature', director: 'Brandon Almengo', category: 'commercials', image: null, video: 'assets/videos/work-commercials-screenrecording.mp4' },
+            { id: 6, title: 'Project Title 6', director: 'Director Name', category: 'music-videos', image: null },
+            { id: 7, title: 'Project Title 7', director: 'Director Name', category: 'music-videos', image: null },
+            { id: 8, title: 'Project Title 8', director: 'Director Name', category: 'narrative', image: null },
+            { id: 9, title: 'Project Title 9', director: 'Director Name', category: 'commercials', image: null },
+        ];
+
+        function renderWork(filter = 'all') {
+            if (!workGrid) return;
+            const filteredItems = filter === 'all' 
+                ? workItems 
+                : workItems.filter(item => item.category === filter);
+
+            workGrid.innerHTML = filteredItems.map(item => `
+                <a href="#" class="work-item" data-category="${item.category}">
+                    ${item.video 
+                        ? `<video src="${item.video}" ${item.image ? `poster="${item.image}"` : ''} autoplay muted loop playsinline webkit-playsinline></video>`
+                        : (item.image 
+                            ? `<img src="${item.image}" alt="${item.title}" loading="lazy">` 
+                            : `<div class="work-placeholder">[ Image Placeholder ]</div>`
+                        )
+                    }
+                    <div class="work-item-overlay">
+                        <h3 class="work-item-title">${item.title}</h3>
+                        <p class="work-item-director">${item.director}</p>
+                    </div>
+                </a>
+            `).join('');
+        }
+
+        // --- DOM CONTENT LOADED (Setup everything) ---
+        document.addEventListener('DOMContentLoaded', () => {
+            // Setup Mobile Menu
+            const menuToggle = document.getElementById('menu-toggle');
+            const navList = document.getElementById('nav-list');
+            if (menuToggle && navList) {
+                menuToggle.addEventListener('click', () => {
+                    menuToggle.classList.toggle('is-active');
+                    navList.classList.toggle('is-open');
+                });
+                navList.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        menuToggle.classList.remove('is-active');
+                        navList.classList.remove('is-open');
+                    });
+                });
+            }
+
+            // Start Hero Sequence & Scroll Handlers
+            runHeroSequence();
+            bindSmoothScroll();
+
+            // Setup image cycling for capabilities
+            const evfxImg = document.getElementById('evfx-img');
+            let currentEvfxImageIndex = 1;
+            if (evfxImg) {
+                setInterval(() => {
+                    currentEvfxImageIndex = currentEvfxImageIndex > 5 ? 1 : currentEvfxImageIndex + 1; // It has 6 images
+                    evfxImg.src = `assets/images/about-color-finishing/cf-${currentEvfxImageIndex.toString().padStart(2, '0')}.jpg`;
+                }, 400);
+            }
+
+            const psImg = document.getElementById('ps-img');
+            let currentPsImageIndex = 1;
+            if (psImg) {
+                setInterval(() => {
+                    currentPsImageIndex = currentPsImageIndex > 18 ? 1 : currentPsImageIndex + 1; // It has 19 images
+                    psImg.src = `assets/images/about-photo-social/ps-${currentPsImageIndex.toString().padStart(2, '0')}.jpg`;
+                }, 400);
+            }
+
+            const infImg = document.getElementById('inf-img');
+            let currentInfImageIndex = 1;
+            if (infImg) {
+                setInterval(() => {
+                    currentInfImageIndex = currentInfImageIndex > 16 ? 1 : currentInfImageIndex + 1; // It has 17 images
+                    infImg.src = `assets/images/about-influencer/inf3-${currentInfImageIndex.toString().padStart(2, '0')}.jpg`;
+                }, 400);
+            }
+
+            // Render Grids
+            renderBrands();
+            renderWork('all');
+
+            // Setup Filter Buttons for Work
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    e.target.classList.add('active');
+                    renderWork(e.target.getAttribute('data-filter'));
+                });
+            });
+
+            // Active section highlighting based on scroll position
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('.nav-list a[href^="#"]');
+
+            window.addEventListener('scroll', () => {
+                let current = '';
+                const headerOffset = siteHeader ? siteHeader.offsetHeight : 0;
+                
+                sections.forEach(section => {
+                    const rectTop = section.getBoundingClientRect().top;
+                    if (rectTop <= headerOffset + 50) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${current}`) {
+                        link.classList.add('active');
+                    }
+                });
+            });
+        });

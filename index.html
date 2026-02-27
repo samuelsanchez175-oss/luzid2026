@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luzid Productions | Creative Agency</title>
+    <meta name="description" content="Luzid Productions is a full service creative agency and production company focused on high-end visual storytelling.">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Fixed background video for the About Section -->
+    <video class="about-page-bg" autoplay muted loop playsinline webkit-playsinline>
+        <source src="assets/videos/brandon-vday-bts.mov">
+    </video>
+
+    <!-- Global Header with Hamburger Menu -->
+    <header id="site-header" class="site-header">
+        <div class="header-inner">
+            <a href="#home" class="brand-mark">Luzid Productions</a>
+            <button class="menu-toggle" id="menu-toggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <nav class="nav-list" id="nav-list" aria-label="Primary">
+                <a href="#home" class="active">Home</a>
+                <a href="#about">About</a>
+                <a href="#brand">Brand</a>
+                <a href="#work">Work</a>
+                <a href="#contact">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- HOME SECTION -->
+        <section id="home" class="home-hero" aria-label="Luzid Home Hero">
+            <div id="layer-cover" class="hero-layer is-active">
+                <img src="assets/images/cover-title.jpg" alt="Luzid cover title">
+            </div>
+
+            <div id="layer-video" class="hero-layer">
+                <video id="hero-video" muted loop playsinline webkit-playsinline preload="auto">
+                    <source src="assets/videos/welcome-hero-video.mov">
+                </video>
+            </div>
+
+            <div class="home-gradient"></div>
+
+            <h1 id="hero-center-title" class="hero-center-title">Luzid Productions</h1>
+
+            <div id="hero-statement" class="hero-statement">
+                <p class="hero-line">
+                    <span id="typed-text"></span>
+                    <span class="typed-caret" aria-hidden="true">|</span>
+                </p>
+            </div>
+        </section>
+
+        <!-- Persistent Navigation Arrows -->
+        <div id="hero-nav-arrows" class="hero-nav-arrows">
+            <button class="nav-arrow up" aria-label="Previous section">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <polyline points="18 15 12 9 6 15"></polyline>
+                </svg>
+            </button>
+            <button class="nav-arrow down" aria-label="Next section">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+            </button>
+        </div>
+
+        <!-- ABOUT SECTION -->
+        <section id="about" class="about-section" aria-label="About Us">
+            <div class="about-inner">
+                <div class="about-statement">
+                    <p>Luzid Productions is a full-service creative agency and production house.</p>
+                    <p>We develop bold concepts and execute them at the highest level—from ideation to final delivery. We don’t just create imagery; we move culture.</p>
+                </div>
+
+                <h2 class="section-title">Capabilities</h2>
+                <div class="capabilities-grid">
+                    <div class="capability-card">
+                        <video autoplay muted loop playsinline webkit-playsinline>
+                            <source src="assets/videos/luzid-hero-video.mov">
+                        </video>
+                        <span class="capability-text">Music Videos</span>
+                    </div>
+                    <div class="capability-card" id="cbc-card">
+                        <video autoplay muted loop playsinline webkit-playsinline>
+                            <source src="assets/videos/work-commercials-screenrecording.mp4">
+                        </video>
+                        <span class="capability-text">Commercials & Branded Content</span>
+                    </div>
+                    <div class="capability-card" id="evfx-card">
+                        <img src="assets/images/about-color-finishing/cf-01.jpg" id="evfx-img" class="cbc-img-cycle" alt="Editing VFX Color & Finishing">
+                        <span class="capability-text">Editing VFX Color & Finishing</span>
+                    </div>
+                    <div class="capability-card" id="ps-card">
+                        <img src="assets/images/about-photo-social/ps-01.jpg" id="ps-img" class="cbc-img-cycle" alt="Photography & Social Content">
+                        <span class="capability-text">Photography & Social Content</span>
+                    </div>
+                    <div class="capability-card" id="inf-card">
+                        <img src="assets/images/about-influencer/inf3-01.jpg" id="inf-img" class="cbc-img-cycle" alt="Influencer Selection & Partnership">
+                        <span class="capability-text">Influencer Selection & Partnership</span>
+                    </div>
+                </div>
+
+                <div class="founder-section">
+                    <h2 class="section-title">Letter From Our Founder</h2>
+                    <div class="founder-grid">
+                        <div class="founder-image-wrapper">
+                            <img src="assets/images/founder-headshot-v3.png" alt="Founder of Luzid Productions">
+                        </div>
+                        <div class="founder-message-placeholder">
+                            <p>Brandon Almengo is a Los Angeles-based fashion and entertainment photographer and creative director known for his work with high profile celebrities and musicians. He is recognized for his strong visual style and impact in contemporary fashion photography.</p>
+                            <p style="color: var(--accent); margin-top: 2rem; font-size: 2rem; letter-spacing: 0.1em;">
+                                - Brandon Almengo
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- BRAND SECTION -->
+        <section id="brand" class="brand-page-section" aria-label="Brand Overview">
+            <div class="brand-inner">
+                
+                <h1 class="brand-statement">
+                    WE COLLAB WITH GLOBAL BRANDS & AGENCIES. CONCEPT IDEATION THROUGH PRODUCTION FROM A DIVERSE GROUP OF DIGITAL NATIVES.
+                </h1>
+
+                <h2 class="section-title">Brands We've Partnered With</h2>
+                <div id="brands-grid" class="brands-grid"></div>
+
+
+            </div>
+        </section>
+
+        <!-- WORK SECTION -->
+        <section id="work" class="work-section" aria-label="Portfolio Work">
+            <div class="work-inner">
+                
+                <h2 class="section-title">Our Work</h2>
+                <div class="work-filter-menu">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="music-videos">Music Videos</button>
+                    <button class="filter-btn" data-filter="commercials">Commercials</button>
+                    <button class="filter-btn" data-filter="narrative">Narrative</button>
+                </div>
+
+                <div id="work-grid" class="work-grid">
+                    <!-- JavaScript will populate this grid -->
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <footer id="contact" class="site-footer">
+        Contact: <a href="mailto:hello@luzidproductions.com">hello@luzidproductions.com</a> | © 2026 Luzid Productions
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

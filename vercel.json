@@ -1,0 +1,18 @@
+{
+  "framework": null,
+  "buildCommand": null,
+  "cleanUrls": true,
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.luzidproductions.com"
+        }
+      ],
+      "destination": "https://luzidproductions.com/:path*",
+      "permanent": true
+    }
+  ]
+}
