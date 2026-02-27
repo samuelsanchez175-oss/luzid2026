@@ -568,6 +568,10 @@
             transition: filter 0.3s ease;
         }
 
+        .brand-logo.brand-logo-scale-3 {
+            max-height: 150px;
+        }
+
         .brand-logo.invert-logo {
             filter: invert(1) grayscale(100%) brightness(150%);
         }

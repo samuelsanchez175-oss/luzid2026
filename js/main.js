@@ -105,7 +105,7 @@
             { name: 'Buffalo London', logo: 'assets/images/brands/buffalo-london-.webp' }, 
             { name: 'Carters', logo: null }, 
             { name: 'Amazon Prime Video', logo: 'assets/images/brands/amazon-prime-video.png' },
-            { name: 'CÎROC', logo: 'assets/images/brands/ciroc-logo.png', invert: true },
+            { name: 'CÎROC', logo: 'assets/images/brands/ciroc-logo.png', invert: true, logoScale: 3 },
             { name: 'Icon Swim', logo: 'assets/images/brands/icon-swim-.webp', invert: true }, 
             { name: 'JBW Watches', logo: 'assets/images/brands/jbw-watches.png', invert: true }, 
             { name: 'Kiss Colors', logo: 'assets/images/brands/kiss-colors-cosmetics-.jpg' },
@@ -121,7 +121,7 @@
                 .map(item => `
                     <article class="brand-card">
                         ${item.logo 
-                            ? `<img src="${item.logo}" alt="${item.name} logo" class="brand-logo ${item.invert ? 'invert-logo' : ''}" loading="lazy">` 
+                            ? `<img src="${item.logo}" alt="${item.name} logo" class="brand-logo ${item.invert ? 'invert-logo' : ''} ${item.logoScale ? 'brand-logo-scale-' + item.logoScale : ''}" loading="lazy">` 
                             : ''
                         }
                         ${(!item.logo || item.showText)
