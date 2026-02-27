@@ -152,6 +152,22 @@
             { id: 13, title: 'Album Cover', director: 'Brandon Almengo', category: 'album-covers', categoryLabel: 'Album Cover', image: 'assets/images/album-covers/album-07.png', video: null, link: '#', square: true },
             { id: 14, title: 'Drunken Words Sober Thoughts', director: 'Seven', category: 'album-covers', categoryLabel: 'Album Cover', image: 'assets/images/album-covers/album-08.png', video: null, link: '#', square: true },
             { id: 15, title: 'Album Cover', director: 'Brandon Almengo', category: 'album-covers', categoryLabel: 'Album Cover', image: 'assets/images/album-covers/album-09.png', video: null, link: '#', square: true },
+            { id: 16, title: 'Single Cover', director: 'Brandon Almengo', category: 'single-covers', categoryLabel: 'Single Cover', image: 'assets/images/single-covers/single-01.jpg', video: null, link: '#', square: true },
+            { id: 17, title: 'Single Cover', director: 'Brandon Almengo', category: 'single-covers', categoryLabel: 'Single Cover', image: 'assets/images/single-covers/single-02.jpg', video: null, link: '#', square: true },
+            { id: 18, title: 'Single Cover', director: 'Brandon Almengo', category: 'single-covers', categoryLabel: 'Single Cover', image: 'assets/images/single-covers/single-03.jpg', video: null, link: '#', square: true },
+            { id: 19, title: 'Single Cover', director: 'Brandon Almengo', category: 'single-covers', categoryLabel: 'Single Cover', image: 'assets/images/single-covers/single-04.jpg', video: null, link: '#', square: true },
+            { id: 20, title: 'Single Cover', director: 'Brandon Almengo', category: 'single-covers', categoryLabel: 'Single Cover', image: 'assets/images/single-covers/single-05.jpg', video: null, link: '#', square: true },
+            { id: 21, title: 'Single Cover', director: 'Brandon Almengo', category: 'single-covers', categoryLabel: 'Single Cover', image: 'assets/images/single-covers/single-06.jpg', video: null, link: '#', square: true },
+            { id: 22, title: 'Single Cover', director: 'Brandon Almengo', category: 'single-covers', categoryLabel: 'Single Cover', image: 'assets/images/single-covers/single-07.jpg', video: null, link: '#', square: true },
+            { id: 23, title: 'Single Cover', director: 'Brandon Almengo', category: 'single-covers', categoryLabel: 'Single Cover', image: 'assets/images/single-covers/single-08.jpg', video: null, link: '#', square: true },
+            { id: 24, title: 'Single Cover', director: 'Brandon Almengo', category: 'single-covers', categoryLabel: 'Single Cover', image: 'assets/images/single-covers/single-09.jpg', video: null, link: '#', square: true },
+            { id: 25, title: 'Single Cover', director: 'Brandon Almengo', category: 'single-covers', categoryLabel: 'Single Cover', image: 'assets/images/single-covers/single-10.jpg', video: null, link: '#', square: true },
+            { id: 26, title: 'Single Cover', director: 'Brandon Almengo', category: 'single-covers', categoryLabel: 'Single Cover', image: 'assets/images/single-covers/single-11.jpg', video: null, link: '#', square: true },
+            { id: 27, title: 'Single Cover', director: 'Brandon Almengo', category: 'single-covers', categoryLabel: 'Single Cover', image: 'assets/images/single-covers/single-12.jpg', video: null, link: '#', square: true },
+            { id: 28, title: 'Single Cover', director: 'Brandon Almengo', category: 'single-covers', categoryLabel: 'Single Cover', image: 'assets/images/single-covers/single-13.jpg', video: null, link: '#', square: true },
+            { id: 29, title: 'Single Cover', director: 'Brandon Almengo', category: 'single-covers', categoryLabel: 'Single Cover', image: 'assets/images/single-covers/single-14.jpg', video: null, link: '#', square: true },
+            { id: 30, title: 'Single Cover', director: 'Brandon Almengo', category: 'single-covers', categoryLabel: 'Single Cover', image: 'assets/images/single-covers/single-15.jpg', video: null, link: '#', square: true },
+            { id: 31, title: 'Single Cover', director: 'Brandon Almengo', category: 'single-covers', categoryLabel: 'Single Cover', image: 'assets/images/single-covers/single-16.jpg', video: null, link: '#', square: true },
         ];
 
         function renderWork(filter = 'all') {
@@ -161,6 +177,7 @@
                 : workItems.filter(item => item.category === filter);
 
             workGrid.classList.toggle('work-grid-album-covers', filter === 'album-covers');
+            workGrid.classList.toggle('work-grid-single-covers', filter === 'single-covers');
 
             workGrid.innerHTML = filteredItems.map(item => {
                 const href = item.link || '#';
