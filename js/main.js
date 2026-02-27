@@ -1,6 +1,5 @@
 // --- HERO SEQUENCE LOGIC ---
         const siteHeader = document.getElementById('site-header');
-        const layerCover = document.getElementById('layer-cover');
         const layerVideo = document.getElementById('layer-video');
         const heroVideo = document.getElementById('hero-video');
         const heroCenterTitle = document.getElementById('hero-center-title');
@@ -10,10 +9,18 @@
         const typedPhrase = 'is a full service creative agency and production company that makes high end visual storytelling';
 
         function runHeroSequence() {
-            const T_STATEMENT_SHOW = 3400;
-            const T_TYPING_START = 4000;
-            const T_VIDEO_FADE_AND_PLAY = 1700;
-            const T_NAV_REVEAL = 9000;
+            const T_STATEMENT_SHOW = 1200;
+            const T_TYPING_START = 1800;
+            const T_NAV_REVEAL = 7000;
+
+            if (heroVideo) {
+                heroVideo.muted = true;
+                heroVideo.defaultMuted = true;
+                const attempt = heroVideo.play();
+                if (attempt && typeof attempt.catch === 'function') {
+                    attempt.catch(() => {});
+                }
+            }
 
             setTimeout(() => {
                 if (heroCenterTitle) heroCenterTitle.classList.add('is-visible');
@@ -32,18 +39,6 @@
                 };
                 tick();
             }, T_TYPING_START);
-
-            setTimeout(() => {
-                layerVideo.classList.add('is-active');
-                if (heroVideo) {
-                    heroVideo.muted = true;
-                    heroVideo.defaultMuted = true;
-                    const attempt = heroVideo.play();
-                    if (attempt && typeof attempt.catch === 'function') {
-                        attempt.catch(() => {});
-                    }
-                }
-            }, T_VIDEO_FADE_AND_PLAY);
 
             setTimeout(() => {
                 siteHeader.classList.add('is-visible');
@@ -109,13 +104,14 @@
         const brandItems = [
             { name: 'Buffalo London', logo: 'assets/images/brands/buffalo-london-.webp' }, 
             { name: 'Carters', logo: null }, 
-            { name: 'Gen Mex', logo: 'assets/images/brands/gen-mex.png' },
+            { name: 'Amazon Prime Video', logo: null },
+            { name: 'CÎROC', logo: null, invert: true },
             { name: 'Icon Swim', logo: 'assets/images/brands/icon-swim-.webp', invert: true }, 
             { name: 'JBW Watches', logo: 'assets/images/brands/jbw-watches.png', invert: true }, 
             { name: 'Kiss Colors', logo: 'assets/images/brands/kiss-colors-cosmetics-.jpg' },
             { name: 'Pretty Little Thing', logo: 'assets/images/brands/pretty-little-thing-.png' }, 
             { name: 'Puma', logo: 'assets/images/brands/puma.svg', invert: true }, 
-            { name: 'James Harden', logo: 'assets/images/brands/james-harden.png', showText: true },
+            { name: 'Therabody', logo: null, invert: true },
             { name: 'YG 4hunnid', logo: 'assets/images/brands/4hunnid_records_logo.png', invert: true }
         ];
 
@@ -141,15 +137,12 @@
         const workGrid = document.getElementById('work-grid');
         const filterBtns = document.querySelectorAll('.filter-btn');
         const workItems = [
-            { id: 1, title: 'Back and Forth', director: 'Halle', category: 'music-videos', image: 'assets/images/music-videos-halle-back-and-forth.jpg', video: 'assets/videos/welcome-hero-video.mov' },
-            { id: 2, title: 'Hello Bitch', director: 'Tyga', category: 'music-videos', image: 'assets/images/music-videos-tyga-hello-bitch.jpg' },
-            { id: 3, title: 'Project Title 3', director: 'Director Name', category: 'music-videos', image: null },
-            { id: 4, title: 'Project Title 4', director: 'Director Name', category: 'narrative', image: null },
-            { id: 5, title: 'Commercial Feature', director: 'Brandon Almengo', category: 'commercials', image: null, video: 'assets/videos/work-commercials-screenrecording.mp4' },
-            { id: 6, title: 'Project Title 6', director: 'Director Name', category: 'music-videos', image: null },
-            { id: 7, title: 'Project Title 7', director: 'Director Name', category: 'music-videos', image: null },
-            { id: 8, title: 'Project Title 8', director: 'Director Name', category: 'narrative', image: null },
-            { id: 9, title: 'Project Title 9', director: 'Director Name', category: 'commercials', image: null },
+            { id: 1, title: 'Back and Forth', director: 'Halle', category: 'music-videos', categoryLabel: 'Music Video', image: 'assets/images/music-videos-halle-back-and-forth.jpg', video: 'assets/videos/welcome-hero-video.mov', link: 'https://www.youtube.com/watch?v=placeholder' },
+            { id: 2, title: 'Hello Bitch', director: 'Tyga', category: 'music-videos', categoryLabel: 'Music Video', image: 'assets/images/music-videos-tyga-hello-bitch.jpg', link: 'https://www.youtube.com/watch?v=placeholder' },
+            { id: 3, title: 'Amazon Music Commercial', director: 'Brandon Almengo', category: 'commercials', categoryLabel: 'Commercial Campaign', image: null, video: 'assets/videos/work-commercials-screenrecording.mp4', link: 'https://example.com/amazon-music' },
+            { id: 4, title: 'Therabody Campaign', director: 'Brandon Almengo', category: 'commercials', categoryLabel: 'Commercial Campaign', image: null, link: 'https://example.com/therabody' },
+            { id: 5, title: 'Puma Commercial', director: 'Brandon Almengo', category: 'commercials', categoryLabel: 'Commercial Campaign', image: null, link: 'https://example.com/puma' },
+            { id: 6, title: 'Saweetie & Kiss Commercial', director: 'Brandon Almengo', category: 'commercials', categoryLabel: 'Commercial Campaign', image: null, link: 'https://example.com/saweetie-kiss' },
         ];
 
         function renderWork(filter = 'all') {
@@ -158,8 +151,12 @@
                 ? workItems 
                 : workItems.filter(item => item.category === filter);
 
-            workGrid.innerHTML = filteredItems.map(item => `
-                <a href="#" class="work-item" data-category="${item.category}">
+            workGrid.innerHTML = filteredItems.map(item => {
+                const href = item.link || '#';
+                const target = item.link ? '_blank' : '_self';
+                const rel = item.link ? 'noopener noreferrer' : '';
+                return `
+                <a href="${href}" class="work-item" data-category="${item.category}" target="${target}" rel="${rel}">
                     ${item.video 
                         ? `<video src="${item.video}" ${item.image ? `poster="${item.image}"` : ''} autoplay muted loop playsinline webkit-playsinline></video>`
                         : (item.image 
@@ -168,11 +165,12 @@
                         )
                     }
                     <div class="work-item-overlay">
+                        ${item.categoryLabel ? `<span class="work-item-category">${item.categoryLabel}</span>` : ''}
                         <h3 class="work-item-title">${item.title}</h3>
                         <p class="work-item-director">${item.director}</p>
                     </div>
                 </a>
-            `).join('');
+            `}).join('');
         }
 
         // --- DOM CONTENT LOADED (Setup everything) ---
@@ -213,15 +211,6 @@
                 setInterval(() => {
                     currentPsImageIndex = currentPsImageIndex > 18 ? 1 : currentPsImageIndex + 1; // It has 19 images
                     psImg.src = `assets/images/about-photo-social/ps-${currentPsImageIndex.toString().padStart(2, '0')}.jpg`;
-                }, 400);
-            }
-
-            const infImg = document.getElementById('inf-img');
-            let currentInfImageIndex = 1;
-            if (infImg) {
-                setInterval(() => {
-                    currentInfImageIndex = currentInfImageIndex > 16 ? 1 : currentInfImageIndex + 1; // It has 17 images
-                    infImg.src = `assets/images/about-influencer/inf3-${currentInfImageIndex.toString().padStart(2, '0')}.jpg`;
                 }, 400);
             }
 
