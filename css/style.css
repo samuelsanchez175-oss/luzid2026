@@ -685,7 +685,8 @@
         }
 
         .work-grid.work-grid-album-covers,
-        .work-grid.work-grid-single-covers {
+        .work-grid.work-grid-single-covers,
+        .work-grid.work-grid-magazine-covers {
             grid-template-columns: repeat(4, minmax(0, 1fr));
         }
 
@@ -700,6 +701,10 @@
 
         .work-item.work-item-square {
             aspect-ratio: 1/1;
+        }
+
+        .work-item.work-item-rectangular {
+            aspect-ratio: 3/4;
         }
 
         .work-item img, .work-item video {
@@ -808,7 +813,8 @@
                 grid-template-columns: repeat(2, minmax(0, 1fr));
             }
             .work-grid.work-grid-album-covers,
-            .work-grid.work-grid-single-covers {
+            .work-grid.work-grid-single-covers,
+            .work-grid.work-grid-magazine-covers {
                 grid-template-columns: repeat(3, minmax(0, 1fr));
             }
         }
@@ -856,7 +862,8 @@
                 grid-template-columns: 1fr;
             }
             .work-grid.work-grid-album-covers,
-            .work-grid.work-grid-single-covers {
+            .work-grid.work-grid-single-covers,
+            .work-grid.work-grid-magazine-covers {
                 grid-template-columns: repeat(2, minmax(0, 1fr));
             }
             

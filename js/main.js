@@ -170,11 +170,11 @@
             { id: 29, title: 'B.T.W', artist: 'Flo Milli', director: 'Brandon Almengo', category: 'single-covers', categoryLabel: 'Single Cover', image: 'assets/images/single-covers/single-14.jpg', video: null, link: '#', square: true },
             { id: 30, title: 'Back and Forth', artist: 'Halle', director: 'Brandon Almengo', category: 'single-covers', categoryLabel: 'Single Cover', image: 'assets/images/single-covers/single-15.jpg', video: null, link: '#', square: true },
             { id: 31, title: 'Look at God', artist: 'Koryn Hawthorne', director: 'Brandon Almengo', category: 'single-covers', categoryLabel: 'Single Cover', image: 'assets/images/single-covers/single-16.jpg', video: null, link: '#', square: true },
-            { id: 35, title: 'Maxim', artist: 'Saweetie', director: 'Brandon Almengo', category: 'magazine-covers', categoryLabel: 'Magazine Cover', image: 'assets/images/magazine-covers/magazine-01.jpg', video: null, link: '#', square: true },
-            { id: 36, title: 'Glamour', artist: 'Ruby Rose', director: 'Brandon Almengo', category: 'magazine-covers', categoryLabel: 'Magazine Cover', image: 'assets/images/magazine-covers/magazine-02.jpg', video: null, link: '#', square: true },
-            { id: 37, title: 'Tilted', artist: 'Melvin Gregg', director: 'Brandon Almengo', category: 'magazine-covers', categoryLabel: 'Magazine Cover', image: 'assets/images/magazine-covers/magazine-03.jpg', video: null, link: '#', square: true },
-            { id: 38, title: 'DIY', artist: 'Flo Milli', director: 'Brandon Almengo', category: 'magazine-covers', categoryLabel: 'Magazine Cover', image: 'assets/images/magazine-covers/magazine-04.jpg', video: null, link: '#', square: true },
-            { id: 39, title: 'Sheen', artist: 'Kayla Nicole', director: 'Brandon Almengo', category: 'magazine-covers', categoryLabel: 'Magazine Cover', image: 'assets/images/magazine-covers/magazine-05.jpeg', video: null, link: '#', square: true },
+            { id: 35, title: 'Maxim', artist: 'Saweetie', director: 'Brandon Almengo', category: 'magazine-covers', categoryLabel: 'Magazine Cover', image: 'assets/images/magazine-covers/magazine-01.jpg', video: null, link: '#', rectangular: true },
+            { id: 36, title: 'Glamour', artist: 'Ruby Rose', director: 'Brandon Almengo', category: 'magazine-covers', categoryLabel: 'Magazine Cover', image: 'assets/images/magazine-covers/magazine-02.jpg', video: null, link: '#', rectangular: true },
+            { id: 37, title: 'Tilted', artist: 'Melvin Gregg', director: 'Brandon Almengo', category: 'magazine-covers', categoryLabel: 'Magazine Cover', image: 'assets/images/magazine-covers/magazine-03.jpg', video: null, link: '#', rectangular: true },
+            { id: 38, title: 'DIY', artist: 'Flo Milli', director: 'Brandon Almengo', category: 'magazine-covers', categoryLabel: 'Magazine Cover', image: 'assets/images/magazine-covers/magazine-04.jpg', video: null, link: '#', rectangular: true },
+            { id: 39, title: 'Sheen', artist: 'Kayla Nicole', director: 'Brandon Almengo', category: 'magazine-covers', categoryLabel: 'Magazine Cover', image: 'assets/images/magazine-covers/magazine-05.jpeg', video: null, link: '#', rectangular: true },
         ];
 
         function renderWork(filter = 'all') {
@@ -183,7 +183,8 @@
                 ? workItems 
                 : workItems.filter(item => item.category === filter);
 
-            workGrid.classList.toggle('work-grid-album-covers', filter === 'album-covers' || filter === 'magazine-covers');
+            workGrid.classList.toggle('work-grid-album-covers', filter === 'album-covers');
+            workGrid.classList.toggle('work-grid-magazine-covers', filter === 'magazine-covers');
             workGrid.classList.toggle('work-grid-single-covers', filter === 'single-covers');
 
             workGrid.innerHTML = filteredItems.map(item => {
@@ -193,10 +194,11 @@
                 const target = (isYouTube || isExternal) ? '_blank' : '_self';
                 const rel = (isYouTube || isExternal) ? 'noopener noreferrer' : '';
                 const squareClass = item.square ? ' work-item-square' : '';
+                const rectangularClass = item.rectangular ? ' work-item-rectangular' : '';
                 const expandable = (item.category === 'album-covers' || item.category === 'single-covers' || item.category === 'magazine-covers') && item.image;
                 const dataExpand = expandable ? ` data-expand-image="${item.image}"` : '';
                 return `
-                <a href="${href}" class="work-item${squareClass}" data-category="${item.category}"${dataExpand} target="${target}" rel="${rel}">
+                <a href="${href}" class="work-item${squareClass}${rectangularClass}" data-category="${item.category}"${dataExpand} target="${target}" rel="${rel}">
                     ${item.video 
                         ? `<video src="${item.video}" ${item.image ? `poster="${item.image}"` : ''} autoplay muted loop playsinline webkit-playsinline></video>`
                         : (item.image 
