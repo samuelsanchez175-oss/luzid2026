@@ -215,6 +215,15 @@
                 }, 400);
             }
 
+            const albumImg = document.getElementById('album-img');
+            let currentAlbumImageIndex = 1;
+            if (albumImg) {
+                setInterval(() => {
+                    currentAlbumImageIndex = currentAlbumImageIndex > 9 ? 1 : currentAlbumImageIndex + 1;
+                    albumImg.src = `assets/images/album-covers/album-${currentAlbumImageIndex.toString().padStart(2, '0')}.png`;
+                }, 400);
+            }
+
             // Render Grids
             renderBrands();
             renderWork('all');
