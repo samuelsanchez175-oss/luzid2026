@@ -184,9 +184,10 @@
 
             workGrid.innerHTML = filteredItems.map(item => {
                 const href = item.link || '#';
+                const isYouTube = item.link && (item.link.includes('youtube.com') || item.link.includes('youtu.be'));
                 const isExternal = item.link && item.link.startsWith('http');
-                const target = isExternal ? '_blank' : '_self';
-                const rel = isExternal ? 'noopener noreferrer' : '';
+                const target = (isYouTube || isExternal) ? '_blank' : '_self';
+                const rel = (isYouTube || isExternal) ? 'noopener noreferrer' : '';
                 const squareClass = item.square ? ' work-item-square' : '';
                 return `
                 <a href="${href}" class="work-item${squareClass}" data-category="${item.category}" target="${target}" rel="${rel}">
