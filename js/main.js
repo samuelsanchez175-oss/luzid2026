@@ -257,6 +257,15 @@
                 }, 400);
             }
 
+            const eventTourImg = document.getElementById('event-tour-img');
+            let currentEventTourImageIndex = 1;
+            if (eventTourImg) {
+                setInterval(() => {
+                    currentEventTourImageIndex = currentEventTourImageIndex >= 8 ? 1 : currentEventTourImageIndex + 1;
+                    eventTourImg.src = `assets/images/event-tour-coverage/event-tour-${currentEventTourImageIndex.toString().padStart(2, '0')}.png`;
+                }, 400);
+            }
+
             // Brand section typing animation
             const brandTypedText = document.getElementById('brand-typed-text');
             const brandSection = document.getElementById('brand');
