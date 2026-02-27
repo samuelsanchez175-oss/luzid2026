@@ -526,6 +526,13 @@
             margin: 0 auto 6rem;
         }
 
+        .brand-typed-caret {
+            display: inline-block;
+            margin-left: 0.12rem;
+            color: var(--accent);
+            animation: caretBlink 1s step-end infinite;
+        }
+
         .brands-grid {
             display: grid;
             grid-template-columns: repeat(5, minmax(0, 1fr));
