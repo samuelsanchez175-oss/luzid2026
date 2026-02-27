@@ -172,9 +172,9 @@
             { id: 31, title: 'Look at God', artist: 'Koryn Hawthorne', director: 'Brandon Almengo', category: 'single-covers', categoryLabel: 'Single Cover', image: 'assets/images/single-covers/single-16.jpg', video: null, link: '#', square: true },
             { id: 35, title: 'Maxim', artist: 'Saweetie', director: 'Brandon Almengo', category: 'magazine-covers', categoryLabel: 'Magazine Cover', image: 'assets/images/magazine-covers/magazine-01.jpg', video: null, link: '#', square: true },
             { id: 36, title: 'Glamour', artist: 'Ruby Rose', director: 'Brandon Almengo', category: 'magazine-covers', categoryLabel: 'Magazine Cover', image: 'assets/images/magazine-covers/magazine-02.jpg', video: null, link: '#', square: true },
-            { id: 37, title: 'DIY', artist: 'Flo Milli', director: 'Brandon Almengo', category: 'magazine-covers', categoryLabel: 'Magazine Cover', image: 'assets/images/magazine-covers/magazine-03.jpg', video: null, link: '#', square: true },
-            { id: 38, title: 'Sheen', artist: 'Kayla Nicole', director: 'Brandon Almengo', category: 'magazine-covers', categoryLabel: 'Magazine Cover', image: 'assets/images/magazine-covers/magazine-04.jpg', video: null, link: '#', square: true },
-            { id: 39, title: 'Tilted', artist: 'Melvin Gregg', director: 'Brandon Almengo', category: 'magazine-covers', categoryLabel: 'Magazine Cover', image: 'assets/images/magazine-covers/magazine-05.jpeg', video: null, link: '#', square: true },
+            { id: 37, title: 'Tilted', artist: 'Melvin Gregg', director: 'Brandon Almengo', category: 'magazine-covers', categoryLabel: 'Magazine Cover', image: 'assets/images/magazine-covers/magazine-03.jpg', video: null, link: '#', square: true },
+            { id: 38, title: 'DIY', artist: 'Flo Milli', director: 'Brandon Almengo', category: 'magazine-covers', categoryLabel: 'Magazine Cover', image: 'assets/images/magazine-covers/magazine-04.jpg', video: null, link: '#', square: true },
+            { id: 39, title: 'Sheen', artist: 'Kayla Nicole', director: 'Brandon Almengo', category: 'magazine-covers', categoryLabel: 'Magazine Cover', image: 'assets/images/magazine-covers/magazine-05.jpeg', video: null, link: '#', square: true },
         ];
 
         function renderWork(filter = 'all') {
