@@ -170,10 +170,10 @@
             { id: 29, title: 'B.T.W', artist: 'Flo Milli', director: 'Brandon Almengo', category: 'single-covers', categoryLabel: 'Single Cover', image: 'assets/images/single-covers/single-14.jpg', video: null, link: '#', square: true },
             { id: 30, title: 'Back and Forth', artist: 'Halle', director: 'Brandon Almengo', category: 'single-covers', categoryLabel: 'Single Cover', image: 'assets/images/single-covers/single-15.jpg', video: null, link: '#', square: true },
             { id: 31, title: 'Look at God', artist: 'Koryn Hawthorne', director: 'Brandon Almengo', category: 'single-covers', categoryLabel: 'Single Cover', image: 'assets/images/single-covers/single-16.jpg', video: null, link: '#', square: true },
-            { id: 35, title: 'Maxim', artist: 'Saweetie', director: 'Brandon Almengo', category: 'magazine-covers', categoryLabel: 'Magazine Cover', image: 'assets/images/magazine-covers/magazine-01.jpg', video: null, link: '#', rectangular: true },
-            { id: 36, title: 'Glamour', artist: 'Ruby Rose', director: 'Brandon Almengo', category: 'magazine-covers', categoryLabel: 'Magazine Cover', image: 'assets/images/magazine-covers/magazine-02.jpg', video: null, link: '#', rectangular: true },
+            { id: 35, title: 'Maxim', artist: 'Saweetie', director: 'Brandon Almengo', category: 'magazine-covers', categoryLabel: 'Magazine Cover', image: 'assets/images/magazine-covers/magazine-01.jpg', video: null, link: 'https://www.instagram.com/p/CBv_JGIp2do/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==', rectangular: true },
+            { id: 36, title: 'Glamour', artist: 'Ruby Rose', director: 'Brandon Almengo', category: 'magazine-covers', categoryLabel: 'Magazine Cover', image: 'assets/images/magazine-covers/magazine-02.jpg', video: null, link: 'https://www.instagram.com/p/CP8yKgTh_3s/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==', rectangular: true },
             { id: 37, title: 'Tilted', artist: 'Melvin Gregg', director: 'Brandon Almengo', category: 'magazine-covers', categoryLabel: 'Magazine Cover', image: 'assets/images/magazine-covers/magazine-03.jpg', video: null, link: '#', rectangular: true },
-            { id: 38, title: 'DIY', artist: 'Flo Milli', director: 'Brandon Almengo', category: 'magazine-covers', categoryLabel: 'Magazine Cover', image: 'assets/images/magazine-covers/magazine-04.jpg', video: null, link: '#', rectangular: true },
+            { id: 38, title: 'DIY', artist: 'Flo Milli', director: 'Brandon Almengo', category: 'magazine-covers', categoryLabel: 'Magazine Cover', image: 'assets/images/magazine-covers/magazine-04.jpg', video: null, link: 'https://www.instagram.com/p/CgAivCsO_Et/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==', rectangular: true },
             { id: 39, title: 'Sheen', artist: 'Kayla Nicole', director: 'Brandon Almengo', category: 'magazine-covers', categoryLabel: 'Magazine Cover', image: 'assets/images/magazine-covers/magazine-05.jpeg', video: null, link: '#', rectangular: true },
         ];
 
@@ -195,7 +195,8 @@
                 const rel = (isYouTube || isExternal) ? 'noopener noreferrer' : '';
                 const squareClass = item.square ? ' work-item-square' : '';
                 const rectangularClass = item.rectangular ? ' work-item-rectangular' : '';
-                const expandable = (item.category === 'album-covers' || item.category === 'single-covers' || item.category === 'magazine-covers') && item.image;
+                const hasExternalLink = item.link && item.link.startsWith('http');
+                const expandable = (item.category === 'album-covers' || item.category === 'single-covers' || item.category === 'magazine-covers') && item.image && !hasExternalLink;
                 const dataExpand = expandable ? ` data-expand-image="${item.image}"` : '';
                 return `
                 <a href="${href}" class="work-item${squareClass}${rectangularClass}" data-category="${item.category}"${dataExpand} target="${target}" rel="${rel}">
