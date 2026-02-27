@@ -174,7 +174,7 @@
             { id: 36, title: 'Glamour', artist: 'Ruby Rose', director: 'Brandon Almengo', category: 'magazine-covers', categoryLabel: 'Magazine Cover', image: 'assets/images/magazine-covers/magazine-02.jpg', video: null, link: 'https://www.instagram.com/p/CP8yKgTh_3s/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==', rectangular: true },
             { id: 37, title: 'Tilted', artist: 'Melvin Gregg', director: 'Brandon Almengo', category: 'magazine-covers', categoryLabel: 'Magazine Cover', image: 'assets/images/magazine-covers/magazine-03.jpg', video: null, link: '#', rectangular: true },
             { id: 38, title: 'DIY', artist: 'Flo Milli', director: 'Brandon Almengo', category: 'magazine-covers', categoryLabel: 'Magazine Cover', image: 'assets/images/magazine-covers/magazine-04.jpg', video: null, link: 'https://www.instagram.com/p/CgAivCsO_Et/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==', rectangular: true },
-            { id: 39, title: 'Sheen', artist: 'Kayla Nicole', director: 'Brandon Almengo', category: 'magazine-covers', categoryLabel: 'Magazine Cover', image: 'assets/images/magazine-covers/magazine-05.jpeg', video: null, link: '#', rectangular: true },
+            { id: 39, title: 'Sheen', artist: 'Kayla Nicole', director: 'Brandon Almengo', category: 'magazine-covers', categoryLabel: 'Magazine Cover', image: 'assets/images/magazine-covers/magazine-05.jpeg', video: null, link: 'https://www.instagram.com/p/DTD65jxksYg/?utm_source=ig_web_copy_link&igsh=NTc4MTIwNjQ2YQ==', rectangular: true },
         ];
 
         function renderWork(filter = 'all') {
