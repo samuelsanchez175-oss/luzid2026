@@ -576,6 +576,10 @@
             max-height: 100px;
         }
 
+        .brand-logo.brand-logo-no-backdrop {
+            background: transparent !important;
+        }
+
         .brand-logo.brand-logo-scale-2-4 {
             max-height: 120px;
         }

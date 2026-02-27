@@ -111,7 +111,7 @@
             { name: 'Kiss Colors', logo: 'assets/images/brands/kiss-colors-cosmetics-.jpg' },
             { name: 'Pretty Little Thing', logo: 'assets/images/brands/pretty-little-thing-.png' }, 
             { name: 'Puma', logo: 'assets/images/brands/puma.svg', invert: true }, 
-            { name: 'Therabody', logo: 'assets/images/brands/therabody-logo.svg', invert: false, logoScale: 2 },
+            { name: 'Therabody', logo: 'assets/images/brands/therabody-logo.svg?v=1', invert: false, logoScale: 2, noBackdrop: true },
             { name: 'YG 4hunnid', logo: 'assets/images/brands/4hunnid_records_logo.png', invert: true }
         ];
 
@@ -121,7 +121,7 @@
                 .map(item => `
                     <article class="brand-card">
                         ${item.logo 
-                            ? `<img src="${item.logo}" alt="${item.name} logo" class="brand-logo ${item.invert ? 'invert-logo' : ''} ${item.logoScale ? 'brand-logo-scale-' + String(item.logoScale).replace('.', '-') : ''}" loading="lazy">` 
+                            ? `<img src="${item.logo}" alt="${item.name} logo" class="brand-logo ${item.invert ? 'invert-logo' : ''} ${item.logoScale ? 'brand-logo-scale-' + String(item.logoScale).replace('.', '-') : ''} ${item.noBackdrop ? 'brand-logo-no-backdrop' : ''}" loading="lazy">` 
                             : ''
                         }
                         ${(!item.logo || item.showText)
