@@ -284,33 +284,6 @@
                 }, 400);
             }
 
-            // Brand section typing animation
-            const brandTypedText = document.getElementById('brand-typed-text');
-            const brandSection = document.getElementById('brand');
-            const brandPhrase = 'We collaborate with brands to develop and execute high-level storytelling campaigns, commercial productions, editorial films, music videos, and photography across culture and commerce.';
-            let brandTypingStarted = false;
-
-            if (brandTypedText && brandSection) {
-                const observer = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting && !brandTypingStarted) {
-                            brandTypingStarted = true;
-                            let index = 0;
-                            const typeSpeed = 25;
-                            const tick = () => {
-                                brandTypedText.textContent = brandPhrase.slice(0, index);
-                                index++;
-                                if (index <= brandPhrase.length) {
-                                    setTimeout(tick, typeSpeed);
-                                }
-                            };
-                            tick();
-                        }
-                    });
-                }, { threshold: 0.3 });
-                observer.observe(brandSection);
-            }
-
             // Render Grids
             renderBrands();
             renderWork('all');
