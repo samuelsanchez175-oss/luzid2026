@@ -2,6 +2,8 @@ backend:
   name: github
   repo: samuelsanchez175-oss/luzid2026
   branch: main
+  base_url: https://luzidproductions.com
+  auth_endpoint: api/auth/begin
 
 media_folder: "assets/images/blog"
 public_folder: "/assets/images/blog"

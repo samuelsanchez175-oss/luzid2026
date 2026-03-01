@@ -1,0 +1,7 @@
+{
+  "name": "luzid2026",
+  "private": true,
+  "dependencies": {
+    "netlify-cms-oauth-provider-node": "^2.0.0"
+  }
+}
