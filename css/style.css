@@ -805,6 +805,108 @@
             border: 1px dashed var(--line);
         }
 
+        /* Blog Section (Tumblr-style) */
+        .blog-section {
+            padding: 5rem 1.25rem 6rem;
+            background: #000;
+            border-top: 1px solid var(--line);
+        }
+
+        .blog-inner {
+            max-width: 1540px;
+            margin: 0 auto;
+        }
+
+        .blog-intro {
+            font-family: "Cormorant Garamond", serif;
+            font-size: clamp(1rem, 1.5vw, 1.2rem);
+            color: var(--muted);
+            text-align: center;
+            margin-bottom: 3rem;
+            letter-spacing: 0.05em;
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .blog-card {
+            background: #0a0a0a;
+            border: 1px solid var(--line);
+            overflow: hidden;
+            transition: border-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .blog-card:hover {
+            border-color: rgba(255, 255, 255, 0.3);
+            transform: translateY(-4px);
+        }
+
+        .blog-card-link {
+            display: block;
+            color: inherit;
+        }
+
+        .blog-card-image {
+            width: 100%;
+            aspect-ratio: 16/10;
+            object-fit: cover;
+            display: block;
+        }
+
+        .blog-card-body {
+            padding: 1.5rem;
+        }
+
+        .blog-card-title {
+            font-family: "Bebas Neue", Impact, sans-serif;
+            font-size: clamp(1.4rem, 2vw, 1.8rem);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.75rem;
+            color: var(--fg);
+        }
+
+        .blog-card-excerpt {
+            font-family: "Cormorant Garamond", serif;
+            font-size: clamp(0.95rem, 1.2vw, 1.1rem);
+            color: var(--muted);
+            line-height: 1.5;
+            letter-spacing: 0.02em;
+        }
+
+        .blog-card-date {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: rgba(255, 255, 255, 0.5);
+            margin-top: 1rem;
+        }
+
+        .blog-card-cta {
+            display: inline-block;
+            margin-top: 1rem;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--accent);
+        }
+
+        .blog-card-cta:hover {
+            text-decoration: underline;
+        }
+
+        .blog-empty {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 4rem 2rem;
+            color: var(--muted);
+            font-family: "Cormorant Garamond", serif;
+            font-size: 1.2rem;
+        }
+
         .site-footer {
             border-top: 1px solid var(--line);
             text-align: center;
@@ -849,6 +951,10 @@
         }
 
         @media (max-width: 760px) {
+            .blog-grid {
+                grid-template-columns: 1fr;
+            }
+
             .header-inner {
                 grid-template-columns: 1fr auto;
             }

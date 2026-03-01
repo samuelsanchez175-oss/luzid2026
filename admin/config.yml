@@ -1,0 +1,32 @@
+backend:
+  name: github
+  repo: samuelsanchez175-oss/luzid2026
+  branch: main
+
+media_folder: "assets/images/blog"
+public_folder: "/assets/images/blog"
+
+locale: "en"
+
+collections:
+  - name: "blog"
+    label: "Blog Posts"
+    label_singular: "Blog Post"
+    description: "Tumblr-style posts with image, link, and excerpt. Add new posts to appear on the website."
+    files:
+      - name: "blog"
+        label: "Blog Feed"
+        file: "content/blog.json"
+        description: "Edit the list of blog posts below. Click 'Add Blog Post' to create a new entry."
+        fields:
+          - name: "posts"
+            label: "Posts"
+            widget: "list"
+            summary: "{{fields.title}}"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Featured Image", name: "image", widget: "image" }
+              - { label: "Link (optional)", name: "link", widget: "string", required: false, hint: "External URL (e.g. YouTube, article)" }
+              - { label: "Excerpt", name: "excerpt", widget: "text", hint: "Short preview text for the post" }
+              - { label: "Publish Date", name: "date", widget: "datetime" }
+              - { label: "Draft", name: "draft", widget: "boolean", default: false, hint: "Hide from website when checked" }

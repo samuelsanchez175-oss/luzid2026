@@ -99,6 +99,47 @@
             }
         }
 
+        // --- RENDER BLOG LOGIC ---
+        const blogGrid = document.getElementById('blog-grid');
+
+        async function renderBlog() {
+            if (!blogGrid) return;
+            try {
+                const res = await fetch('content/blog.json');
+                const data = await res.json();
+                const posts = (data.posts || []).filter(p => !p.draft);
+                posts.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+                if (posts.length === 0) {
+                    blogGrid.innerHTML = '<p class="blog-empty">No blog posts yet. Check back soon.</p>';
+                    return;
+                }
+
+                blogGrid.innerHTML = posts.map(post => {
+                    const imgSrc = post.image || '';
+                    const href = post.link || '#';
+                    const isExternal = href.startsWith('http');
+                    const target = isExternal ? '_blank' : '_self';
+                    const rel = isExternal ? 'noopener noreferrer' : '';
+                    const dateStr = post.date ? new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' }) : '';
+                    const cardContent = `
+                        ${imgSrc ? `<img src="${imgSrc}" alt="${post.title || ''}" class="blog-card-image" loading="lazy">` : '<div class="blog-card-image" style="background:#111;display:flex;align-items:center;justify-content:center;color:var(--muted);">No image</div>'}
+                        <div class="blog-card-body">
+                            <h3 class="blog-card-title">${post.title || 'Untitled'}</h3>
+                            ${post.excerpt ? `<p class="blog-card-excerpt">${post.excerpt}</p>` : ''}
+                            ${dateStr ? `<p class="blog-card-date">${dateStr}</p>` : ''}
+                            ${post.link ? `<span class="blog-card-cta">View link →</span>` : ''}
+                        </div>
+                    `;
+                    return post.link
+                        ? `<a href="${href}" class="blog-card blog-card-link" target="${target}" rel="${rel}">${cardContent}</a>`
+                        : `<article class="blog-card">${cardContent}</article>`;
+                }).join('');
+            } catch (err) {
+                blogGrid.innerHTML = '<p class="blog-empty">No blog posts yet. Check back soon.</p>';
+            }
+        }
+
         // --- RENDER BRANDS LOGIC ---
         const brandsGrid = document.getElementById('brands-grid');
         const brandItems = [
@@ -287,6 +328,7 @@
             // Render Grids
             renderBrands();
             renderWork('all');
+            renderBlog();
 
             // Image lightbox for album/single covers
             const lightbox = document.getElementById('image-lightbox');
