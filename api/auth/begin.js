@@ -1,20 +1,31 @@
-const { createVercelBeginHandler } = require('netlify-cms-oauth-provider-node');
+/**
+ * Minimal GitHub OAuth "begin" handler for Decap CMS.
+ * Redirects to GitHub's authorization URL.
+ */
+module.exports = (req, res) => {
+  const clientId = process.env.OAUTH_CLIENT_ID;
+  const completeUrl = process.env.COMPLETE_URL;
 
-let handler;
-try {
-  handler = createVercelBeginHandler({}, { useEnv: true });
-} catch (err) {
-  handler = (req, res) => {
+  if (!clientId || !completeUrl) {
     res.status(500).setHeader('Content-Type', 'text/html;charset=utf-8');
-    res.send(
+    return res.end(
       `<html><body style="font-family:sans-serif;padding:2rem;max-width:600px;margin:0 auto;">
         <h1>CMS OAuth configuration error</h1>
-        <p>${err.message || 'Missing or invalid environment variables.'}</p>
-        <p>Add <code>OAUTH_CLIENT_ID</code>, <code>OAUTH_CLIENT_SECRET</code>, <code>COMPLETE_URL</code>, and <code>ORIGIN</code> in Vercel → Settings → Environment Variables.</p>
+        <p>Missing OAUTH_CLIENT_ID or COMPLETE_URL in Vercel environment variables.</p>
         <p>See <a href="https://github.com/samuelsanchez175-oss/luzid2026/blob/main/DECAP_SETUP.md">DECAP_SETUP.md</a> for instructions.</p>
       </body></html>`
     );
-  };
-}
+  }
 
-module.exports = handler;
+  const state = Math.random().toString(36).slice(2) + Date.now().toString(36);
+  const params = new URLSearchParams({
+    client_id: clientId,
+    redirect_uri: completeUrl,
+    scope: 'repo,user',
+    state,
+  });
+
+  res.status(302);
+  res.setHeader('Location', `https://github.com/login/oauth/authorize?${params}`);
+  res.end();
+};
