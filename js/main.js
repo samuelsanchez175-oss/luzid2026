@@ -211,7 +211,7 @@
             { id: 29, title: 'B.T.W', artist: 'Flo Milli', director: 'Brandon Almengo', category: 'single-covers', categoryLabel: 'Single Cover', image: 'assets/images/single-covers/single-14.jpg', video: null, link: '#', square: true },
             { id: 30, title: 'Back and Forth', artist: 'Halle', director: 'Brandon Almengo', category: 'single-covers', categoryLabel: 'Single Cover', image: 'assets/images/single-covers/single-15.jpg', video: null, link: '#', square: true },
             { id: 31, title: 'Look at God', artist: 'Koryn Hawthorne', director: 'Brandon Almengo', category: 'single-covers', categoryLabel: 'Single Cover', image: 'assets/images/single-covers/single-16.jpg', video: null, link: '#', square: true },
-            { id: 40, title: 'Tea Time', artist: 'Yung Miami', director: 'Brandon Almengo', category: 'single-covers', categoryLabel: 'Single Cover', image: 'assets/images/single-covers/tea-time-yung-miami.png', video: null, link: '#', square: true },
+            { id: 40, title: 'Tea Time', artist: 'Yung Miami', director: 'Brandon Almengo', category: 'single-covers', categoryLabel: 'Single Cover', image: 'assets/images/single-covers/tea-time-yung-miami.png', video: null, link: '#', square: true, comingSoon: true, date: 'Jan 2026' },
             { id: 35, title: 'Maxim', artist: 'Saweetie', director: 'Brandon Almengo', category: 'magazine-covers', categoryLabel: 'Magazine Cover', image: 'assets/images/magazine-covers/magazine-01.jpg', video: null, link: 'https://www.instagram.com/p/CBv_JGIp2do/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==', rectangular: true },
             { id: 36, title: 'Glamour', artist: 'Ruby Rose', director: 'Brandon Almengo', category: 'magazine-covers', categoryLabel: 'Magazine Cover', image: 'assets/images/magazine-covers/magazine-02.jpg', video: null, link: 'https://www.instagram.com/p/CP8yKgTh_3s/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==', rectangular: true },
             { id: 37, title: 'Tilted', artist: 'Melvin Gregg', director: 'Brandon Almengo', category: 'magazine-covers', categoryLabel: 'Magazine Cover', image: 'assets/images/magazine-covers/magazine-03.jpg', video: null, link: '#', rectangular: true },
@@ -251,8 +251,10 @@
                     }
                     <div class="work-item-overlay">
                         ${item.categoryLabel ? `<span class="work-item-category">${item.categoryLabel}</span>` : ''}
+                        ${item.comingSoon ? `<span class="work-item-coming-soon">Coming soon</span>` : ''}
                         <h3 class="work-item-title">${item.title}</h3>
                         ${item.artist ? `<p class="work-item-artist">${item.artist}</p><p class="work-item-director">${item.director}</p>` : `<p class="work-item-director">${item.director}</p>`}
+                        ${item.date ? `<p class="work-item-date">${item.date}</p>` : ''}
                     </div>
                 </a>
             `}).join('');

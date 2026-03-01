@@ -787,9 +787,27 @@
             transition: transform 0.4s ease 0.05s;
         }
 
+        .work-item-coming-soon {
+            font-size: clamp(0.65rem, 1vw, 0.75rem);
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--accent);
+            margin-bottom: 0.35rem;
+        }
+
+        .work-item-date {
+            font-family: "Cormorant Garamond", serif;
+            font-size: clamp(0.85rem, 1vw, 1rem);
+            color: var(--muted);
+            margin-top: 0.35rem;
+            transform: translateY(10px);
+            transition: transform 0.4s ease 0.07s;
+        }
+
         .work-item:hover .work-item-title,
         .work-item:hover .work-item-artist,
-        .work-item:hover .work-item-director {
+        .work-item:hover .work-item-director,
+        .work-item:hover .work-item-date {
             transform: translateY(0);
         }
 
