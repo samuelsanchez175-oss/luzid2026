@@ -1,9 +1,13 @@
+# DecapBridge backend - REPLACE this entire backend block with the config from your DecapBridge dashboard
+# after creating a site at https://decapbridge.com (repo: samuelsanchez175-oss/luzid2026, CMS URL: https://luzidproductions.com/admin/)
+# See DECAP_SETUP.md for step-by-step instructions.
 backend:
-  name: github
-  repo: samuelsanchez175-oss/luzid2026
+  name: git-gateway
+  auth_type: pkce
+  base_url: REPLACE_FROM_DECAPBRIDGE
+  app_id: REPLACE_FROM_DECAPBRIDGE
+  gateway_url: REPLACE_FROM_DECAPBRIDGE
   branch: main
-  base_url: https://luzidproductions.com
-  auth_endpoint: api/auth/begin
 
 media_folder: "assets/images/blog"
 public_folder: "/assets/images/blog"

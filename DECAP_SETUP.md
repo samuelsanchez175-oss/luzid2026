@@ -1,41 +1,36 @@
-# Decap CMS GitHub Login Setup
+# Decap CMS Setup (DecapBridge)
 
-The "Login with GitHub" button requires a GitHub OAuth App and Vercel environment variables. Follow these steps:
+This site uses [DecapBridge](https://decapbridge.com) for CMS authentication. No GitHub OAuth App or Vercel environment variables are required.
 
-## 1. Create a GitHub OAuth App
+## 1. Create a DecapBridge Account
 
-1. Go to [GitHub Developer Settings → OAuth Apps](https://github.com/settings/developers)
-2. Click **New OAuth App**
-3. Fill in:
-   - **Application name:** Luzid Productions CMS (or any name)
-   - **Homepage URL:** `https://luzidproductions.com`
-   - **Authorization callback URL:** `https://luzidproductions.com/api/auth/complete`
-4. Click **Register application**
-5. Copy the **Client ID**
-6. Click **Generate a new client secret** and copy the **Client Secret**
+1. Sign up at [decapbridge.com/auth/signup](https://decapbridge.com/auth/signup)
+2. In the dashboard, add a new site
 
-## 2. Add Environment Variables in Vercel
+## 2. Add Your Site in DecapBridge
 
-1. Go to your [Vercel project](https://vercel.com/dashboard)
-2. Open **Settings → Environment Variables**
-3. Add these variables (for Production, Preview, and Development):
+When adding a site, fill in:
 
-| Name | Value |
-|------|-------|
-| `OAUTH_CLIENT_ID` | Your GitHub OAuth Client ID |
-| `OAUTH_CLIENT_SECRET` | Your GitHub OAuth Client Secret |
-| `COMPLETE_URL` | `https://luzidproductions.com/api/auth/complete` |
-| `ORIGIN` | `luzidproductions.com` |
+| Field | Value |
+|-------|-------|
+| **Git provider** | GitHub |
+| **Git repository** | `samuelsanchez175-oss/luzid2026` |
+| **Git access token** | Create a [GitHub Personal Access Token](https://github.com/settings/tokens) with `repo` scope (or fine-grained with Contents read/write for this repo) |
+| **Decap CMS login URL** | `https://luzidproductions.com/admin/` |
+| **Auth type** | PKCE (for Google/Microsoft login) or Classic (password-only) |
 
-4. Redeploy the project for the env vars to take effect.
+## 3. Update admin/config.yml
 
-## 3. Test
+After creating the site, DecapBridge shows a generated `config.yml` template. Copy the **backend** block from it and replace the backend section in `admin/config.yml` (keep the existing `media_folder`, `public_folder`, `locale`, and `collections`).
 
-1. Visit `https://luzidproductions.com/admin/`
-2. Click **Login with GitHub**
-3. Authorize the app when prompted
-4. You should land in the CMS editor
+## 4. Deploy
+
+Push your changes and redeploy. The CMS will be ready to use.
+
+## 5. Invite Collaborators
+
+In the DecapBridge dashboard, open your site and go to **Manage collaborators**. Enter email addresses and send invitations. Collaborators can log in with Google, Microsoft, or a password—no GitHub account required.
 
 ---
 
-**Note:** If you use a different domain (e.g. a Vercel preview URL), update `base_url` in `admin/config.yml` and the `COMPLETE_URL` / `ORIGIN` env vars to match that domain.
+**Docs:** [DecapBridge Getting Started](https://decapbridge.com/docs/getting-started)
