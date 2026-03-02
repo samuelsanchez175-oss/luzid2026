@@ -66,6 +66,14 @@
             letter-spacing: 0.04em;
             font-weight: 600;
             color: var(--fg);
+            display: flex;
+            align-items: center;
+        }
+
+        .brand-mark-logo {
+            height: clamp(1.75rem, 3.5vw, 2.5rem);
+            width: auto;
+            display: block;
         }
 
         .menu-toggle {
