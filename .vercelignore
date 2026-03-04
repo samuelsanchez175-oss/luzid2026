@@ -1,0 +1,5 @@
+.git
+node_modules
+.vercel
+.DS_Store
+assets/videos/tyga-hello-bitch.mov

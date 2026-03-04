@@ -1,0 +1,1874 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<base href="/shelbycarteralbumpackage/">
+<title>Shelby Carter — Micro-Drama Treatments</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+    /* Album concept: Ambiance — muted jade, vibrant red, white, gold */
+    :root {
+        --jade: #3d5a4a;
+        --jade-dark: #2d4338;
+        --paper: #f8f6f2;
+        --cream: #e8e4dc;
+        --vibrant-red: #b83d3d;
+        --gold: #c9a227;
+        --border: rgba(255, 255, 255, 0.15);
+        --muted: rgba(255, 255, 255, 0.5);
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        margin: 0;
+        background-color: #1a1a1a;
+        color: var(--paper);
+        font-family: 'Inter', sans-serif;
+        font-weight: 300;
+        line-height: 1.55;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+
+    .container {
+        max-width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    /* Cover / Title block — deck-style opener */
+    .cover {
+        margin-bottom: clamp(24px, 4vw, 40px);
+    }
+
+    h1 {
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: clamp(48px, 12vw, 96px);
+        font-weight: 400;
+        margin: 0 0 8px 0;
+        letter-spacing: 0.04em;
+        line-height: 1;
+        text-transform: uppercase;
+    }
+
+    .subtitle {
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: clamp(18px, 3.5vw, 28px);
+        font-weight: 400;
+        color: var(--cream);
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+    }
+
+    .subtitle br {
+        display: none;
+    }
+
+    @media (min-width: 520px) {
+        .subtitle br {
+            display: block;
+        }
+    }
+
+    /* Section headers — Bebas Neue blocky display */
+    h2 {
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: clamp(18px, 3.5vw, 32px);
+        font-weight: 400;
+        margin: 0 0 16px 0;
+        padding-bottom: 0;
+        border: none;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--paper);
+        opacity: 0.9;
+    }
+
+    /* Page-style sections — Keynote 16:9 minimum, can grow to prevent cutoff */
+    .page {
+        position: relative;
+        min-height: 56.25vw;
+        width: 100%;
+        padding: clamp(24px, 4vw, 48px) clamp(20px, 4vw, 40px);
+        box-sizing: border-box;
+        page-break-after: always;
+    }
+
+    /* Page header — title + page number for PDF export */
+    .page-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: clamp(16px, 3vw, 28px);
+        padding-bottom: clamp(8px, 1.5vw, 16px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .page--white .page-header {
+        border-bottom-color: rgba(0, 0, 0, 0.12);
+    }
+
+    .page-header .page-title {
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: clamp(14px, 2.2vw, 20px);
+        font-weight: 400;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: var(--paper);
+        opacity: 0.9;
+    }
+
+    .page--white .page-header .page-title {
+        color: #1a1a1a;
+    }
+
+    .page-header .page-num {
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: clamp(12px, 1.8vw, 16px);
+        font-weight: 400;
+        letter-spacing: 0.2em;
+        color: var(--cream);
+        opacity: 0.7;
+    }
+
+    .page--white .page-header .page-num {
+        color: rgba(0, 0, 0, 0.5);
+    }
+
+    /* Page footer — page number on every page */
+    .page-footer {
+        position: absolute;
+        bottom: clamp(16px, 3vw, 28px);
+        left: 0;
+        right: 0;
+        text-align: center;
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: clamp(11px, 1.6vw, 14px);
+        letter-spacing: 0.2em;
+        color: var(--cream);
+        opacity: 0.6;
+    }
+
+    .page--white .page-footer {
+        color: rgba(0, 0, 0, 0.4);
+    }
+
+    /* Luzid logo — bottom-right corner (hidden) */
+    .page-logo {
+        display: none;
+    }
+
+    /* Slightly larger logo on Album Rollout (first page), stays bottom-right */
+    .album-cover-page .page-logo {
+        height: clamp(48px, 9vw, 64px);
+        bottom: clamp(12px, 2vw, 20px);
+        right: clamp(16px, 3vw, 24px);
+    }
+
+    .page-logo img {
+        height: 100%;
+        width: auto;
+        display: none;
+        background: transparent;
+    }
+
+    /* White logo inverted to black for light backgrounds */
+    .page--white .page-logo .logo-dark {
+        display: none;
+    }
+
+    .page--white .page-logo .logo-light {
+        display: block;
+        filter: invert(1);
+    }
+
+    /* White logo for dark backgrounds (no invert) */
+    .page--black .page-logo .logo-light,
+    .page--green .page-logo .logo-light,
+    .page--press .page-logo .logo-light {
+        display: block;
+        filter: none;
+    }
+
+    .page--black .page-logo .logo-dark,
+    .page--green .page-logo .logo-dark,
+    .page--press .page-logo .logo-dark {
+        display: none;
+    }
+
+    /* Dual white logos — last page only (hidden) */
+    .page-logo-dual {
+        display: none;
+        justify-content: space-between;
+        align-items: flex-end;
+        position: absolute;
+        bottom: clamp(20px, 4vw, 40px);
+        left: clamp(20px, 4vw, 40px);
+        right: clamp(20px, 4vw, 40px);
+        pointer-events: none;
+    }
+
+    .page-logo-dual img {
+        height: clamp(80px, 14vw, 140px);
+        width: auto;
+    }
+
+    .page:last-of-type {
+        page-break-after: auto;
+    }
+
+    .page--green {
+        background-color: var(--jade-dark);
+        color: var(--paper);
+    }
+
+    .page--white {
+        background-color: #ffffff;
+        color: #1a1a1a;
+    }
+
+    .page--white h2 {
+        color: #2d4338;
+    }
+
+    .page--white .act h3 {
+        color: var(--jade);
+    }
+
+    .page--white em {
+        color: #333;
+    }
+
+    .page--black {
+        background-color: #0d0d0d;
+        color: #f0f0f0;
+    }
+
+    .page--black h2 {
+        color: rgba(255, 255, 255, 0.9);
+    }
+
+    .page--black .act h3 {
+        color: var(--gold);
+    }
+
+    .page--black em {
+        color: #e8e4dc;
+    }
+
+    .page--press {
+        background-color: #1e2a38;
+        color: var(--paper);
+    }
+
+    .page--press h2 {
+        color: rgba(255, 255, 255, 0.95);
+    }
+
+    .deck-slide {
+        display: grid;
+        grid-template-columns: 1fr 1.5fr;
+        gap: clamp(24px, 4vw, 48px);
+        align-items: start;
+    }
+
+    .slide-copy {
+        min-width: 0;
+    }
+
+    .slide-visual {
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-end;
+    }
+
+    .slide-visual img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 4px;
+    }
+
+    .page-caption {
+        font-size: clamp(14px, 1.8vw, 16px);
+        opacity: 0.9;
+        margin: 0 0 16px 0;
+        padding-left: 16px;
+        border-left: 2px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .page--white .page-caption {
+        border-left-color: rgba(0, 0, 0, 0.15);
+    }
+
+    .producer {
+        font-size: clamp(12px, 1.5vw, 14px);
+        color: var(--cream);
+        opacity: 0.8;
+    }
+
+    .page--press .deck-slide {
+        grid-template-columns: 1fr 3fr;
+        max-width: 100%;
+    }
+
+    .page--press .deck-slide .slide-visual {
+        justify-content: flex-end;
+    }
+
+    .press-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: clamp(24px, 4vw, 48px);
+        max-width: min(90vw, 1200px);
+        margin-left: auto;
+    }
+
+    .press-slot {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .press-slot .press-frame {
+        aspect-ratio: 1 / 1;
+        overflow: hidden;
+        border-radius: 4px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .press-slot .press-frame img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 4px;
+    }
+
+    .press-slot.press-uncropped .press-frame {
+        aspect-ratio: auto;
+        min-height: 0;
+    }
+
+    .press-slot.press-uncropped .press-frame img {
+        width: 100%;
+        height: auto;
+        max-height: 100%;
+        object-fit: contain;
+        object-position: center;
+    }
+
+    .press-caption {
+        font-size: 11px;
+        font-weight: 500;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.8);
+    }
+
+    @media (max-width: 768px) {
+        .page--press .deck-slide {
+            grid-template-columns: 1fr;
+        }
+        .press-grid {
+            margin-left: 0;
+            margin-right: auto;
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    .page--white .footer {
+        color: rgba(0, 0, 0, 0.5);
+    }
+
+    .page--white .footer .page-num {
+        color: rgba(0, 0, 0, 0.4);
+    }
+
+    .page .container-inner {
+        max-width: 680px;
+        margin: 0 auto;
+    }
+
+    .album-cover-page .container-inner,
+    .page--press .container-inner {
+        max-width: min(95vw, 1200px);
+    }
+
+    .section {
+        margin-bottom: clamp(24px, 4vw, 40px);
+    }
+
+    .section:last-of-type {
+        margin-bottom: 0;
+    }
+
+    /* Act labels — editorial sub-headers */
+    .act {
+        margin-bottom: 20px;
+    }
+
+    .act:last-child {
+        margin-bottom: 0;
+    }
+
+    .act h3 {
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: clamp(16px, 2.5vw, 22px);
+        font-weight: 400;
+        margin: 0 0 14px 0;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        color: var(--gold);
+    }
+
+    .act p {
+        font-size: clamp(14px, 1.8vw, 16px);
+        margin: 0;
+        line-height: 1.6;
+    }
+
+    .micro-drama-list {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+    }
+
+    .micro-drama-item {
+        margin: 0;
+    }
+
+    .micro-drama-title {
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: clamp(18px, 2.5vw, 24px);
+        font-weight: 400;
+        margin: 0 0 6px 0;
+        letter-spacing: 0.1em;
+        color: var(--cream);
+    }
+
+    .micro-drama-desc {
+        font-size: clamp(13px, 1.6vw, 15px);
+        line-height: 1.5;
+        margin: 0;
+        opacity: 0.9;
+        padding-left: 0;
+    }
+
+    .image-explanation {
+        font-size: clamp(13px, 1.6vw, 15px);
+        opacity: 0.85;
+        padding: 16px 0 0 16px;
+        border-left: 2px solid rgba(255, 255, 255, 0.2);
+    }
+
+    /* Deck-style footer — page number format */
+    .footer {
+        font-family: 'Bebas Neue', sans-serif;
+        margin-top: clamp(32px, 6vw, 56px);
+        padding-top: 24px;
+        font-size: clamp(14px, 2vw, 18px);
+        font-weight: 400;
+        color: var(--muted);
+        text-align: center;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+    }
+
+    .footer .page-num {
+        display: block;
+        margin-top: 8px;
+        font-size: clamp(12px, 1.8vw, 16px);
+        letter-spacing: 0.2em;
+        color: var(--cream);
+        opacity: 0.6;
+    }
+
+    /* Album cover page */
+    .album-cover-page .deck-slide {
+        grid-template-columns: 1.05fr 1fr;
+        align-items: center;
+        min-height: clamp(430px, 68vh, 740px);
+    }
+
+    .album-cover-page .slide-visual {
+        justify-content: center;
+    }
+
+    .album-cover-wrap {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .album-cover-page .slide-visual img {
+        aspect-ratio: 1 / 1;
+        object-fit: cover;
+        max-width: min(560px, 46vw);
+        max-height: min(70vh, 640px);
+    }
+
+    .slide-caption {
+        font-size: 11px;
+        font-weight: 500;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--cream);
+        opacity: 0.8;
+    }
+
+    .album-rollout-desc {
+        font-size: clamp(14px, 1.8vw, 16px);
+        line-height: 1.5;
+        color: var(--cream);
+        opacity: 0.9;
+        margin: 0;
+    }
+
+    /* Alternate covers */
+    .alt-covers-page .container-inner {
+        max-width: 100%;
+    }
+
+    .alt-covers-page .deck-slide {
+        max-width: 1400px;
+        margin: 0 auto;
+    }
+
+    .alt-covers-page .deck-slide .slide-visual {
+        flex: 1;
+    }
+
+    .alt-covers-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: clamp(16px, 3vw, 28px);
+    }
+
+    .alt-cover-slot {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .alt-cover-slot .slot-frame {
+        aspect-ratio: 1 / 1;
+        overflow: hidden;
+        border-radius: 4px;
+    }
+
+    .alt-cover-slot img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .alt-cover-6 img {
+        object-position: 35% center;
+    }
+
+    .slot-caption {
+        font-size: 10px;
+        font-weight: 500;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: inherit;
+        opacity: 0.75;
+        line-height: 1.35;
+        max-width: 100%;
+    }
+
+    .page--white .slot-caption {
+        color: #333;
+    }
+
+    @media (min-width: 900px) {
+        .alt-covers-page .deck-slide {
+            grid-template-columns: 1fr 2fr;
+        }
+        .alt-covers-grid {
+            max-width: 1200px;
+            gap: 30px;
+        }
+    }
+
+    @media (max-width: 600px) {
+        .alt-covers-page .deck-slide {
+            grid-template-columns: 1fr;
+        }
+        .alt-covers-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    .alt-covers-title {
+        font-family: 'Bebas Neue', sans-serif;
+    }
+
+    .alt-covers-description {
+        font-size: clamp(13px, 1.6vw, 15px);
+        line-height: 1.6;
+        color: #333;
+        margin: 0;
+        max-width: 280px;
+    }
+
+    /* Budget list */
+    .budget-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    .budget-list li {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 24px;
+        padding: 12px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+        font-size: clamp(16px, 2.2vw, 20px);
+    }
+
+    .budget-list li:last-child {
+        border-bottom: none;
+    }
+
+    .budget-item {
+        font-weight: 500;
+    }
+
+    .budget-amount {
+        font-family: 'Bebas Neue', sans-serif;
+        letter-spacing: 0.1em;
+        color: var(--gold);
+    }
+
+    .budget-subhead {
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: clamp(14px, 2vw, 18px);
+        font-weight: 400;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--gold);
+        opacity: 0.9;
+    }
+
+    .budget-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: clamp(14px, 1.8vw, 18px);
+    }
+
+    .budget-table th,
+    .budget-table td {
+        padding: 10px 16px 10px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+        text-align: left;
+    }
+
+    .budget-table th {
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: clamp(12px, 1.5vw, 14px);
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: var(--cream);
+        opacity: 0.8;
+    }
+
+    .budget-table .budget-col {
+        text-align: right;
+        font-family: 'Bebas Neue', sans-serif;
+        color: var(--gold);
+        white-space: nowrap;
+    }
+
+    .budget-table tr.budget-total td {
+        border-top: 2px solid rgba(255, 255, 255, 0.3);
+        padding-top: 14px;
+        font-weight: 600;
+    }
+
+    .grand-total {
+        margin-top: 32px;
+        padding-top: 24px;
+        border-top: 2px solid rgba(255, 255, 255, 0.25);
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 24px;
+    }
+
+    .grand-total-label {
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: clamp(20px, 3vw, 28px);
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--paper);
+    }
+
+    .grand-total-amount {
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: clamp(24px, 4vw, 36px);
+        letter-spacing: 0.1em;
+        color: var(--gold);
+    }
+
+    .grand-total-note {
+        margin-top: 8px;
+        font-size: clamp(12px, 1.5vw, 14px);
+        color: var(--cream);
+        opacity: 0.7;
+    }
+
+    .budget-credit {
+        font-size: clamp(14px, 1.8vw, 16px);
+        color: var(--cream);
+        opacity: 0.9;
+    }
+
+    .budget-section-total {
+        margin-top: 8px;
+        font-weight: 500;
+        color: var(--gold);
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+    }
+
+    .script-budget-desc {
+        font-size: clamp(13px, 1.6vw, 15px);
+        line-height: 1.5;
+        opacity: 0.9;
+    }
+
+    .script-budget-block {
+        margin-bottom: 24px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .script-budget-block:last-of-type {
+        border-bottom: none;
+    }
+
+    .script-budget-title {
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: clamp(16px, 2vw, 20px);
+        font-weight: 400;
+        margin: 0 0 6px 0;
+        letter-spacing: 0.1em;
+        color: var(--cream);
+    }
+
+    .budget-list-compact li {
+        padding: 8px 0;
+        font-size: clamp(14px, 1.7vw, 16px);
+    }
+
+    .budget-sub {
+        font-size: clamp(12px, 1.4vw, 14px);
+        opacity: 0.85;
+        margin-top: 4px;
+        padding-left: 12px;
+    }
+
+    .script-budget-total {
+        margin-top: 10px;
+        font-weight: 600;
+        color: var(--gold);
+        font-size: clamp(14px, 1.7vw, 16px);
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+    }
+
+    .budget-script-page .budget-subhead {
+        font-size: clamp(16px, 2vw, 22px);
+    }
+
+    .budget-script-page .script-budget-title {
+        font-size: clamp(15px, 1.9vw, 18px);
+    }
+
+    .budget-script-page .script-budget-desc {
+        font-size: clamp(12px, 1.4vw, 14px);
+    }
+
+    .budget-script-page .budget-list-compact li {
+        padding: 6px 0;
+        font-size: clamp(12px, 1.4vw, 14px);
+    }
+
+    .budget-script-page .budget-sub {
+        font-size: clamp(11px, 1.3vw, 13px);
+    }
+
+    .budget-script-page .script-budget-total {
+        font-size: clamp(12px, 1.4vw, 14px);
+        margin-top: 8px;
+    }
+
+    .script-budget-summary {
+        margin-top: 20px;
+        padding-top: 16px;
+        border-top: 2px solid rgba(255, 255, 255, 0.2);
+        font-weight: 500;
+        font-size: clamp(14px, 1.8vw, 16px);
+        color: var(--cream);
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+    }
+
+    .budget-table-wrap {
+        overflow-x: auto;
+        margin-bottom: 4px;
+    }
+
+    .budget-table-glam {
+        min-width: 480px;
+    }
+
+    .budget-table-glam th.budget-col,
+    .budget-table-glam td.budget-col {
+        font-size: clamp(11px, 1.4vw, 14px);
+    }
+
+    /* Storyboard shots */
+    .storyboard {
+        display: flex;
+        flex-direction: column;
+        gap: clamp(20px, 3vw, 36px);
+    }
+
+    .shot {
+        max-width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: clamp(16px, 3vw, 28px);
+        align-items: start;
+    }
+
+    .shot .shot-copy {
+        grid-column: 1;
+        padding-right: 16px;
+    }
+
+    .shot .shot-copy p {
+        font-size: clamp(13px, 1.6vw, 15px);
+        line-height: 1.5;
+        opacity: 0.9;
+    }
+
+    .shot .shot-visual {
+        grid-column: 2;
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    .shot .shot-visual img {
+        max-width: 100%;
+        aspect-ratio: 4 / 3;
+        object-fit: cover;
+        border-radius: 4px;
+    }
+
+    .visualizer-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: clamp(16px, 3vw, 28px);
+    }
+
+    /* Stand-In visualizer — stacked, almost wall to wall, bigger */
+    .stand-in-visualizer {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: clamp(20px, 4vw, 40px);
+        width: 100vw;
+        max-width: 100vw;
+        margin-left: calc(50% - 50vw);
+        margin-right: calc(50% - 50vw);
+        padding: 0 clamp(16px, 3vw, 32px);
+        box-sizing: border-box;
+    }
+
+    .stand-in-visualizer img {
+        min-width: 0;
+        width: 100%;
+        max-height: 85vh;
+        object-fit: contain;
+    }
+
+    .stand-in-visualizer-single img {
+        max-height: 90vh;
+    }
+
+    .visualizer-grid img {
+        width: 100%;
+        height: auto;
+        border-radius: 4px;
+        object-fit: contain;
+    }
+
+    .visualizer-single {
+        max-width: 100%;
+    }
+
+    .visualizer-single img {
+        width: 100%;
+        height: auto;
+        border-radius: 4px;
+        object-fit: contain;
+    }
+
+    .visualizer-scene {
+        margin-bottom: 28px;
+    }
+
+    .visualizer-scene:last-child {
+        margin-bottom: 0;
+    }
+
+    .visualizer-scene h4 {
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: 18px;
+        letter-spacing: 0.04em;
+        margin-bottom: 12px;
+        color: inherit;
+    }
+
+    .panel-grid {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        gap: 8px;
+    }
+
+    .panel-grid img {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 4 / 3;
+        object-fit: cover;
+        border-radius: 4px;
+    }
+
+    @media (max-width: 800px) {
+        .panel-grid {
+            grid-template-columns: repeat(4, 1fr);
+        }
+    }
+
+    @media (max-width: 500px) {
+        .panel-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    @media (max-width: 600px) {
+        .visualizer-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    @media (max-width: 600px) {
+        .deck-slide {
+            grid-template-columns: 1fr;
+        }
+        .shot {
+            grid-template-columns: 1fr;
+        }
+        .shot .shot-visual {
+            grid-column: 1;
+        }
+        .footer { margin-top: 20px; padding-top: 16px; }
+        h1 { font-size: 36px; }
+        h2 { margin-bottom: 10px; }
+    }
+
+    /* ——— PDF / Print (Chrome-friendly) ——— */
+    @media print {
+        * {
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+        }
+
+        html, body {
+            background: #1a1a1a !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            width: 100% !important;
+        }
+
+        .container {
+            max-width: none !important;
+        }
+
+        .page .container-inner {
+            max-width: none !important;
+        }
+
+        /* Force each page to fit exactly one printed page (16:9) */
+        .page {
+            width: 16in !important;
+            height: 9in !important;
+            min-height: 9in !important;
+            max-height: 9in !important;
+            padding: 0.35in 0.45in !important;
+            margin: 0 !important;
+            page-break-after: always !important;
+            page-break-inside: avoid !important;
+            box-shadow: none !important;
+            overflow: hidden !important;
+            box-sizing: border-box !important;
+        }
+
+        .page:last-of-type {
+            page-break-after: auto !important;
+        }
+
+        /* Preserve backgrounds — Chrome needs exact + Background graphics enabled */
+        .page--black { background-color: #0d0d0d !important; }
+        .page--white { background-color: #ffffff !important; }
+        .page--green { background-color: #2d4338 !important; }
+        .page--press { background-color: #1e2a38 !important; }
+
+        /* Deck layout — compact for print */
+        .deck-slide {
+            display: grid !important;
+            grid-template-columns: 1fr 1.5fr !important;
+            gap: 0.4rem !important;
+            align-items: start !important;
+            min-height: 0 !important;
+        }
+
+        .album-cover-page .deck-slide {
+            grid-template-columns: 1fr 1fr !important;
+        }
+
+        .page--press .deck-slide {
+            grid-template-columns: 0.8fr 2.2fr !important;
+        }
+
+        /* Press grid — constrain to fit */
+        .press-grid {
+            gap: 6px !important;
+            max-width: none !important;
+        }
+
+        .press-slot .press-frame {
+            max-height: 1.6in !important;
+        }
+
+        .press-caption { font-size: 8pt !important; }
+
+        /* Typography — compact for print */
+        h1 { font-size: 44px !important; }
+        h2 { font-size: 16px !important; margin-bottom: 6px !important; }
+        .subtitle { font-size: 12px !important; }
+        .act h3 { font-size: 12px !important; }
+        p { font-size: 11px !important; line-height: 1.4 !important; }
+        .page-caption { font-size: 10px !important; }
+
+        /* Images — constrain to fit within page */
+        img {
+            max-width: 100% !important;
+            height: auto !important;
+            page-break-inside: avoid !important;
+        }
+
+        .alt-covers-grid { gap: 6px !important; }
+        .alt-cover-slot .slot-frame,
+        .alt-cover-slot .slot-frame img {
+            max-height: 1.4in !important;
+            object-fit: cover !important;
+        }
+        .slot-caption, .alt-covers-description { font-size: 8pt !important; }
+
+        .panel-grid { gap: 4px !important; }
+        .panel-grid img {
+            max-height: 0.85in !important;
+            object-fit: cover !important;
+        }
+
+        /* Visualizer grids — fit within 9in page */
+        .visualizer-grid img { max-height: 2in !important; }
+        .stand-in-visualizer img { max-height: 2.8in !important; }
+
+        /* Logos — fixed size for print */
+        .page-logo {
+            height: 24px !important;
+            bottom: 0.35in !important;
+            right: 0.5in !important;
+        }
+
+        .album-cover-page .page-logo {
+            height: 40px !important;
+        }
+
+        .page-logo-dual img {
+            height: 64px !important;
+        }
+
+        /* Compact spacing for print */
+        .section { margin-bottom: 10px !important; }
+        .act { margin-bottom: 8px !important; }
+        .budget-list li, .script-budget-block {
+            page-break-inside: avoid !important;
+        }
+
+        .page-header {
+            margin-bottom: 0.12in !important;
+            padding-bottom: 0.08in !important;
+        }
+
+        .page-footer {
+            position: absolute !important;
+            bottom: 0.2in !important;
+            left: 0 !important;
+            right: 0 !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            font-size: 9pt !important;
+        }
+
+        .budget-subhead, .script-budget-title { font-size: 11px !important; }
+        .script-budget-desc { font-size: 9px !important; }
+        .budget-table { font-size: 10px !important; }
+        .storyboard h3 { margin-bottom: 8px !important; }
+
+        .footer {
+            margin-top: 0.2in !important;
+            padding-top: 0.12in !important;
+            font-size: 8pt !important;
+        }
+
+        @page {
+            size: 16in 9in;
+            margin: 0;
+        }
+    }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- Page 1: Album Cover (black) -->
+    <div class="page page--black album-cover-page">
+        <header class="page-header">
+            <span class="page-title">Album Cover</span>
+            <span class="page-num">— 1 —</span>
+        </header>
+        <div class="container-inner deck-slide">
+            <div class="slide-copy">
+                <h2>Shelby Carter Album Cover</h2>
+                <h1 style="margin-bottom: 12px;">Album Rollout</h1>
+                <p class="album-rollout-desc">Primary cover, six alternate covers, press imagery, two micro-drama treatments, and production budget.</p>
+                <p class="subtitle" style="margin-top: 16px;">Micro-Drama Treatments</p>
+                <p class="producer" style="margin-top: 24px;">Produced by Luzid Productions</p>
+            </div>
+            <div class="slide-visual">
+                <div class="album-cover-wrap">
+                    <img src="images/album-cover.png" alt="Shelby Carter Album Cover">
+                    <span class="slide-caption">Primary cover — square format</span>
+                </div>
+            </div>
+        </div>
+        <div class="page-logo">
+            <img src="images/luzid-logo-dark.png" alt="Luzid Productions" class="logo-dark">
+            <img src="images/luzid-logo-light.png" alt="Luzid Productions" class="logo-light">
+        </div>
+        <footer class="page-footer"><span class="page-num">— 1 —</span></footer>
+    </div>
+
+    <!-- Page 2: Alternate Covers (white) -->
+    <div class="page page--white alt-covers-page">
+        <header class="page-header">
+            <span class="page-title">Alternate Covers</span>
+            <span class="page-num">— 2 —</span>
+        </header>
+        <div class="container-inner deck-slide">
+            <div class="slide-copy">
+                <h2 class="alt-covers-title" style="text-align: left; margin-bottom: 20px;">Alternate Covers</h2>
+                <p class="alt-covers-description">
+                    Six visual statements — raw glamour to cinematic noir, vintage Hollywood to contemporary provocation. Flexible across formats, cohesive and elevated.
+                </p>
+            </div>
+            <div class="slide-visual">
+                <div class="alt-covers-grid">
+                    <div class="alt-cover-slot"><div class="slot-frame"><img src="images/alt-cover-1.png" alt="Alternate Cover 1"></div><span class="slot-caption">Wild glamour — foliage, pink star, raw power</span></div>
+                    <div class="alt-cover-slot"><div class="slot-frame"><img src="images/alt-cover-2.png" alt="Alternate Cover 2"></div><span class="slot-caption">Pearls on crimson — editorial luxury</span></div>
+                    <div class="alt-cover-slot"><div class="slot-frame"><img src="images/alt-cover-3.png" alt="Alternate Cover 3"></div><span class="slot-caption">Sage & fur — cinematic noir, vintage car</span></div>
+                    <div class="alt-cover-slot"><div class="slot-frame"><img src="images/alt-cover-4.png" alt="Alternate Cover 4"></div><span class="slot-caption">Sunset Strip — blinds, magenta, voyeur</span></div>
+                    <div class="alt-cover-slot"><div class="slot-frame"><img src="images/alt-cover-5.png" alt="Alternate Cover 5"></div><span class="slot-caption">Surreal immersion — liquid, pearls, gold</span></div>
+                    <div class="alt-cover-slot alt-cover-6"><div class="slot-frame"><img src="images/alt-cover-6.png" alt="Alternate Cover 6"></div><span class="slot-caption">Submerged — high-fashion provocation</span></div>
+                </div>
+            </div>
+        </div>
+        <div class="page-logo">
+            <img src="images/luzid-logo-dark-alt.png" alt="Luzid Productions" class="logo-dark">
+            <img src="images/luzid-logo-light.png" alt="Luzid Productions" class="logo-light">
+        </div>
+        <footer class="page-footer"><span class="page-num">— 2 —</span></footer>
+    </div>
+
+    <!-- Page 3: Press 1 (slate) — 6 images -->
+    <div class="page page--press">
+        <header class="page-header">
+            <span class="page-title">Press</span>
+            <span class="page-num">— 3 —</span>
+        </header>
+        <div class="container-inner deck-slide">
+            <div class="slide-copy">
+                <h2>Press</h2>
+                <p class="page-caption" style="margin-bottom: 0;">
+                    Press assets and editorial imagery for the album rollout.
+                </p>
+            </div>
+            <div class="slide-visual">
+                <div class="press-grid">
+                    <div class="press-slot"><div class="press-frame"><img src="images/press-2.png" alt="Press — Mask"></div><span class="press-caption">Mask</span></div>
+                    <div class="press-slot"><div class="press-frame"><img src="images/press-4.png" alt="Press — Lip Art"></div><span class="press-caption">Lip Art</span></div>
+                    <div class="press-slot press-uncropped"><div class="press-frame"><img src="images/press-6.png" alt="Press — Scandalous"></div><span class="press-caption">Scandalous</span></div>
+                    <div class="press-slot"><div class="press-frame"><img src="images/press-7.png" alt="Press — Blinds"></div><span class="press-caption">Blinds</span></div>
+                    <div class="press-slot"><div class="press-frame"><img src="images/press-8.png" alt="Press — NYT Magazine"></div><span class="press-caption">NYT Magazine</span></div>
+                    <div class="press-slot"><div class="press-frame"><img src="images/press-9.png" alt="Press — Scandalous Bandit"></div><span class="press-caption">Scandalous Bandit</span></div>
+                </div>
+            </div>
+        </div>
+        <div class="page-logo">
+            <img src="images/luzid-logo-dark.png" alt="Luzid Productions" class="logo-dark">
+            <img src="images/luzid-logo-light.png" alt="Luzid Productions" class="logo-light">
+        </div>
+        <footer class="page-footer"><span class="page-num">— 3 —</span></footer>
+    </div>
+
+    <!-- Page 3b: Press 2 (slate) — 6 images -->
+    <div class="page page--press">
+        <header class="page-header">
+            <span class="page-title">Press (continued)</span>
+            <span class="page-num">— 4 —</span>
+        </header>
+        <div class="container-inner deck-slide">
+            <div class="slide-copy">
+                <h2>Press (continued)</h2>
+            </div>
+            <div class="slide-visual">
+                <div class="press-grid">
+                    <div class="press-slot"><div class="press-frame"><img src="images/press-10.png" alt="Press — Glitter"></div><span class="press-caption">Glitter</span></div>
+                    <div class="press-slot"><div class="press-frame"><img src="images/press-11.png" alt="Press — Lip Art"></div><span class="press-caption">Lip Art</span></div>
+                    <div class="press-slot"><div class="press-frame"><img src="images/press-12.png" alt="Press — Beauty Spread"></div><span class="press-caption">Beauty Spread</span></div>
+                    <div class="press-slot"><div class="press-frame"><img src="images/press-13.png" alt="Press — Terra"></div><span class="press-caption">Terra</span></div>
+                    <div class="press-slot"><div class="press-frame"><img src="images/press-14.png" alt="Press — Tears"></div><span class="press-caption">Tears</span></div>
+                    <div class="press-slot"><div class="press-frame"><img src="images/press-15.png" alt="Press — Lawnmower"></div><span class="press-caption">Lawnmower</span></div>
+                </div>
+            </div>
+        </div>
+        <div class="page-logo">
+            <img src="images/luzid-logo-dark.png" alt="Luzid Productions" class="logo-dark">
+            <img src="images/luzid-logo-light.png" alt="Luzid Productions" class="logo-light">
+        </div>
+        <footer class="page-footer"><span class="page-num">— 4 —</span></footer>
+    </div>
+
+    <!-- Page 3c: Press 3 (slate) — 6 images -->
+    <div class="page page--press">
+        <header class="page-header">
+            <span class="page-title">Press (continued)</span>
+            <span class="page-num">— 5 —</span>
+        </header>
+        <div class="container-inner deck-slide">
+            <div class="slide-copy">
+                <h2>Press (continued)</h2>
+            </div>
+            <div class="slide-visual">
+                <div class="press-grid">
+                    <div class="press-slot"><div class="press-frame"><img src="images/press-16.png" alt="Press — Red Glam"></div><span class="press-caption">Red Glam</span></div>
+                    <div class="press-slot"><div class="press-frame"><img src="images/press-17.png" alt="Press — Baroque"></div><span class="press-caption">Baroque</span></div>
+                    <div class="press-slot"><div class="press-frame"><img src="images/press-18.png" alt="Press — Retro Fur"></div><span class="press-caption">Retro Fur</span></div>
+                    <div class="press-slot"><div class="press-frame"><img src="images/press-19.png" alt="Press — Mint Beauty"></div><span class="press-caption">Mint Beauty</span></div>
+                    <div class="press-slot"><div class="press-frame"><img src="images/press-20.png" alt="Press — Certified Menace"></div><span class="press-caption">Certified Menace</span></div>
+                    <div class="press-slot"><div class="press-frame"><img src="images/press-21.png" alt="Press — Alexander Wang"></div><span class="press-caption">Alexander Wang</span></div>
+                </div>
+            </div>
+        </div>
+        <div class="page-logo">
+            <img src="images/luzid-logo-dark.png" alt="Luzid Productions" class="logo-dark">
+            <img src="images/luzid-logo-light.png" alt="Luzid Productions" class="logo-light">
+        </div>
+        <footer class="page-footer"><span class="page-num">— 5 —</span></footer>
+    </div>
+
+    <!-- Page 6: Micro-Dramas Overview (green) -->
+    <div class="page page--green budget-script-page">
+        <header class="page-header">
+            <span class="page-title">Micro-Drama Treatments</span>
+            <span class="page-num">— 6 —</span>
+        </header>
+        <div class="container-inner">
+            <header class="cover">
+                <h2 style="margin-bottom: 24px;">Micro-Drama Treatments</h2>
+                <p class="subtitle">
+                    Shelby Carter Album Rollout
+                </p>
+                <p class="producer">Produced by Luzid Productions</p>
+                <div class="micro-drama-list" style="margin-top: 48px;">
+                    <div class="micro-drama-item">
+                        <h3 class="micro-drama-title">1. Get A Job</h3>
+                        <p class="micro-drama-desc">Poolside rumors, a mysterious invitation to perform at an LA gala, the ride there, and the moment she takes the stage — "I do have a job." Built for unreleased anthem.</p>
+                    </div>
+                    <div class="micro-drama-item">
+                        <h3 class="micro-drama-title">2. The Stand-In</h3>
+                        <p class="micro-drama-desc">Shelby wakes up late, rushes to the shoot — and finds someone already in her place. Security removes her. She watches her life play out without her.</p>
+                    </div>
+                </div>
+
+                <p class="image-explanation" style="margin-top: 24px; max-width: 480px;">
+                    Two cinematic concepts for the album rollout. Each offers a distinct visual and narrative approach.
+                </p>
+            </header>
+        </div>
+        <div class="page-logo">
+            <img src="images/luzid-logo-dark.png" alt="Luzid Productions" class="logo-dark">
+            <img src="images/luzid-logo-light.png" alt="Luzid Productions" class="logo-light">
+        </div>
+        <footer class="page-footer"><span class="page-num">— 6 —</span></footer>
+    </div>
+
+    <!-- Page 7: How It Ties Back (green) -->
+    <div class="page page--green">
+        <header class="page-header">
+            <span class="page-title">How It Ties Back</span>
+            <span class="page-num">— 7 —</span>
+        </header>
+        <div class="container-inner">
+            <section class="section">
+                <h2 style="margin-bottom: 24px;">Micro-Drama Treatments</h2>
+                <h3 class="budget-subhead" style="margin-bottom: 12px;">How It Ties Back to the Album Cover</h3>
+                <p class="image-explanation" style="margin-top: 0; max-width: 520px;">
+                    Both micro-dramas connect directly to the album cover imagery. <strong>Get A Job</strong> — the taxi ride in full glam, the gown flowing — echoes the vintage car aesthetic from the alternate cover (sage & fur, cinematic noir). Same world: luxury, motion, the artist in transit. <strong>The Stand-In</strong> is set at the album cover shoot itself; the blue room, the unveiling, the moment someone else steps into her frame. The cover becomes the stage. Together, the two worlds (car/ride and studio/shoot) bookend the visual language of the rollout.
+                </p>
+            </section>
+        </div>
+        <div class="page-logo">
+            <img src="images/luzid-logo-dark.png" alt="Luzid Productions" class="logo-dark">
+            <img src="images/luzid-logo-light.png" alt="Luzid Productions" class="logo-light">
+        </div>
+        <footer class="page-footer"><span class="page-num">— 7 —</span></footer>
+    </div>
+
+    <!-- Page 8: Get A Job 1 (green) -->
+    <div class="page page--green">
+        <div class="container-inner">
+            <section class="section">
+                <h2>Micro-Drama 1</h2>
+                <h1 style="margin-bottom: 8px;">Get A Job</h1>
+
+                <div class="act">
+                    <h3>Micro Drama 1: "Poolside Rumors"</h3>
+                    <p>
+                        Scene: Luxury pool. Morning sun. She's hungover in oversized sunglasses, lying still.<br>
+                        Whispers layer over ambient pool sounds.<br><br>
+                        VOICES (overlapping, distant, echoing):<br>
+                        "I heard she's lazy as fuck."<br>
+                        "What does she even do for a living?"<br>
+                        "I heard she used to be a stripper."<br>
+                        "I heard she does music now"<br>
+                        "Must be nice to do nothing all day."<br><br>
+                        (Silence. Water gently moves.)<br><br>
+                        She slowly floats on a pool float with a small dog resting on her chest. AirPods in. A faint, unreleased pop track plays — dreamy, hypnotic.<br><br>
+                        She smirks slightly<br><br>
+                        Doorbell rings in the distance.<br><br>
+                        She removes one AirPod.<br><br>
+                        HER:<br>
+                        "Timing's everything."<br><br>
+                        Cut to front door. A courier stands with a sleek black box.<br><br>
+                        COURIER:<br>
+                        "Signature required."<br><br>
+                        She signs. Looks at the label — no sender.<br><br>
+                        She stares at it.<br><br>
+                        Cut to black.<br>
+                        TO BE CONTINUED.
+                    </p>
+                </div>
+            </section>
+        </div>
+        <div class="page-logo">
+            <img src="images/luzid-logo-dark.png" alt="Luzid Productions" class="logo-dark">
+            <img src="images/luzid-logo-light.png" alt="Luzid Productions" class="logo-light">
+        </div>
+        <footer class="page-footer"><span class="page-num">— 8 —</span></footer>
+    </div>
+
+    <!-- Page 9: Get A Job — The Invitation (green) -->
+    <div class="page page--green">
+        <header class="page-header">
+            <span class="page-title">Get A Job — The Invitation</span>
+            <span class="page-num">— 9 —</span>
+        </header>
+        <div class="container-inner">
+            <section class="section">
+                <h2>Get A Job</h2>
+
+                <div class="act">
+                    <h3>Micro Drama 2: "The Invitation"</h3>
+                    <p>
+                        Interior. Minimalist luxury home. She sets the box on a marble table.<br><br>
+                        Whispers faintly return.<br><br>
+                        VOICES:<br>
+                        "Get a job."<br>
+                        "She fell off."<br>
+                        "She's irrelevant."<br><br>
+                        She slices open the box.<br><br>
+                        Inside: A gold embossed envelope.<br><br>
+                        She opens it.<br><br>
+                        HER (reading softly):<br>
+                        "You are exclusively invited to perform at the Annual Gala in Los Angeles…"<br><br>
+                        She freezes.<br><br>
+                        HER (barely breathing):<br>
+                        "Perform."<br><br>
+                        A beat. A slow smile spreads across her face.<br><br>
+                        Cut to her closet doors opening.<br><br>
+                        Inside: A single couture gown illuminated like a spotlight moment.<br><br>
+                        She laughs quietly.<br><br>
+                        She grabs the gown.<br><br>
+                        Cut to black.<br>
+                        TO BE CONTINUED.
+                    </p>
+                </div>
+            </section>
+        </div>
+        <div class="page-logo">
+            <img src="images/luzid-logo-dark.png" alt="Luzid Productions" class="logo-dark">
+            <img src="images/luzid-logo-light.png" alt="Luzid Productions" class="logo-light">
+        </div>
+        <footer class="page-footer"><span class="page-num">— 9 —</span></footer>
+    </div>
+
+    <!-- Page 10: Get A Job — The Ride (green) -->
+    <div class="page page--green">
+        <header class="page-header">
+            <span class="page-title">Get A Job — The Ride</span>
+            <span class="page-num">— 10 —</span>
+        </header>
+        <div class="container-inner">
+            <section class="section">
+                <h2>Get A Job</h2>
+
+                <div class="act">
+                    <h3>Micro Drama 3: "The Ride"</h3>
+                    <p>
+                        Night. She steps into a taxi in full glam. The gown flows dramatically.<br><br>
+                        DRIVER (glancing back):<br>
+                        "Big night?"<br><br>
+                        HER (smiling out window):<br>
+                        "Something like that." Days dream outside<br><br>
+                        City lights reflect in her eyes.<br><br>
+                        Quick cuts:<br>
+                        – She adjusts lip gloss.<br>
+                        – Watches people outside walking.<br>
+                        – Imagines flashes of cameras.<br><br>
+                        Her new music swells slightly in the background<br><br>
+                        Taxi pulls up to a grand venue.<br><br>
+                        Driver opens door.<br><br>
+                        DRIVER:<br>
+                        "Good luck."<br><br>
+                        She steps out.<br><br>
+                        Cut to black.
+                    </p>
+                </div>
+            </section>
+        </div>
+        <div class="page-logo">
+            <img src="images/luzid-logo-dark.png" alt="Luzid Productions" class="logo-dark">
+            <img src="images/luzid-logo-light.png" alt="Luzid Productions" class="logo-light">
+        </div>
+        <footer class="page-footer"><span class="page-num">— 10 —</span></footer>
+    </div>
+
+    <!-- Page 11: Get A Job — The Gala (white) -->
+    <div class="page page--white">
+        <header class="page-header">
+            <span class="page-title">Get A Job — The Gala</span>
+            <span class="page-num">— 11 —</span>
+        </header>
+        <div class="container-inner">
+            <section class="section">
+                <h2>Get A Job</h2>
+
+                <div class="act">
+                    <h3>Micro Drama 4: "The Gala"</h3>
+                    <p>
+                        Grand ballroom. Glittering chandeliers. Elite guests.<br><br>
+                        As she walks in — whispers start again.<br><br>
+                        VOICES (clearer now, judgmental):<br>
+                        "Who invited her?"<br><br>
+                        People look surprised and disbelief<br><br>
+                        "I heard she used to be a stripper."<br>
+                        "What is she even doing here."<br><br>
+                        She keeps walking. Head high.<br><br>
+                        Each step confident. Controlled. Regal.<br><br>
+                        She finds her assigned seat.<br><br>
+                        To guest it looks like  Two body guards approach her as if they're removing her from venue but in reality they're just escorting her backstage because it's time to start her performance.<br><br>
+                        They tried to grab her to escort her and she says don't touch me tricking the guest as if she's being escorted out she walks backstage with the bodyguards behind her and people are looking in dis belief voices start again like I told yall she wasn't supposed to be here, she must've snuck in here as she's walking backstage cuts to black.<br><br>
+                        To be continued
+                    </p>
+                </div>
+            </section>
+        </div>
+        <div class="page-logo">
+            <img src="images/luzid-logo-dark-alt.png" alt="Luzid Productions" class="logo-dark">
+            <img src="images/luzid-logo-light.png" alt="Luzid Productions" class="logo-light">
+        </div>
+        <footer class="page-footer"><span class="page-num">— 11 —</span></footer>
+    </div>
+
+    <!-- Page 12: Get A Job — Stars studded gala (white) -->
+    <div class="page page--white">
+        <header class="page-header">
+            <span class="page-title">Get A Job — Stars Studded Gala</span>
+            <span class="page-num">— 12 —</span>
+        </header>
+        <div class="container-inner">
+            <section class="section">
+                <h2>Get A Job</h2>
+
+                <div class="act">
+                    <h3>Micro Drama 5: Stars studded gala</h3>
+                    <p>
+                        Dark stage. Curtain closed. Crowd murmuring.<br><br>
+                        The same voices begin again in darkness.<br><br>
+                        VOICES:<br>
+                        "Get a job."<br>
+                        "Lazy."<br>
+                        "She's nothing."<br><br>
+                        Curtains slowly open.<br><br>
+                        She stands center stage. Spotlight hits. Microphone in hand.<br><br>
+                        Silence.<br><br>
+                        She looks into the crowd.<br><br>
+                        HER (into mic, calm):<br>
+                        "I do have a job."<br><br>
+                        Beat.<br><br>
+                        Music drops — explosive pop anthem.<br><br>
+                        She performs with power and precision. The same phrases once used against her now woven into lyrics:<br><br>
+                        Crowd rises. Standing ovation.<br><br>
+                        Cut to audience — the same gossipers now clapping, stunned, converted.<br><br>
+                        Confetti falls.<br><br>
+                        She takes a bow.<br><br>
+                        Lights fade.<br><br>
+                        Final shot:<br>
+                        Her smirking into camera.<br><br>
+                        HER (softly):<br>
+                        "See you at work tomorrow."<br><br>
+                        Cut to black.<br>
+                        THE END.
+                    </p>
+                </div>
+            </section>
+        </div>
+        <div class="page-logo">
+            <img src="images/luzid-logo-dark-alt.png" alt="Luzid Productions" class="logo-dark">
+            <img src="images/luzid-logo-light.png" alt="Luzid Productions" class="logo-light">
+        </div>
+        <footer class="page-footer"><span class="page-num">— 12 —</span></footer>
+    </div>
+
+    <!-- Page 6b: Get A Job Visualizer 1 (white) -->
+    <div class="page page--white">
+        <header class="page-header">
+            <span class="page-title">Get A Job Visualizer</span>
+            <span class="page-num">— 13 —</span>
+        </header>
+        <div class="container-inner">
+            <div class="storyboard">
+                <h3 class="budget-subhead" style="margin-bottom: 16px;">Get A Job Visualizer</h3>
+                <p class="script-budget-desc" style="margin-bottom: 24px;">Storyboards — Poolside Rumors, The Invitation, The Ride, The Gala, Get A Job.</p>
+                <div class="visualizer-grid get-a-job-visualizer">
+                    <img src="images/get-a-job-visualizer-1.png" alt="Get A Job — Poolside Rumors">
+                    <img src="images/get-a-job-visualizer-2.png" alt="Get A Job — The Invitation">
+                    <img src="images/get-a-job-visualizer-3.png" alt="Get A Job — The Ride">
+                </div>
+            </div>
+        </div>
+        <div class="page-logo">
+            <img src="images/luzid-logo-dark-alt.png" alt="Luzid Productions" class="logo-dark">
+            <img src="images/luzid-logo-light.png" alt="Luzid Productions" class="logo-light">
+        </div>
+        <footer class="page-footer"><span class="page-num">— 13 —</span></footer>
+    </div>
+
+    <!-- Page 6d: Get A Job Visualizer 2 (white) -->
+    <div class="page page--white">
+        <header class="page-header">
+            <span class="page-title">Get A Job Visualizer (continued)</span>
+            <span class="page-num">— 14 —</span>
+        </header>
+        <div class="container-inner">
+            <div class="storyboard">
+                <h3 class="budget-subhead" style="margin-bottom: 16px;">Get A Job Visualizer (continued)</h3>
+                <div class="visualizer-grid get-a-job-visualizer">
+                    <img src="images/get-a-job-visualizer-4.png" alt="Get A Job — The Gala">
+                    <img src="images/get-a-job-visualizer-5.png" alt="Get A Job — Stage Performance">
+                </div>
+            </div>
+        </div>
+        <div class="page-logo">
+            <img src="images/luzid-logo-dark-alt.png" alt="Luzid Productions" class="logo-dark">
+            <img src="images/luzid-logo-light.png" alt="Luzid Productions" class="logo-light">
+        </div>
+        <footer class="page-footer"><span class="page-num">— 14 —</span></footer>
+    </div>
+
+    <!-- Page 7: The Stand-In 1 (black) -->
+    <div class="page page--black">
+        <header class="page-header">
+            <span class="page-title">The Stand-In</span>
+            <span class="page-num">— 15 —</span>
+        </header>
+        <div class="container-inner">
+            <section class="section">
+                <h2>Micro-Drama 2</h2>
+                <h1 style="margin-bottom: 8px;">The Stand-In</h1>
+                <p class="subtitle" style="margin-bottom: 24px;">The Stand-In — Pampered Artist, Rushed Morning, Wrong Girl on Set</p>
+                <p class="page-caption" style="margin-bottom: 24px;">
+                    Shelby wakes up late. She rushes to the album cover shoot — and discovers someone is already standing in her place. When she tries to reclaim it, security removes <em>her</em>. She goes home and watches her own life play out without her.
+                </p>
+
+                <div class="act">
+                    <h3>Scene 1 — Late Morning</h3>
+                    <p>
+                        Shelby Carter — pampered, relaxed artist — wakes up late. She's overslept. The shoot is today. She's rushing out the door, pulling on her impractical dress, half-dressed, half-made-up. The chaos of a star who runs on her own time.
+                    </p>
+                </div>
+
+                <div class="act">
+                    <h3>Scene 2 — The Rush</h3>
+                    <p>
+                        She's in an Uber, still adjusting her outfit, checking her phone. She arrives at the lot. Makes it past security — barely. She's late but she's here. The shoot has already started.
+                    </p>
+                </div>
+
+                <div class="act">
+                    <h3>Scene 3 — The Replacement</h3>
+                    <p>
+                        She sees someone standing in her place. On set. In her light. She approaches. Lifts the veil — or moves past the crew — and sees: a woman who looks exactly like her. In that moment, security and production descend. They whisk <em>her</em> away. "Move. Get off the stage." They think she's the impostor. The stand-in has already convinced them. Shelby is escorted out.
+                    </p>
+                </div>
+            </section>
+        </div>
+        <div class="page-logo">
+            <img src="images/luzid-logo-dark.png" alt="Luzid Productions" class="logo-dark">
+            <img src="images/luzid-logo-light.png" alt="Luzid Productions" class="logo-light">
+        </div>
+        <footer class="page-footer"><span class="page-num">— 15 —</span></footer>
+    </div>
+
+    <!-- Page 8: The Stand-In 2 (green) -->
+    <div class="page page--green">
+        <header class="page-header">
+            <span class="page-title">The Stand-In (continued)</span>
+            <span class="page-num">— 16 —</span>
+        </header>
+        <div class="container-inner">
+            <section class="section">
+                <h2>The Stand-In</h2>
+
+                <div class="act">
+                    <h3>Scene 4 — Exiled</h3>
+                    <p>
+                        She goes home. The stand-in has taken her place completely. The shoot continues without her. Her album. Her cover. Someone else is living it.
+                    </p>
+                </div>
+
+                <div class="act">
+                    <h3>Scene 5 — The Updates</h3>
+                    <p>
+                        She keeps hearing updates about herself. Social feeds. Texts from her team. "You killed it today." "The shots are incredible." Like <em>White Chicks</em> — the real person at home, sidelined, while the impostor is out there living their life. Shelby watches her own existence unfold from the outside. Cut to black.
+                    </p>
+                </div>
+            </section>
+        </div>
+        <div class="page-logo">
+            <img src="images/luzid-logo-dark.png" alt="Luzid Productions" class="logo-dark">
+            <img src="images/luzid-logo-light.png" alt="Luzid Productions" class="logo-light">
+        </div>
+        <footer class="page-footer"><span class="page-num">— 16 —</span></footer>
+    </div>
+
+    <!-- Page 8b: Stand-In Visualizer 1 (green) -->
+    <div class="page page--green">
+        <header class="page-header">
+            <span class="page-title">Stand-In Visualizer</span>
+            <span class="page-num">— 17 —</span>
+        </header>
+        <div class="container-inner">
+            <div class="storyboard">
+                <h3 class="budget-subhead" style="margin-bottom: 16px;">Stand-In Visualizer</h3>
+                <p class="script-budget-desc" style="margin-bottom: 24px;">12-panel storyboards — bedlam, rush, set arrival, unveiling, mistaken identity, escorted away.</p>
+                <div class="visualizer-grid stand-in-visualizer stand-in-visualizer-single">
+                    <img src="images/stand-in-visualizer-1.png" alt="The Stand-In — Storyboard 1">
+                </div>
+            </div>
+        </div>
+        <div class="page-logo">
+            <img src="images/luzid-logo-dark.png" alt="Luzid Productions" class="logo-dark">
+            <img src="images/luzid-logo-light.png" alt="Luzid Productions" class="logo-light">
+        </div>
+        <footer class="page-footer"><span class="page-num">— 17 —</span></footer>
+    </div>
+
+    <!-- Page 8c: Stand-In Visualizer 2 (green) -->
+    <div class="page page--green">
+        <header class="page-header">
+            <span class="page-title">Stand-In Visualizer (continued)</span>
+            <span class="page-num">— 18 —</span>
+        </header>
+        <div class="container-inner">
+            <div class="storyboard">
+                <h3 class="budget-subhead" style="margin-bottom: 16px;">Stand-In Visualizer (continued)</h3>
+                <div class="visualizer-grid stand-in-visualizer stand-in-visualizer-single">
+                    <img src="images/stand-in-visualizer-2.png" alt="The Stand-In — Storyboard 2">
+                </div>
+            </div>
+        </div>
+        <div class="page-logo">
+            <img src="images/luzid-logo-dark.png" alt="Luzid Productions" class="logo-dark">
+            <img src="images/luzid-logo-light.png" alt="Luzid Productions" class="logo-light">
+        </div>
+        <footer class="page-footer"><span class="page-num">— 18 —</span></footer>
+    </div>
+
+    <!-- Page 9: Budget (green) -->
+    <div class="page page--green">
+        <header class="page-header">
+            <span class="page-title">Budget</span>
+            <span class="page-num">— 19 —</span>
+        </header>
+        <div class="container-inner">
+            <section class="section">
+                <h2>Budget</h2>
+                <h1 style="margin-bottom: 8px;">Comprehensive Production Budget</h1>
+                <p class="budget-credit" style="margin-bottom: 24px;">Luzid Productions</p>
+                <h3 class="budget-subhead" style="margin-bottom: 12px;">GLAM</h3>
+                <ul class="budget-list">
+                    <li><span class="budget-item">Hair</span><span class="budget-amount">$500</span></li>
+                    <li><span class="budget-item">Makeup</span><span class="budget-amount">$500</span></li>
+                    <li><span class="budget-item">Styling Budget</span><span class="budget-amount">$6,000</span></li>
+                </ul>
+                <p class="budget-section-total"><span>GLAM Total</span><span>$7,000</span></p>
+                <h3 class="budget-subhead" style="margin-top: 28px; margin-bottom: 12px;">Album Cover Package</h3>
+                <ul class="budget-list">
+                    <li><span class="budget-item">Photographer (Full Day)</span><span class="budget-amount">$2,500</span></li>
+                    <li><span class="budget-item">Licensing / Usage</span><span class="budget-amount">$2,500</span></li>
+                    <li><span class="budget-item">Graphic Designer</span><span class="budget-amount">$1,000</span></li>
+                </ul>
+                <p class="budget-section-total"><span>Album Cover Package Total</span><span>$6,000</span></p>
+                <h3 class="budget-subhead" style="margin-top: 28px; margin-bottom: 12px;">Production Cost</h3>
+                <table class="budget-table">
+                    <thead>
+                        <tr><th>Category</th><th class="budget-col">Amount</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Sound Operator</td><td class="budget-col">$1,500</td></tr>
+                        <tr><td>DP</td><td class="budget-col">$2,000</td></tr>
+                        <tr><td>Gaffer</td><td class="budget-col">$1,000</td></tr>
+                        <tr><td>Lighting EQ</td><td class="budget-col">$900</td></tr>
+                        <tr><td>1st AC</td><td class="budget-col">$500</td></tr>
+                        <tr><td>Grip</td><td class="budget-col">$500</td></tr>
+                        <tr><td>Camera Gear / Rental</td><td class="budget-col">$800</td></tr>
+                        <tr><td>4 Hard Drives</td><td class="budget-col">$460</td></tr>
+                        <tr><td>Lunch</td><td class="budget-col">$500</td></tr>
+                        <tr><td>Crafty</td><td class="budget-col">$300</td></tr>
+                        <tr><td>BTS Photo / Video</td><td class="budget-col">$500</td></tr>
+                        <tr><td>Director</td><td class="budget-col">$3,000</td></tr>
+                        <tr><td>Producer</td><td class="budget-col">$2,000</td></tr>
+                        <tr><td>Editor / Colorist</td><td class="budget-col">$2,000</td></tr>
+                        <tr><td>Location</td><td class="budget-col">$3,000</td></tr>
+                        <tr><td>2 PAs</td><td class="budget-col">$1,000</td></tr>
+                        <tr><td>Art Department</td><td class="budget-col">$3,000–4,000</td></tr>
+                        <tr class="budget-total"><td>TOTAL</td><td class="budget-col">$23,460</td></tr>
+                    </tbody>
+                </table>
+            </section>
+        </div>
+        <div class="page-logo">
+            <img src="images/luzid-logo-dark.png" alt="Luzid Productions" class="logo-dark">
+            <img src="images/luzid-logo-light.png" alt="Luzid Productions" class="logo-light">
+        </div>
+        <footer class="page-footer"><span class="page-num">— 19 —</span></footer>
+    </div>
+
+    <!-- Page 9b: Budget — Script-Specific (green) -->
+    <div class="page page--green">
+        <header class="page-header">
+            <span class="page-title">Budget — Script-Specific</span>
+            <span class="page-num">— 20 —</span>
+        </header>
+        <div class="container-inner">
+            <section class="section">
+                <h2>Budget</h2>
+                <h3 class="budget-subhead" style="margin-top: 0; margin-bottom: 16px;">Micro-Drama Production Budgets — Script-Specific</h3>
+
+                <div class="script-budget-block">
+                    <h4 class="script-budget-title">1. Get A Job</h4>
+                    <p class="script-budget-desc">Pool (luxury, floaty, dog), minimalist luxury home (marble table, closet), taxi, grand ballroom, dark stage with concert lighting. Voiceover (gossipers). Props — AirPods, black box, gold envelope, couture gown, microphone.</p>
+                    <ul class="budget-list budget-list-compact">
+                        <li><span class="budget-item">Pool location — luxury / infinity edge</span><span class="budget-amount">$2,000–4,000</span></li>
+                        <li><span class="budget-item">Gala venue — grand ballroom, stage, lighting</span><span class="budget-amount">$3,500–6,000</span></li>
+                        <li><span class="budget-item">Taxi / car</span><span class="budget-amount">$600–1,000</span></li>
+                        <li><span class="budget-item">Art department</span><span class="budget-amount">$1,500–2,500</span></li>
+                        <li><span class="budget-item">Voiceover — 3–4 voices (gossipers)</span><span class="budget-amount">$400–800</span></li>
+                        <li>
+                            <span class="budget-item">Props</span><span class="budget-amount">$400–700</span>
+                            <div class="budget-sub">AirPods, black box, gold envelope, confetti</div>
+                        </li>
+                    </ul>
+                    <p class="script-budget-total"><span>Get A Job total</span><span>$9,000–16,000</span></p>
+                </div>
+
+                <div class="script-budget-block">
+                    <h4 class="script-budget-title">2. The Stand-In</h4>
+                    <p class="script-budget-desc">Bedroom, Uber, lot/security, studio shoot, lookalike, home interior.</p>
+                    <ul class="budget-list budget-list-compact">
+                        <li><span class="budget-item">Bedroom interior (wake-up)</span><span class="budget-amount">$800–1,200</span></li>
+                        <li><span class="budget-item">Uber interior / car rig</span><span class="budget-amount">$600–1,000</span></li>
+                        <li><span class="budget-item">Lot / studio exterior (security gate)</span><span class="budget-amount">$1,500–2,500</span></li>
+                        <li><span class="budget-item">Studio interior (album cover set)</span><span class="budget-amount">$2,000–3,500</span></li>
+                        <li><span class="budget-item">Lookalike talent (principal)</span><span class="budget-amount">$1,500–2,500</span></li>
+                        <li><span class="budget-item">Security / production extras (3–5)</span><span class="budget-amount">$600–1,000</span></li>
+                        <li><span class="budget-item">Home interior (updates / phone)</span><span class="budget-amount">$800–1,200</span></li>
+                        <li><span class="budget-item">Props — dress, phone, album set</span><span class="budget-amount">$400–700</span></li>
+                    </ul>
+                    <p class="script-budget-total"><span>The Stand-In total</span><span>$8,200–12,600</span></p>
+                </div>
+                <p class="script-budget-summary"><span>Both micro-dramas (script-specific + base crew)</span><span>$17,200–28,600 + $23,460/day</span></p>
+                <div class="grand-total">
+                    <span class="grand-total-label">Grand Total</span>
+                    <span class="grand-total-amount">$40,000</span>
+                </div>
+            </section>
+        </div>
+        <div class="page-logo">
+            <img src="images/luzid-logo-dark.png" alt="Luzid Productions" class="logo-dark">
+            <img src="images/luzid-logo-light.png" alt="Luzid Productions" class="logo-light">
+        </div>
+        <footer class="page-footer"><span class="page-num">— 20 —</span></footer>
+    </div>
+
+</div>
+
+</body>
+</html>
