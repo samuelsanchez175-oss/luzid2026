@@ -1,0 +1,133 @@
+<div class="page cover">
+
+<h1>THE DOUBLE</h1>
+<h2>Shelby Carter Micro‑Drama #2</h2>
+
+<p style="margin-top:40px">
+Produced by Luzid Productions
+</p>
+
+</div>
+
+<div class="page">
+
+<div class="section-title">Logline</div>
+
+<p>
+After arriving late to her own album cover shoot, artist Shelby Carter
+walks onto set only to discover a woman identical to her already
+performing the role. As cameras flash and production continues without
+question, Shelby realizes she may have already been replaced.
+</p>
+
+</div>
+
+<div class="page">
+
+<div class="section-title">Concept</div>
+
+<p>
+The story explores identity, fame, and disposability in celebrity culture.
+Shelby’s lateness and growing detachment from her responsibilities create
+space for a perfect replacement to step into her life.
+</p>
+
+<p>
+What begins as confusion on a fashion set evolves into psychological horror
+as Shelby watches another version of herself seamlessly inherit her career,
+her image, and eventually her entire public identity.
+</p>
+
+</div>
+
+<div class="page">
+
+<div class="section-title">Visual Tone</div>
+
+<p>
+The visual style mixes fashion photography aesthetics with psychological
+thriller tension. Clean studio lighting, stark blue backdrops, and intense
+camera flashes contrast with Shelby’s emotional disorientation.
+</p>
+
+<p>
+Influences include high‑fashion editorials, backstage chaos, and the eerie
+stillness of someone watching their own life being lived by someone else.
+</p>
+
+</div>
+
+<div class="page">
+
+<div class="section-title">Storyboard</div>
+
+<div class="storyboard">
+
+<div class="shot">
+<img src="images/double_shot1.jpg">
+<b>Shot 1 – Late Morning</b>
+<p>
+Shelby wakes in her apartment surrounded by designer clothes and missed
+calls. A calendar alert reminds her she is already late for her album
+cover shoot.
+</p>
+</div>
+
+<div class="shot">
+<img src="images/double_shot2.jpg">
+<b>Shot 2 – The Ride</b>
+<p>
+In the back of an Uber, Shelby scrolls TMZ headlines covering the shoot.
+A livestream reveals the production has already started.
+</p>
+</div>
+
+<div class="shot">
+<img src="images/double_shot3.jpg">
+<b>Shot 3 – The Studio</b>
+<p>
+Shelby arrives at a large photo studio where photographers surround a
+blue backdrop. Three veiled women stand on one side of the set.
+</p>
+</div>
+
+<div class="shot">
+<img src="images/double_shot4.jpg">
+<b>Shot 4 – Security</b>
+<p>
+A security guard blocks Shelby from entering the stage. She pushes past
+him toward the central model standing under a veil.
+</p>
+</div>
+
+<div class="shot">
+<img src="images/double_shot5.jpg">
+<b>Shot 5 – The Reveal</b>
+<p>
+Shelby pulls off the veil. The woman underneath looks exactly like her.
+The crew continues shooting as if nothing is wrong.
+</p>
+</div>
+
+<div class="shot">
+<img src="images/double_shot6.jpg">
+<b>Shot 6 – Replacement</b>
+<p>
+Shelby is escorted off set while the identical double continues posing
+for cameras, seamlessly stepping into Shelby’s career.
+</p>
+</div>
+
+<div class="shot">
+<img src="images/double_shot7.jpg">
+<b>Shot 7 – The Aftermath</b>
+<p>
+Later that night Shelby watches television coverage of the shoot. The
+world celebrates the other Shelby while the real one sits alone.
+</p>
+</div>
+
+</div>
+</div>
+
+</body>
