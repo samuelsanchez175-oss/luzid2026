@@ -1,12 +1,4 @@
 {
-  "name": "shelby-treatment",
-  "version": "1.0.0",
-  "description": "Shelby Carter Album Rollout treatment deck",
-  "scripts": {
-    "export-pdf": "node export-pdf.js"
-  },
-  "dependencies": {
-    "pdf-lib": "^1.17.1",
-    "puppeteer": "^24.0.0"
-  }
+  "name": "luzid2026",
+  "private": true
 }
