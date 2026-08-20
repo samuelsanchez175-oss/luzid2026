@@ -186,6 +186,7 @@
             { id: 32, title: 'GEN MEX Amazon Video Prime', director: 'Brandon Almengo', category: 'commercials', categoryLabel: 'Commercial Campaign', image: null, video: 'assets/videos/gen-mex-amazon-prime.m4v', link: '#', releaseDate: '2022-01-01', date: '2022' },
             { id: 33, title: 'James Harden × Therabody', director: 'Brandon Almengo', category: 'commercials', categoryLabel: 'Commercial Campaign', image: 'assets/images/james-harden-therabody-thumb.jpg', video: null, link: 'https://www.youtube.com/watch?v=UEBNyJ44dys', releaseDate: '2022-01-01', date: '2022' },
             { id: 34, title: 'Puma × Winnie Harlow', director: 'Brandon Almengo', category: 'commercials', categoryLabel: 'Commercial Campaign', image: 'assets/images/puma-winnie-harlow-thumb.jpg', video: null, link: 'https://www.youtube.com/watch?v=AO3_yRqdU1g', releaseDate: '2022-01-01', date: '2022' },
+            { id: 42, title: 'Starface', artist: 'Tyga', director: 'Brandon Almengo', category: 'album-covers', categoryLabel: 'Album Cover', image: 'assets/images/album-covers/album-11.jpg', video: null, link: '#', square: true, releaseDate: '2026-07-31', date: 'Jul 2026' },
             { id: 41, title: "Gentlemen's Club", artist: 'YG', director: 'Brandon Almengo', category: 'album-covers', categoryLabel: 'Album Cover', image: 'assets/images/album-covers/album-10.png', video: null, link: '#', square: true, releaseDate: '2026-01-01', date: '2026' },
             { id: 7, title: "love? ...or something like it", artist: 'Halle', director: 'Brandon Almengo', category: 'album-covers', categoryLabel: 'Album Cover', image: 'assets/images/album-covers/album-01.png', video: null, link: '#', square: true, releaseDate: '2025-10-24', date: 'Oct 2025' },
             { id: 11, title: "First Lady of the Mob", artist: 'Kamaiyah & DJ Idea', director: 'Brandon Almengo', category: 'album-covers', categoryLabel: 'Album Cover', image: 'assets/images/album-covers/album-05.png', video: null, link: '#', square: true, releaseDate: '2025-06-27', date: 'Jun 2025' },
@@ -311,8 +312,9 @@
             let currentAlbumImageIndex = 1;
             if (albumImg) {
                 setInterval(() => {
-                    currentAlbumImageIndex = currentAlbumImageIndex >= 10 ? 1 : currentAlbumImageIndex + 1;
-                    albumImg.src = `assets/images/album-covers/album-${currentAlbumImageIndex.toString().padStart(2, '0')}.png`;
+                    currentAlbumImageIndex = currentAlbumImageIndex >= 11 ? 1 : currentAlbumImageIndex + 1;
+                    const albumExt = currentAlbumImageIndex === 11 ? 'jpg' : 'png';
+                    albumImg.src = `assets/images/album-covers/album-${currentAlbumImageIndex.toString().padStart(2, '0')}.${albumExt}`;
                 }, 400);
             }
 
