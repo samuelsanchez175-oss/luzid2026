@@ -8,7 +8,7 @@
     <link rel="icon" href="assets/images/luzid-logo.png" type="image/png" sizes="any">
     <link rel="apple-touch-icon" href="assets/images/luzid-logo.png">
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css?v=20261024f">
     <script>
       window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
     </script>
@@ -84,48 +84,39 @@
 
                 <h2 class="section-title">Services</h2>
                 <div class="capabilities-grid">
-                    <div class="capability-card">
-                        <img src="assets/images/tyga-hello-bitch-preview.gif" class="cbc-img-cycle" alt="Music Videos">
+                    <a href="#work" class="capability-card" data-work-filter="music-videos">
                         <span class="capability-text">Music Videos</span>
                         <p class="capability-desc">Full-scale music video production from concept to delivery.</p>
-                    </div>
-                    <div class="capability-card" id="cbc-card">
-                        <img src="assets/images/lifestyle-commercials-winnie-harlow.png" class="cbc-img-cycle" alt="Commercials & Branded Content">
+                    </a>
+                    <a href="#work" class="capability-card" id="cbc-card" data-work-filter="commercials">
                         <span class="capability-text">Commercials & Branded Content</span>
                         <p class="capability-desc">High-impact spots and branded campaigns for global audiences.</p>
-                    </div>
+                    </a>
                     <div class="capability-card" id="event-tour-card">
-                        <img src="assets/images/event-tour-coverage/event-tour-01.png" id="event-tour-img" class="cbc-img-cycle" alt="Event & Tour Coverage">
                         <span class="capability-text">Event & Tour Coverage</span>
                         <p class="capability-desc">Live event documentation and tour content for artists and brands.</p>
                     </div>
-                    <div class="capability-card" id="lifestyle-card">
-                        <img src="assets/images/lifestyle-commercials/lifestyle-01.jpg" id="lifestyle-img" class="cbc-img-cycle" alt="Lifestyle Commercials">
+                    <a href="#work" class="capability-card" id="lifestyle-card" data-work-filter="commercials">
                         <span class="capability-text">Lifestyle Commercials</span>
                         <p class="capability-desc">Authentic lifestyle storytelling that connects with consumers.</p>
-                    </div>
+                    </a>
                     <div class="capability-card">
-                        <img src="assets/images/about-photo-social/ps-01.jpg" class="cbc-img-cycle" alt="Fashion Photography">
                         <span class="capability-text">Fashion Photography</span>
                         <p class="capability-desc">Editorial and campaign photography for fashion and beauty.</p>
                     </div>
-                    <div class="capability-card" id="album-card">
-                        <img src="assets/images/album-covers/album-01.png" id="album-img" class="cbc-img-cycle" alt="Album Packaging & Single Covers">
+                    <a href="#work" class="capability-card" id="album-card" data-work-filter="album-covers">
                         <span class="capability-text">Album Packaging & Single Covers</span>
                         <p class="capability-desc">Art direction and design for album art and single releases.</p>
-                    </div>
+                    </a>
                     <div class="capability-card" id="ps-card">
-                        <img src="assets/images/about-photo-social/ps-01.jpg" id="ps-img" class="cbc-img-cycle" alt="Photography & Social">
                         <span class="capability-text">Photography & Social</span>
                         <p class="capability-desc">Social-first content and stills for digital and print.</p>
                     </div>
                     <div class="capability-card" id="evfx-card">
-                        <img src="assets/images/about-color-finishing/cf-01.jpg" id="evfx-img" class="cbc-img-cycle" alt="Content Editing">
                         <span class="capability-text">Content Editing (Long-Form & Short-Form)</span>
                         <p class="capability-desc">Post-production and editorial for long-form and short-form content.</p>
                     </div>
                     <div class="capability-card" id="vfx-card">
-                        <img src="assets/images/vfx-box.png" id="vfx-img" class="cbc-img-cycle" alt="VFX">
                         <span class="capability-text">VFX</span>
                         <p class="capability-desc">Visual effects and finishing for film, music, and commercial.</p>
                     </div>
@@ -142,8 +133,14 @@
                 </h1>
 
                 <h2 class="section-title">Brands We've Partnered With</h2>
-                <div id="brands-grid" class="brands-grid"></div>
+                <div id="brands-marquee" class="logo-marquee" aria-label="Brand logos">
+                    <div id="brands-marquee-track" class="logo-marquee-track"></div>
+                </div>
 
+                <h2 class="section-title" id="publications">Publications</h2>
+                <div id="publication-marquee" class="logo-marquee" aria-label="Publication logos">
+                    <div id="publication-marquee-track" class="logo-marquee-track"></div>
+                </div>
 
             </div>
         </section>
@@ -200,7 +197,7 @@
     </main>
 
     <footer id="contact" class="site-footer">
-        Contact: <a href="mailto:Luzidprductions@gmail.com">Luzidprductions@gmail.com</a> | <a href="admin/">Log in to CMS</a> | © 2026 Luzid Productions
+        Contact: <a href="mailto:Luzidproductions@gmail.com">Luzidproductions@gmail.com</a> | <a href="admin/">Log in to CMS</a> | © 2026 Luzid Productions
     </footer>
 
     <!-- Image lightbox for album/single covers -->
@@ -212,6 +209,6 @@
         </div>
     </div>
 
-    <script src="js/main.js?v=20260820b"></script>
+    <script src="js/main.js?v=20261024c"></script>
 </body>
 </html>

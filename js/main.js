@@ -141,7 +141,7 @@
         }
 
         // --- RENDER BRANDS LOGIC ---
-        const brandsGrid = document.getElementById('brands-grid');
+        const brandsMarqueeTrack = document.getElementById('brands-marquee-track');
         const brandItems = [
             { name: 'Buffalo London', logo: 'assets/images/brands/buffalo-london-.webp' }, 
             { name: 'Carters', logo: 'assets/images/brands/carters-logo.png?v=2', logoScale: 2.4 }, 
@@ -156,26 +156,27 @@
             { name: 'YG 4hunnid', logo: 'assets/images/brands/4hunnid_records_logo.png', invert: true }
         ];
 
+        function fillLogoMarquee(track, cells) {
+            if (!track) return;
+            const group = `<div class="logo-marquee-group">${cells}</div>`;
+            track.innerHTML = group + `<div class="logo-marquee-group" aria-hidden="true">${cells}</div>`;
+        }
+
         function renderBrands() {
-            if (!brandsGrid) return;
-            brandsGrid.innerHTML = brandItems
-                .map(item => `
-                    <article class="brand-card">
-                        ${item.logo 
-                            ? `<img src="${item.logo}" alt="${item.name} logo" class="brand-logo ${item.invert ? 'invert-logo' : ''} ${item.logoScale ? 'brand-logo-scale-' + String(item.logoScale).replace('.', '-') : ''} ${item.noBackdrop ? 'brand-logo-no-backdrop' : ''}" loading="lazy">` 
-                            : ''
-                        }
-                        ${(!item.logo || item.showText)
-                            ? `<p class="brand-text">${item.name}</p>`
-                            : ''
-                        }
-                    </article>
-                `)
-                .join('');
+            const cells = brandItems.map(item => {
+                const classes = ['brand-logo'];
+                if (item.invert) classes.push('invert-logo');
+                if (item.logoScale) classes.push('brand-logo-scale-' + String(item.logoScale).replace('.', '-'));
+                if (item.noBackdrop) classes.push('brand-logo-no-backdrop');
+                return `<img src="${item.logo}" alt="${item.name}" class="${classes.join(' ')}">`;
+            }).join('');
+            fillLogoMarquee(brandsMarqueeTrack, cells);
         }
 
         // --- RENDER WORK LOGIC ---
         const workGrid = document.getElementById('work-grid');
+        const publicationMarquee = document.getElementById('publication-marquee');
+        const publicationMarqueeTrack = document.getElementById('publication-marquee-track');
         const filterBtns = document.querySelectorAll('.filter-btn');
         const workItems = [
             { id: 1, title: 'Back and Forth', director: 'Halle', category: 'music-videos', categoryLabel: 'Music Video', image: 'assets/images/music-videos-halle-back-and-forth.jpg', video: 'assets/videos/welcome-hero-video.mov', link: 'https://www.youtube.com/watch?v=XGEs3GE3-VY', releaseDate: '2025-02-14', date: 'Feb 2025' },
@@ -186,6 +187,8 @@
             { id: 32, title: 'GEN MEX Amazon Video Prime', director: 'Brandon Almengo', category: 'commercials', categoryLabel: 'Commercial Campaign', image: null, video: 'assets/videos/gen-mex-amazon-prime.m4v', link: '#', releaseDate: '2022-01-01', date: '2022' },
             { id: 33, title: 'James Harden × Therabody', director: 'Brandon Almengo', category: 'commercials', categoryLabel: 'Commercial Campaign', image: 'assets/images/james-harden-therabody-thumb.jpg', video: null, link: 'https://www.youtube.com/watch?v=UEBNyJ44dys', releaseDate: '2022-01-01', date: '2022' },
             { id: 34, title: 'Puma × Winnie Harlow', director: 'Brandon Almengo', category: 'commercials', categoryLabel: 'Commercial Campaign', image: 'assets/images/puma-winnie-harlow-thumb.jpg', video: null, link: 'https://www.youtube.com/watch?v=AO3_yRqdU1g', releaseDate: '2022-01-01', date: '2022' },
+            { id: 44, title: 'Watch Dis', artist: 'Yung Miami', director: 'Brandon Almengo', category: 'album-covers', categoryLabel: 'Album Cover', image: 'assets/images/album-covers/album-13.jpg', video: null, link: '#', square: true, releaseDate: '2026-10-23', date: 'Oct 2026' },
+            { id: 45, title: 'love? ...or something like it (Deluxe)', artist: 'Halle', director: 'Brandon Almengo', category: 'album-covers', categoryLabel: 'Album Cover', image: 'assets/images/album-covers/album-14.jpg', video: null, link: '#', square: true, releaseDate: '2026-10-23', date: 'Oct 2026' },
             { id: 42, title: 'Starface', artist: 'Tyga', director: 'Brandon Almengo', category: 'album-covers', categoryLabel: 'Album Cover', image: 'assets/images/album-covers/album-11.jpg?v=1', video: null, link: '#', square: true, releaseDate: '2026-07-31', date: 'Jul 2026' },
             { id: 43, title: 'Locked In', artist: 'Gavin Magnus', director: 'Brandon Almengo', category: 'album-covers', categoryLabel: 'Album Cover', image: 'assets/images/album-covers/album-12.jpg', video: null, link: '#', square: true, releaseDate: '2026-04-10', date: 'Apr 2026' },
             { id: 41, title: "Gentlemen's Club", artist: 'YG', director: 'Brandon Almengo', category: 'album-covers', categoryLabel: 'Album Cover', image: 'assets/images/album-covers/album-10.png', video: null, link: '#', square: true, releaseDate: '2026-01-01', date: '2026' },
@@ -220,12 +223,96 @@
             { id: 36, title: 'Glamour', artist: 'Ruby Rose', director: 'Brandon Almengo', category: 'magazine-covers', categoryLabel: 'Magazine Cover', image: 'assets/images/magazine-covers/magazine-02.jpg', video: null, link: 'https://www.instagram.com/p/CP8yKgTh_3s/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==', rectangular: true, releaseDate: '2021-06-01', date: 'Jun 2021' },
             { id: 37, title: 'Tilted', artist: 'Melvin Gregg', director: 'Brandon Almengo', category: 'magazine-covers', categoryLabel: 'Magazine Cover', image: 'assets/images/magazine-covers/magazine-03.jpg', video: null, link: '#', rectangular: true, releaseDate: '2021-02-01', date: 'Feb 2021' },
             { id: 35, title: 'Maxim', artist: 'Saweetie', director: 'Brandon Almengo', category: 'magazine-covers', categoryLabel: 'Magazine Cover', image: 'assets/images/magazine-covers/magazine-01.jpg', video: null, link: 'https://www.instagram.com/p/CBv_JGIp2do/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==', rectangular: true, releaseDate: '2020-07-01', date: 'Jul 2020' },
+            { id: 46, title: 'Nylon', artist: 'Skai Jackson', category: 'publications', categoryLabel: 'Publication', image: 'assets/images/publications/nylon.jpg', video: null, link: 'https://www.nylon.com/beauty/cacharel-skai-jackson' },
+            { id: 47, title: 'Forbes', category: 'publications', categoryLabel: 'Publication', image: null, video: null, link: '#work' },
+            { id: 48, title: 'Paper', artist: 'Offset', category: 'publications', categoryLabel: 'Publication', image: 'assets/images/publications/paper-offset.jpg', video: null, link: 'https://www.papermag.com/offsets-birthday-party-photos' },
+            { id: 49, title: 'Paper', artist: 'Saweetie', category: 'publications', categoryLabel: 'Publication', image: 'assets/images/publications/paper-nyfw.jpg', video: null, link: 'https://www.papermag.com/saweetie-nyfw' },
+            { id: 50, title: 'Paper', artist: 'Saweetie', category: 'publications', categoryLabel: 'Publication', image: 'assets/images/publications/paper-tour.jpg', video: null, link: 'https://www.papermag.com/saweetie-tour-style' },
+            { id: 51, title: 'Billboard', artist: 'Saweetie', category: 'publications', categoryLabel: 'Publication', image: 'assets/images/publications/billboard-saweetie.jpg', video: null, link: 'https://www.billboard.com/music/rb-hip-hop/saweetie-my-type-hot-100-interview-icy-grl-8520255/' },
+            { id: 52, title: 'Billboard', artist: 'Chloe Bailey', category: 'publications', categoryLabel: 'Publication', image: 'assets/images/publications/billboard-chloe.jpg', video: null, link: 'https://www.billboard.com/culture/product-recommendations/chloe-bailey-carters-holiday-picks-1235829091/' },
+            { id: 53, title: 'Vogue', artist: 'Halloween', category: 'publications', categoryLabel: 'Publication', image: 'assets/images/publications/vogue-halloween.jpg', video: null, link: 'https://www.vogue.com/slideshow/the-best-halloween-parties-of-2022' },
+            { id: 54, title: 'Rolling Stone', artist: 'Stefflon Don', category: 'publications', categoryLabel: 'Publication', image: 'assets/images/publications/rollingstone.jpg', video: null, link: 'https://www.rollingstone.co.uk/music/news/stefflon-don-previews-debut-album-new-single-move-it-30420/' },
+            { id: 55, title: 'Maxim', artist: 'Brandon Almengo', category: 'publications', categoryLabel: 'Publication', image: 'assets/images/publications/maxim-profile.jpg', video: null, link: 'https://www.maxim.com/entertainment/afro-latino-photographer-brandon-almengo-profile/' },
+            { id: 56, title: 'Maxim', artist: 'The Mick Show', category: 'publications', categoryLabel: 'Publication', image: 'assets/images/publications/maxim-mick.jpg?v=2', video: null, link: 'https://www.maxim.com/entertainment/the-mick-show-episode-10-brandon-almengo/' },
+            { id: 57, title: 'Elle', artist: 'Shenseea', category: 'publications', categoryLabel: 'Publication', image: 'assets/images/publications/elle.jpg', video: null, link: 'https://www.ellecanada.com/culture/music/shenseea-interview' },
+            { id: 58, title: 'Complex', category: 'publications', categoryLabel: 'Publication', image: null, video: null, link: '#work' },
+            { id: 59, title: 'British Vogue', artist: 'Saweetie', category: 'publications', categoryLabel: 'Publication', image: 'assets/images/publications/bvogue-saweetie.jpg', video: null, link: 'https://www.vogue.co.uk/fashion/article/saweetie-shares-major-mfw-wardrobe' },
+            { id: 60, title: 'Variety', artist: 'Flo Milli', category: 'publications', categoryLabel: 'Publication', image: 'assets/images/publications/variety.jpg', video: null, link: 'https://variety.com/lists/variety-power-of-young-hollywood-2021-impact-list/' },
+            { id: 61, title: 'Vibe', artist: 'Halle Bailey', category: 'publications', categoryLabel: 'Publication', image: 'assets/images/publications/vibe.jpg', video: null, link: 'https://www.vibe.com/news/entertainment/halle-balle-claims-lying-about-private-pregnancy-1234845764/' },
+            { id: 62, title: 'WWD', artist: 'Chloe Bailey', category: 'publications', categoryLabel: 'Publication', image: 'assets/images/publications/wwd.jpg', video: null, link: 'https://wwd.com/pop-culture/celebrity-news/chloe-bailey-sauntie-claus-carters-holiday-giveaway-1236722357/' },
+            { id: 63, title: 'Flaunt', category: 'publications', categoryLabel: 'Publication', image: null, video: null, link: '#work' },
+            { id: 64, title: 'Marie Claire', artist: 'Chloe Bailey', category: 'publications', categoryLabel: 'Publication', image: 'assets/images/publications/marie.jpg', video: null, link: 'https://www.marieclaire.com/beauty/chloe-bailey-dionne-warwick-hair-tribute/' },
+            { id: 65, title: 'New York Post', artist: 'Flo Milli', category: 'publications', categoryLabel: 'Publication', image: 'assets/images/publications/nypost.jpg', video: null, link: 'https://nypost.com/2021/03/19/flo-milli-roaring-20s-video-styling-costume-design-jenna-tyson/' },
+            { id: 66, title: 'Page Six', artist: 'Saweetie', category: 'publications', categoryLabel: 'Publication', image: 'assets/images/publications/pagesix.jpg', video: null, link: 'https://pagesix.com/2020/06/01/saweetie-pretty-little-thing-black-lives-matter/' },
+            { id: 67, title: 'Seventeen', artist: 'Saweetie', category: 'publications', categoryLabel: 'Publication', image: 'assets/images/publications/seventeen.jpg', video: null, link: 'https://www.seventeen.com/fashion/celeb-fashion/g32733515/saweetie-prettylittlething-clothing-line-black-lives-matter/' },
+            { id: 68, title: 'Fault', artist: 'Flo Milli', category: 'publications', categoryLabel: 'Publication', image: 'assets/images/publications/fault.jpg', video: null, link: 'https://fault-magazine.com/2023/08/flo-milli-to-dominate-the-summer-with-faultless-fine-ho-stay/' },
+            { id: 69, title: 'Wonderland', artist: 'AP Studios', category: 'publications', categoryLabel: 'Publication', image: null, video: null, link: 'https://www.wonderlandmagazine.com/2020/06/10/ap-studios-alexandra-preusche/' },
+            { id: 70, title: 'Voyage LA', artist: 'Brandon Almengo', category: 'publications', categoryLabel: 'Publication', image: 'assets/images/publications/voyage.jpg', video: null, link: 'https://voyagela.com/interview/check-brandon-almengos-story/' },
         ];
+
+        const publicationLogoList = [
+            { name: 'Nylon', src: 'assets/images/publications/logos/nylon.png' },
+            { name: 'Forbes', src: 'assets/images/publications/logos/forbes.png' },
+            { name: 'Paper', src: 'assets/images/publications/logos/paper.png' },
+            { name: 'Billboard', src: 'assets/images/publications/logos/billboard.png' },
+            { name: 'Vogue', src: 'assets/images/publications/logos/vogue.png' },
+            { name: 'Rolling Stone', src: 'assets/images/publications/logos/rollingstone-mark.png', color: true },
+            { name: 'Maxim', src: 'assets/images/publications/logos/maxim.png' },
+            { name: 'Elle', src: 'assets/images/publications/logos/elle.png' },
+            { name: 'Complex', src: 'assets/images/publications/logos/complex.png' },
+            { name: 'British Vogue', src: 'assets/images/publications/logos/bvogue.png' },
+            { name: 'Variety', src: 'assets/images/publications/logos/variety.png' },
+            { name: 'Vibe', src: 'assets/images/publications/logos/vibe.png' },
+            { name: 'WWD', src: 'assets/images/publications/logos/wwd.png' },
+            { name: 'Flaunt', src: 'assets/images/publications/logos/flaunt.png' },
+            { name: 'Marie Claire', src: 'assets/images/publications/logos/marie.png' },
+            { name: 'New York Post', src: 'assets/images/publications/logos/nypost.png', color: true, square: true },
+            { name: 'Page Six', src: 'assets/images/publications/logos/pagesix.png' },
+            { name: 'Seventeen', src: 'assets/images/publications/logos/seventeen.png' },
+            { name: 'Fault', src: 'assets/images/publications/logos/fault.png' },
+            { name: 'Wonderland', src: 'assets/images/publications/logos/wonderland.png' },
+            { name: 'Voyage LA', src: 'assets/images/publications/logos/voyage.png' }
+        ];
+
+        function publicationLogoMarkup(item) {
+            const classes = ['publication-logo'];
+            if (item.color) classes.push('is-color');
+            if (item.square) classes.push('is-square');
+            return `<img class="${classes.join(' ')}" src="${item.src}" alt="${item.name}">`;
+        }
+
+        function renderPublicationMarquee() {
+            fillLogoMarquee(publicationMarqueeTrack, publicationLogoList.map(publicationLogoMarkup).join(''));
+        }
+
+        const publicationLogos = {
+            'Nylon': 'assets/images/publications/logos/nylon.png',
+            'Forbes': 'assets/images/publications/logos/forbes.png',
+            'Paper': 'assets/images/publications/logos/paper.png',
+            'Billboard': 'assets/images/publications/logos/billboard.png',
+            'Vogue': 'assets/images/publications/logos/vogue.png',
+            'Rolling Stone': 'assets/images/publications/logos/rollingstone.png',
+            'Maxim': 'assets/images/publications/logos/maxim.png',
+            'Elle': 'assets/images/publications/logos/elle.png',
+            'Complex': 'assets/images/publications/logos/complex.png',
+            'British Vogue': 'assets/images/publications/logos/bvogue.png',
+            'Variety': 'assets/images/publications/logos/variety.png',
+            'Vibe': 'assets/images/publications/logos/vibe.png',
+            'WWD': 'assets/images/publications/logos/wwd.png',
+            'Flaunt': 'assets/images/publications/logos/flaunt.png',
+            'Marie Claire': 'assets/images/publications/logos/marie.png',
+            'New York Post': 'assets/images/publications/logos/nypost.png',
+            'Page Six': 'assets/images/publications/logos/pagesix.png',
+            'Seventeen': 'assets/images/publications/logos/seventeen.png',
+            'Fault': 'assets/images/publications/logos/fault.png',
+            'Wonderland': 'assets/images/publications/logos/wonderland.png',
+            'Voyage LA': 'assets/images/publications/logos/voyage.png'
+        };
 
         function renderWork(filter = 'all') {
             if (!workGrid) return;
-            let filteredItems = filter === 'all' 
-                ? workItems 
+            let filteredItems = filter === 'all'
+                ? workItems.filter(item => item.category !== 'publications')
                 : workItems.filter(item => item.category === filter);
             filteredItems = [...filteredItems].sort((a, b) => {
                 const dateA = a.releaseDate || '0000-01-01';
@@ -236,6 +323,7 @@
             workGrid.classList.toggle('work-grid-album-covers', filter === 'album-covers');
             workGrid.classList.toggle('work-grid-magazine-covers', filter === 'magazine-covers');
             workGrid.classList.toggle('work-grid-single-covers', filter === 'single-covers');
+            workGrid.classList.toggle('work-grid-publications', filter === 'publications');
 
             workGrid.innerHTML = filteredItems.map(item => {
                 const href = item.link || '#';
@@ -245,25 +333,30 @@
                 const rel = (isYouTube || isExternal) ? 'noopener noreferrer' : '';
                 const squareClass = item.square ? ' work-item-square' : '';
                 const rectangularClass = item.rectangular ? ' work-item-rectangular' : '';
+                const publicationClass = item.category === 'publications' ? ' work-item-publication' : '';
+                const publicationEmptyClass = item.category === 'publications' && !item.image ? ' work-item-publication-empty' : '';
+                const pubLogo = item.category === 'publications' ? (publicationLogos[item.title] || '') : '';
                 const hasExternalLink = item.link && item.link.startsWith('http');
                 const expandable = (item.category === 'album-covers' || item.category === 'single-covers' || item.category === 'magazine-covers') && item.image && !hasExternalLink;
                 const dataExpand = expandable ? ` data-expand-image="${item.image}"` : '';
                 return `
-                <a href="${href}" class="work-item${squareClass}${rectangularClass}" data-category="${item.category}"${dataExpand} target="${target}" rel="${rel}">
+                <a href="${href}" class="work-item${squareClass}${rectangularClass}${publicationClass}${publicationEmptyClass}" data-category="${item.category}"${dataExpand} target="${target}" rel="${rel}">
                     ${item.video 
                         ? `<video src="${item.video}" ${item.image ? `poster="${item.image}"` : ''} autoplay muted loop playsinline webkit-playsinline></video>`
                         : (item.image 
-                            ? `<img src="${item.image}" alt="${item.title}" loading="lazy">` 
-                            : `<div class="work-placeholder">[ Image Placeholder ]</div>`
+                            ? `<img src="${item.image}" alt="${pubLogo ? '' : item.title}" loading="lazy">` 
+                            : (item.category === 'publications' ? '' : `<div class="work-placeholder">[ Image Placeholder ]</div>`)
                         )
                     }
                     <div class="work-item-overlay">
                         ${item.categoryLabel ? `<span class="work-item-category">${item.categoryLabel}</span>` : ''}
                         ${item.comingSoon ? `<span class="work-item-coming-soon">Coming soon</span>` : ''}
-                        <h3 class="work-item-title">${item.title}</h3>
-                        ${item.artist ? `<p class="work-item-artist">${item.artist}</p><p class="work-item-director">${item.director}</p>` : `<p class="work-item-director">${item.director}</p>`}
+                        ${pubLogo ? '' : `<h3 class="work-item-title">${item.title}</h3>`}
+                        ${item.artist ? `<p class="work-item-artist">${item.artist}</p>` : ''}
+                        ${item.director ? `<p class="work-item-director">${item.director}</p>` : ''}
                         ${item.date ? `<p class="work-item-date">${item.date}</p>` : ''}
                     </div>
+                    ${pubLogo ? `<span class="work-item-logo-bar"><img class="work-item-logo" src="${pubLogo}" alt="${item.title}"></span>` : ''}
                 </a>
             `}).join('');
         }
@@ -313,7 +406,7 @@
             let currentAlbumImageIndex = 1;
             if (albumImg) {
                 setInterval(() => {
-                    currentAlbumImageIndex = currentAlbumImageIndex >= 12 ? 1 : currentAlbumImageIndex + 1;
+                    currentAlbumImageIndex = currentAlbumImageIndex >= 14 ? 1 : currentAlbumImageIndex + 1;
                     const albumExt = currentAlbumImageIndex >= 11 ? 'jpg' : 'png';
                     albumImg.src = `assets/images/album-covers/album-${currentAlbumImageIndex.toString().padStart(2, '0')}.${albumExt}`;
                 }, 400);
@@ -339,6 +432,7 @@
 
             // Render Grids
             renderBrands();
+            renderPublicationMarquee();
             renderWork('all');
             renderBlog();
 
@@ -382,13 +476,31 @@
             });
 
             // Setup Filter Buttons for Work
+            function applyWorkFilter(filter) {
+                filterBtns.forEach(btn => {
+                    btn.classList.toggle('active', btn.getAttribute('data-filter') === filter);
+                });
+                renderWork(filter);
+            }
+
             filterBtns.forEach(btn => {
                 btn.addEventListener('click', (e) => {
-                    filterBtns.forEach(b => b.classList.remove('active'));
-                    e.target.classList.add('active');
-                    renderWork(e.target.getAttribute('data-filter'));
+                    applyWorkFilter(e.currentTarget.getAttribute('data-filter'));
                 });
             });
+
+            document.querySelectorAll('.capability-card[data-work-filter]').forEach(card => {
+                card.addEventListener('click', () => {
+                    applyWorkFilter(card.getAttribute('data-work-filter'));
+                });
+            });
+
+            const initialWork = new URLSearchParams(window.location.search).get('work');
+            if (initialWork === 'publications') {
+                document.getElementById('publications')?.scrollIntoView();
+            } else if (initialWork && document.querySelector('.filter-btn[data-filter="' + initialWork + '"]')) {
+                applyWorkFilter(initialWork);
+            }
 
             // Active section highlighting based on scroll position
             const sections = document.querySelectorAll('section[id]');
