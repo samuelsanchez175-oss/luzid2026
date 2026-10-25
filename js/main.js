@@ -144,15 +144,15 @@
         const brandsMarqueeTrack = document.getElementById('brands-marquee-track');
         const brandItems = [
             { name: 'Buffalo London', logo: 'assets/images/brands/buffalo-london-.webp' }, 
-            { name: 'Carters', logo: 'assets/images/brands/carters-logo.png?v=2', logoScale: 2.4 }, 
-            { name: 'Amazon Music', logo: 'assets/images/brands/amazon-music.png' },
-            { name: 'CÎROC', logo: 'assets/images/brands/ciroc-logo.png', invert: true, logoScale: 3 },
+            { name: 'Carters', logo: 'assets/images/brands/carters-logo.png?v=3', logoScale: 2.4 }, 
+            { name: 'Amazon Music', logo: 'assets/images/brands/amazon-music.png?v=3' },
+            { name: 'CÎROC', logo: 'assets/images/brands/ciroc-logo.png?v=3', invert: true, logoScale: 3 },
             { name: 'Icon Swim', logo: 'assets/images/brands/icon-swim-.webp', invert: true }, 
             { name: 'JBW Watches', logo: 'assets/images/brands/jbw-watches.png', invert: true }, 
             { name: 'Kiss Colors', logo: 'assets/images/brands/kiss-colors-cosmetics-.jpg' },
             { name: 'Pretty Little Thing', logo: 'assets/images/brands/pretty-little-thing-.png' }, 
             { name: 'Puma', logo: 'assets/images/brands/puma.svg', invert: true }, 
-            { name: 'Therabody', logo: 'assets/images/brands/therabody-logo.svg?v=1', invert: false, logoScale: 2, noBackdrop: true },
+            { name: 'Therabody', logo: 'assets/images/brands/therabody-logo.svg?v=2', invert: false, logoScale: 2, noBackdrop: true },
             { name: 'YG 4hunnid', logo: 'assets/images/brands/4hunnid_records_logo.png', invert: true }
         ];
 
@@ -160,6 +160,125 @@
             if (!track) return;
             const group = `<div class="logo-marquee-group">${cells}</div>`;
             track.innerHTML = group + `<div class="logo-marquee-group" aria-hidden="true">${cells}</div>`;
+            bindLogoMarquee(track.parentElement);
+        }
+
+        function bindLogoMarquee(root) {
+            if (!root || root.dataset.marqueeBound === '1') return;
+            root.dataset.marqueeBound = '1';
+            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+            const track = root.querySelector('.logo-marquee-track');
+            if (!track) return;
+
+            const LOOP_MS = 32000;
+            const RESUME_MS = 4000;
+            const SLOP = 8;
+            let offset = 0;
+            let pausedUntil = 0;
+            let hovered = false;
+            let pointerId = null;
+            let tracking = false;
+            let dragging = false;
+            let axis = null;
+            let startX = 0;
+            let startY = 0;
+            let startOffset = 0;
+            let last = performance.now();
+
+            function loopWidth() {
+                const group = track.querySelector('.logo-marquee-group');
+                return group ? group.offsetWidth : 0;
+            }
+
+            function apply() {
+                const width = loopWidth();
+                if (width <= 1) return;
+                offset = ((offset % width) + width) % width;
+                track.style.transform = 'translate3d(' + (-offset) + 'px, 0, 0)';
+            }
+
+            function pause() {
+                pausedUntil = performance.now() + RESUME_MS;
+            }
+
+            function frame(now) {
+                const dt = Math.min(64, now - last);
+                last = now;
+                if (!dragging && !hovered && now >= pausedUntil) {
+                    const width = loopWidth();
+                    if (width > 1) offset += (width / LOOP_MS) * dt;
+                }
+                apply();
+                requestAnimationFrame(frame);
+            }
+
+            root.addEventListener('pointerdown', (event) => {
+                if (event.button !== 0) return;
+                tracking = true;
+                dragging = false;
+                pointerId = event.pointerId;
+                startX = event.clientX;
+                startY = event.clientY;
+                startOffset = offset;
+                axis = (event.pointerType === 'mouse' || event.pointerType === 'pen') ? 'x' : null;
+                pause();
+                if (axis === 'x') {
+                    dragging = true;
+                    root.classList.add('is-dragging');
+                    root.setPointerCapture(event.pointerId);
+                    event.preventDefault();
+                }
+            });
+
+            root.addEventListener('pointermove', (event) => {
+                if (!tracking || event.pointerId !== pointerId) return;
+                const dx = event.clientX - startX;
+                const dy = event.clientY - startY;
+                if (!axis) {
+                    if (Math.abs(dx) < SLOP && Math.abs(dy) < SLOP) return;
+                    axis = Math.abs(dx) > Math.abs(dy) ? 'x' : 'y';
+                    if (axis === 'y') return;
+                    dragging = true;
+                    root.classList.add('is-dragging');
+                    root.setPointerCapture(event.pointerId);
+                }
+                if (axis !== 'x') return;
+                offset = startOffset - dx;
+                apply();
+                pause();
+                event.preventDefault();
+            });
+
+            function endDrag(event) {
+                if (!tracking || (event && event.pointerId !== pointerId)) return;
+                tracking = false;
+                dragging = false;
+                pointerId = null;
+                axis = null;
+                root.classList.remove('is-dragging');
+                pause();
+            }
+
+            root.addEventListener('pointerup', endDrag);
+            root.addEventListener('pointercancel', endDrag);
+
+            root.addEventListener('pointerenter', (event) => {
+                if (event.pointerType === 'mouse') hovered = true;
+            });
+            root.addEventListener('pointerleave', (event) => {
+                if (event.pointerType === 'mouse') hovered = false;
+            });
+
+            root.addEventListener('wheel', (event) => {
+                if (Math.abs(event.deltaX) <= Math.abs(event.deltaY)) return;
+                event.preventDefault();
+                offset += event.deltaX;
+                apply();
+                pause();
+            }, { passive: false });
+
+            requestAnimationFrame(frame);
         }
 
         function renderBrands() {
@@ -168,7 +287,7 @@
                 if (item.invert) classes.push('invert-logo');
                 if (item.logoScale) classes.push('brand-logo-scale-' + String(item.logoScale).replace('.', '-'));
                 if (item.noBackdrop) classes.push('brand-logo-no-backdrop');
-                return `<img src="${item.logo}" alt="${item.name}" class="${classes.join(' ')}">`;
+                return `<img src="${item.logo}" alt="${item.name}" class="${classes.join(' ')}" draggable="false">`;
             }).join('');
             fillLogoMarquee(brandsMarqueeTrack, cells);
         }
@@ -278,7 +397,7 @@
             const classes = ['publication-logo'];
             if (item.color) classes.push('is-color');
             if (item.square) classes.push('is-square');
-            return `<img class="${classes.join(' ')}" src="${item.src}" alt="${item.name}">`;
+            return `<img class="${classes.join(' ')}" src="${item.src}" alt="${item.name}" draggable="false">`;
         }
 
         function renderPublicationMarquee() {

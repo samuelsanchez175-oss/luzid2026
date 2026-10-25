@@ -324,6 +324,10 @@
             text-align: center;
         }
 
+        .section-title.section-title-lg {
+            font-size: clamp(2.45rem, 6vw, 4.85rem);
+        }
+
         /* About Section */
         .about-page-bg {
             position: fixed;
@@ -473,10 +477,31 @@
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             font-size: clamp(0.8rem, 1.1vw, 0.95rem);
             color: var(--muted);
-            line-height: 1.45;
+            line-height: 1.35;
             letter-spacing: 0.02em;
             margin: 0;
-            max-width: 28ch;
+            max-width: 22ch;
+        }
+
+        .capability-arrow {
+            position: absolute;
+            right: 0.7rem;
+            bottom: 0.6rem;
+            width: 14px;
+            height: 14px;
+            color: var(--muted);
+            z-index: 1;
+            display: flex;
+        }
+
+        .capability-arrow svg {
+            width: 14px;
+            height: 14px;
+            stroke-width: 1.5;
+        }
+
+        a.capability-card:hover .capability-arrow {
+            color: var(--fg);
         }
 
         .founder-section {
@@ -525,6 +550,15 @@
             padding: 5rem 1.25rem 4rem;
             background: #000;
             min-height: 100vh;
+        }
+
+        #services.brand-page-section {
+            min-height: 0;
+            padding-bottom: 1.25rem;
+        }
+
+        #services .capabilities-grid {
+            margin-bottom: 0;
         }
 
         .brand-inner {
@@ -769,17 +803,25 @@
             padding: 0.5rem 0 0.25rem;
             -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
             mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+            touch-action: pan-y;
+            cursor: grab;
+        }
+
+        .logo-marquee.is-dragging {
+            cursor: grabbing;
+            touch-action: none;
         }
 
         .logo-marquee-track {
             display: flex;
             align-items: flex-start;
             width: max-content;
-            animation: logo-marquee 32s linear infinite;
+            will-change: transform;
         }
 
-        .logo-marquee:hover .logo-marquee-track {
-            animation-play-state: paused;
+        .logo-marquee img {
+            -webkit-user-drag: none;
+            user-select: none;
         }
 
         .logo-marquee-group {
@@ -829,11 +871,6 @@
             max-height: 84px;
         }
 
-        @keyframes logo-marquee {
-            from { transform: translateX(0); }
-            to { transform: translateX(-50%); }
-        }
-
         @media (prefers-reduced-motion: reduce) {
             .logo-marquee {
                 -webkit-mask-image: none;
@@ -842,12 +879,14 @@
                 width: 100%;
                 margin-left: 0;
                 margin-right: 0;
+                cursor: default;
+                touch-action: auto;
             }
 
             .logo-marquee-track {
-                animation: none;
                 width: 100%;
                 justify-content: center;
+                transform: none !important;
             }
 
             .logo-marquee-group[aria-hidden="true"] {
@@ -1006,6 +1045,24 @@
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
             gap: 2rem;
+        }
+
+        .join-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: fit-content;
+            margin: 3rem auto 0;
+            padding: 1.15rem 2.4rem;
+            background: #000;
+            border: 1px solid #fff;
+            color: var(--accent);
+            font-size: clamp(2rem, 5vw, 4rem);
+            font-weight: 400;
+            letter-spacing: 0.12em;
+            line-height: 0.95;
+            text-align: center;
+            text-transform: uppercase;
         }
 
         .blog-card {
