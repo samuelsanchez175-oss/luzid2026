@@ -298,6 +298,7 @@
         const publicationMarqueeTrack = document.getElementById('publication-marquee-track');
         const filterBtns = document.querySelectorAll('.filter-btn');
         const workItems = [
+            { id: 71, title: 'Letter To My Mwah', director: 'Yung Miami', category: 'music-videos', categoryLabel: 'Music Video', image: 'assets/images/music-videos-yung-miami-letter-to-my-mwah.gif', video: null, link: 'https://www.youtube.com/watch?v=V_FONjgWzik', releaseDate: '2026-11-20', date: 'Nov 2026' },
             { id: 1, title: 'Back and Forth', director: 'Halle', category: 'music-videos', categoryLabel: 'Music Video', image: 'assets/images/music-videos-halle-back-and-forth.jpg', video: 'assets/videos/welcome-hero-video.mov', link: 'https://www.youtube.com/watch?v=XGEs3GE3-VY', releaseDate: '2025-02-14', date: 'Feb 2025' },
             { id: 2, title: 'Hello Bitch', director: 'Tyga', category: 'music-videos', categoryLabel: 'Music Video', image: 'assets/images/tyga-hello-bitch-preview.gif', video: null, link: 'https://www.youtube.com/watch?v=SFPHHni7rWs', releaseDate: '2024-06-07', date: 'Jun 2024' },
             { id: 3, title: 'Icon Swim featuring Latto', director: 'Brandon Almengo', category: 'commercials', categoryLabel: 'Commercial Campaign', image: 'assets/images/icon-swim-latto-thumb.jpg', video: null, link: 'https://www.youtube.com/watch?v=-1oQ4kxVzBU', releaseDate: '2023-01-01', date: '2023' },
